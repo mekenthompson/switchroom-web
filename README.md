@@ -1,6 +1,6 @@
 # switchroom-web
 
-Landing page for [Switchroom](https://github.com/mekenthompson/switchroom) — *your Claude subscription, as a fleet of agents.*
+Landing page for [Switchroom](https://github.com/switchroom/switchroom) — *your Claude subscription, as a fleet of agents.*
 
 ## Deploy
 
