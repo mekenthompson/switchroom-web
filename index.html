@@ -12,15 +12,15 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="assets/site.webmanifest">
 <meta name="theme-color" content="#0E1013">
-<meta name="description" content="Your Claude Pro or Max, as a fleet of always-on agents in Telegram. Live progress cards, per-agent memory, runs on your subscription. No API keys.">
+<meta name="description" content="A fleet of specialist Claude agents you steer from Telegram. See every step pinned to the chat. Runs on your Pro or Max subscription. No second bill.">
 <meta property="og:title" content="Switchroom · your Claude Pro or Max, as a fleet of always-on agents in Telegram">
-<meta property="og:description" content="A fleet of specialist agents you drive from Telegram. Live progress cards, per-agent memory, runs on your Pro or Max subscription. No API keys.">
+<meta property="og:description" content="A fleet of specialist Claude agents you steer from Telegram. See every step pinned to the chat. Runs on your Pro or Max subscription. No second bill.">
 <meta property="og:image" content="https://switchroom.ai/assets/switchroom-wordmark.png">
 <meta property="og:url" content="https://switchroom.ai">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Switchroom · your Claude Pro or Max, as a fleet of always-on agents in Telegram">
-<meta name="twitter:description" content="A fleet of specialist agents you drive from Telegram. Live progress cards, per-agent memory, runs on your Pro or Max subscription. No API keys.">
+<meta name="twitter:description" content="A fleet of specialist Claude agents you steer from Telegram. See every step pinned to the chat. Runs on your Pro or Max subscription. No second bill.">
 <meta name="twitter:image" content="https://switchroom.ai/assets/switchroom-wordmark.png">
 <style>
   /* ------------------------------------------------------------------
@@ -990,8 +990,7 @@
         in Telegram.
       </h1>
       <p class="hero-sub">
-        You see every step, pinned to the chat. Sub-agents, tool calls, approvals, all of it. A fleet of specialists you steer from your phone, not one generalist. Runs on the stock
-        <span class="mono" style="color:var(--brass)">claude</span> CLI with your Pro or Max OAuth. No API keys. No second bill.
+        See every step, pinned to the chat. Sub-agents, tool calls, approvals, all of it. A fleet of specialists you steer from your phone, not one generalist. Runs on your Pro or Max subscription. Not a second bill.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#install">
@@ -1233,7 +1232,7 @@
       <div class="spec">
         <div class="spec-id">B · D / REMEMBER</div>
         <h4>Remembers across sessions.</h4>
-        <p>Per-agent workspace memory: <code>MEMORY.md</code> and daily notes, BM25-searchable via MCP. Hindsight semantic memory for agents that want embeddings, knowledge graphs, mental models. You tell the coach something Tuesday, it comes back next Tuesday.</p>
+        <p>Hindsight semantic memory per agent. Knowledge graph built from daily notes, directives, and mental models, surfaced at the right moment. You tell the coach something Tuesday, it comes back next Tuesday. <code>MEMORY.md</code> and workspace file search handle the rest.</p>
       </div>
 
       <div class="spec">
@@ -1302,8 +1301,8 @@
   <span class="n">-</span> <span class="s">notes</span>
   <span class="n">-</span> <span class="s">email-draft</span>
 <span class="k">mcp</span><span class="n">:</span>
-  <span class="k">memory</span><span class="n">:</span>       <span class="v">true</span>   <span class="c"># BM25 over MEMORY.md</span>
-  <span class="k">hindsight</span><span class="n">:</span>    <span class="v">false</span>  <span class="c"># semantic recall</span>
+  <span class="k">hindsight</span><span class="n">:</span>    <span class="v">true</span>   <span class="c"># semantic memory, graphs, models</span>
+  <span class="k">memory</span><span class="n">:</span>       <span class="v">true</span>   <span class="c"># MEMORY.md + daily notes</span>
 <span class="k">permissions</span><span class="n">:</span>
   <span class="k">auto_allow</span><span class="n">:</span> [<span class="s">Read</span>, <span class="s">Grep</span>, <span class="s">Glob</span>, <span class="s">LS</span>]
   <span class="k">ask</span><span class="n">:</span>        [<span class="s">Bash</span>, <span class="s">Edit</span>, <span class="s">Write</span>, <span class="s">WebFetch</span>]
@@ -1427,8 +1426,12 @@
         <div class="a">Ubuntu 24.04 LTS, 4GB RAM, Node 20.11+, and an active Pro or Max subscription. Linux only. Native Windows isn't supported and probably won't be: systemd is core to the design. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
       </details>
       <details class="q">
+        <summary><span class="plus">+</span> Why not just use Claude Code?</summary>
+        <div class="a">Claude Code is great for live sessions on your laptop. Switchroom is for when you want your agents to keep thinking while you're sleeping, or while you're actually getting work done. Different contexts, different power. Use both.</div>
+      </details>
+      <details class="q">
         <summary><span class="plus">+</span> Is this like OpenClaw?</summary>
-        <div class="a">Same UX goal, different approach. OpenClaw and the others still work, they just don't ride Pro or Max any more. Anthropic cut third-party tools off the subscription tap, so those run on pay-per-token API keys now. Switchroom calls the stock <code>claude</code> CLI and sits on top of Claude Code's native sub-agent and MCP machinery. Nothing to patch. Same subscription you already pay for.</div>
+        <div class="a">Same UX goal, different billing model. OpenClaw runs on Anthropic's public API and charges per token. Switchroom drives the stock <code>claude</code> CLI under your Pro or Max OAuth, so the subscription you already pay for is the ceiling. Both are legitimate. Depends whether you want integrated billing or fine-grained pay-as-you-go.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Is this against Anthropic's terms of service?</summary>
