@@ -323,7 +323,15 @@
     margin-left: auto; font-family: var(--ff-sans); font-size: 13px;
   }
   .pin-card .title{ color: var(--bone); font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+  .pin-card blockquote.user-quote{
+    margin: 6px 0 10px; padding: 3px 10px;
+    border-left: 3px solid var(--ink-600);
+    color: var(--ink-300); font-size: 11px; font-style: italic;
+    line-height: 1.4;
+  }
   .pin-card .steps{ margin: 0; padding: 0; list-style: none; display:flex; flex-direction:column; gap:4px; font-family: var(--ff-mono); font-size: 12px; color: var(--ink-200); }
+  .pin-card .steps b{ color: var(--bone); font-weight: 600; }
+  .pin-card .steps i{ color: var(--ink-200); font-style: italic; }
   .pin-card .steps li{ display:flex; gap:8px; align-items:baseline; }
   .pin-card .steps .g{ color: var(--teal); width: 14px; display:inline-block; }
   .pin-card .steps .y{ color: var(--brass); width: 14px; display:inline-block; }
@@ -1078,41 +1086,41 @@
           </div>
         </div>
         <div class="tg-body">
-          <!-- Scheduled task that fired unprompted (Pillar D) -->
+          <!-- Scheduled task, completed (Pillar D). Uses real UX "Done" flag. -->
           <div class="pin-card sched">
             <div class="pin-head">
-              <span class="pin sched-pin">⏱ SCHEDULED</span>
-              <span>08:00 · weekday · klanker</span>
+              <span class="pin sched-pin">✅ Done</span>
+              <span>⏱ 1.2s · 08:00 weekday</span>
               <span class="reaction">📨</span>
             </div>
-            <div class="title">Morning briefing</div>
+            <blockquote class="user-quote">Scheduled: morning briefing</blockquote>
             <ul class="steps">
-              <li><span class="g">✓</span> Summarized 3 open PRs <span class="tail">0.6s</span></li>
-              <li><span class="g">✓</span> Checked CI: 2 failures on <code>main</code> <span class="tail">0.4s</span></li>
-              <li><span class="g">✓</span> Delivered digest <span class="tail">08:00:12</span></li>
+              <li><span class="g">●</span> Summarized 3 open PRs <span class="tail">(0.6s)</span></li>
+              <li><span class="g">●</span> Checked CI: 2 failures on <code>main</code></li>
+              <li><span class="g">●</span> Delivered digest</li>
             </ul>
           </div>
 
           <!-- Developer prompt -->
-          <div class="msg in">Klanker, triage the overnight checkout-timeout crash and draft a fix. Show me the diff before you touch anything.</div>
+          <div class="msg in">Klanker, triage the overnight checkout-timeout crash. Show me the diff before you touch anything.</div>
 
-          <!-- Main progress card with sub-agent nesting (Pillar A, deepened) -->
+          <!-- Main progress card, mid-flight. Uses real UX "Working…" flag + blockquote. -->
           <div class="pin-card active">
             <div class="pin-head">
-              <span class="pin">📌 PINNED</span>
-              <span>progress · 24s</span>
+              <span class="pin">⚙️ Working…</span>
+              <span>⏱ 24s</span>
               <span class="reaction">👨‍💻</span>
             </div>
-            <div class="title">Fixing checkout-timeout crash</div>
+            <blockquote class="user-quote">Klanker, triage the overnight checkout-timeout crash. Show me the diff before you touch…</blockquote>
             <ul class="steps">
-              <li><span class="g">✓</span> Read <code>src/checkout/session.ts</code> <span class="tail">0.4s</span></li>
-              <li><span class="g">✓</span> Grep <code>"timeout"</code> across 12 files <span class="tail">0.9s</span></li>
-              <li><span class="g">✓</span> Sub-agent <code>researcher</code> found root cause <span class="tail">1.2s</span></li>
-              <li class="sub"><span class="g">└ ✓</span> Missing <code>await</code> on <code>Promise.race</code></li>
-              <li><span class="y pulse">◐</span> <span class="active">Sub-agent <code>test-writer</code> · generating regression test</span></li>
-              <li class="sub"><span class="g">└ ✓</span> <code>checkout.timeout.test.ts</code> · 2 cases</li>
-              <li><span class="d">·</span> Run tests</li>
-              <li><span class="d">·</span> Await review</li>
+              <li><span class="g">●</span> Read <code>src/checkout/session.ts</code></li>
+              <li><span class="g">●</span> Grep <code>"timeout"</code> across 12 files <span class="tail">(0.9s)</span></li>
+              <li><span class="g">●</span> <b>Agent</b>: researcher <span class="tail">(1.2s)</span></li>
+              <li class="sub"><span class="g">└ ●</span> Missing <code>await</code> on <code>Promise.race</code></li>
+              <li><span class="y pulse">🤖</span> <b>Agent</b>: test-writer <span class="tail">(12.4s)</span></li>
+              <li class="sub"><span class="y pulse">└ ◉</span> <i>Write checkout.timeout.test.ts</i></li>
+              <li><span class="d">○</span> Run tests</li>
+              <li><span class="d">○</span> Await review</li>
             </ul>
             <div class="bar"><span class="fill"></span></div>
           </div>
