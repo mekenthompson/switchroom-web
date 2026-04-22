@@ -1105,7 +1105,7 @@
           plugged into its own Telegram bot, on its own topic. You wire the cords; Switchroom holds the panel.
         </p>
         <p style="margin-top:18px; color: var(--ink-300);">
-          Not a harness. Doesn’t patch the CLI, doesn’t intercept the protocol, doesn’t forge tokens. Just scaffolds files, starts processes, routes messages. Gets out of the way.
+          Not a harness. Doesn't patch the CLI, doesn't intercept the protocol, doesn't forge tokens. Just scaffolds files, starts processes, routes messages. Gets out of the way.
         </p>
       </div>
 
@@ -1380,16 +1380,19 @@
 <span class="prompt">$</span> <span class="cmd">switchroom --version</span>
 <span class="ok">  1.0.0</span>
 
-<span class="out"># 3. Log in to Claude with your Pro or Max subscription</span>
-<span class="prompt">$</span> <span class="cmd">switchroom auth login</span>
-<span class="ok">  ✓ linked Claude Max session</span>
-
-<span class="out"># 4. Interactive setup. Installs deps, scaffolds config, links Telegram.</span>
+<span class="out"># 3. Interactive setup. Installs deps, scaffolds config, links Telegram.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom setup</span>
 <span class="ok">  ✓ ready</span>
 
-<span class="out"># 5. Create your first agent from a profile, then start it</span>
+<span class="out"># 4. Create your first agent from a profile</span>
 <span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">coach</span> <span class="flag">--profile</span> <span class="cmd">health-coach</span>
+<span class="ok">  ✓ added coach (extends: health-coach) to switchroom.yaml</span>
+
+<span class="out"># 5. Log in to Claude with your Pro or Max subscription for that agent</span>
+<span class="prompt">$</span> <span class="cmd">switchroom auth login</span> <span class="cmd">coach</span>
+<span class="ok">  ✓ linked Claude Max session</span>
+
+<span class="out"># 6. Start it</span>
 <span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">coach</span>
 <span class="ok">  ● switchroom-coach.service - active (running)</span>
 <span class="out">    │ listening on @coach_bot</span></div>
@@ -1427,10 +1430,10 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Is this like OpenClaw?</summary>
-        <div class="a">Same UX goal, different approach. OpenClaw and the others still work, they just don’t ride your Pro or Max any more. Anthropic cut third-party tools off the subscription tap. You’re on pay-per-token API keys if you stay on those. Switchroom calls the stock <code>claude</code> CLI, uses the same OAuth flow as the desktop app, and sits on top of Claude Code’s native sub-agent and MCP machinery. Nothing to patch, same subscription you’re already paying for.</div>
+        <div class="a">Same UX goal, different approach. OpenClaw and the others still work, they just don't ride your Pro or Max any more. Anthropic cut third-party tools off the subscription tap. You're on pay-per-token API keys if you stay on those. Switchroom calls the stock <code>claude</code> CLI, uses the same OAuth flow as the desktop app, and sits on top of Claude Code's native sub-agent and MCP machinery. Nothing to patch, same subscription you're already paying for.</div>
       </details>
       <details class="q">
-        <summary><span class="plus">+</span> Is this against Anthropic’s terms of service?</summary>
+        <summary><span class="plus">+</span> Is this against Anthropic's terms of service?</summary>
         <div class="a">No. Switchroom drives the official <code>claude</code> binary with the official OAuth flow. No credential interception, no API key routing, no forked runtime. Full compliance analysis in the <a href="https://github.com/switchroom/switchroom/blob/main/docs/compliance-attestation.md" target="_blank" rel="noopener">compliance attestation</a>.</div>
       </details>
       <details class="q">
