@@ -1370,26 +1370,23 @@
           <span>bash · ~/panel</span>
           <span class="copy" onclick="(()=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('install-cmd').innerText);this.innerText='copied';setTimeout(()=>this.innerText='copy',1200);})()">copy</span>
         </div>
-        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Install the CLI</span>
-<span class="prompt">$</span> <span class="cmd">npm install -g switchroom-ai</span>
+        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Bootstrap a fresh box — bun, node, claude CLI, switchroom.</span>
+<span class="prompt">$</span> <span class="cmd">curl -fsSL https://get.switchroom.ai | bash</span>
+<span class="ok">  ✓ installed</span>
 
-<span class="out"># 2. Check the version</span>
-<span class="prompt">$</span> <span class="cmd">switchroom --version</span>
-<span class="ok">  1.0.0</span>
-
-<span class="out"># 3. Interactive setup. Installs deps, scaffolds config, links Telegram.</span>
+<span class="out"># 2. Interactive setup. Scaffolds config, links Telegram, wires the vault.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom setup</span>
 <span class="ok">  ✓ ready</span>
 
-<span class="out"># 4. Create your first agent from a profile</span>
+<span class="out"># 3. Scaffold your first agent from a profile.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">coach</span> <span class="flag">--profile</span> <span class="cmd">health-coach</span>
 <span class="ok">  ✓ added coach (extends: health-coach) to switchroom.yaml</span>
 
-<span class="out"># 5. Log in to Claude with your Pro or Max subscription for that agent</span>
+<span class="out"># 4. Link your Pro or Max session.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom auth login</span> <span class="cmd">coach</span>
 <span class="ok">  ✓ linked Claude Max session</span>
 
-<span class="out"># 6. Start it</span>
+<span class="out"># 5. Go.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">coach</span>
 <span class="ok">  ● switchroom-coach.service - active (running)</span>
 <span class="out">    │ listening on @coach_bot</span></div>
