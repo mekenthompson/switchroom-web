@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/switchroom-hero-wide.png" alt="Switchroom — opinionated Telegram UX for Claude Code on your Pro or Max subscription" width="100%">
+</p>
+
 # switchroom-web
 
 Landing page for [Switchroom](https://github.com/switchroom/switchroom) — *your Claude subscription, as a fleet of agents.*
