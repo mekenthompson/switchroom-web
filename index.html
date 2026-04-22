@@ -527,7 +527,7 @@
   /* ---------------- Value prop tiles ---------------- */
   .tiles{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
   .tile{
@@ -1152,7 +1152,7 @@
 <section id="why">
   <div class="container">
     <div class="section-label">§03 · what this lets you do</div>
-    <h2 class="section-title">Three outcomes. Everything else is a footnote.</h2>
+    <h2 class="section-title">Four outcomes. Everything else is a footnote.</h2>
 
     <div class="tiles">
       <!-- A -->
@@ -1195,6 +1195,19 @@
           <div class="bar-wrap"><span></span></div>
           <div class="row mini"><span>api.anthropic.com</span><span>· not in use ·</span></div>
           <div class="flat" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- D -->
+      <div class="tile">
+        <div class="num">D / WORK WITHOUT YOU</div>
+        <h3>Your agents clock in while you sleep.</h3>
+        <p>Scheduled tasks as systemd user timers, not a hack. Cron syntax in YAML, per-task model selection, output delivered to Telegram. Morning briefing at 8 AM, weekly review Sunday night, hourly on-call digest. Survives reboots, survives the laptop being shut.</p>
+        <div class="tile-viz viz-meter">
+          <div class="row"><span>08:00 weekday</span><span class="val">morning briefing</span></div>
+          <div class="row"><span>20:00 sun</span><span class="val">weekly review</span></div>
+          <div class="row mini"><span>hourly</span><span>on-call digest</span></div>
+          <div class="row mini"><span>next fires in</span><span>09:14:27</span></div>
         </div>
       </div>
     </div>
