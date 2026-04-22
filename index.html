@@ -1046,7 +1046,7 @@
         <em>Claude subscription</em>.
       </h1>
       <p class="hero-sub">
-        Switchroom is opinionated: stock <span class="mono" style="color:var(--brass)">claude</span> CLI, Claude models, Telegram as the UX. No other providers, no other channels. The best Telegram UX for Claude Code, because that's what I actually wanted. Built for my problems. Open-sourced for yours.
+        Switchroom is opinionated: stock <span class="mono" style="color:var(--brass)">claude</span> CLI, Claude models, Telegram as the UX. No other providers, no other channels. Built for my problems. Open-sourced for yours.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#install">
@@ -1230,7 +1230,7 @@
         <div style="margin-top: 14px; display:flex; gap:10px; align-items:center; font-family:var(--ff-mono); font-size:11px; color:var(--ink-400);">
           <span style="color: var(--teal)">●</span> OAuth: ~/.claude/.oauth-token
           <span style="color: var(--ink-600)">·</span>
-          <span style="color: var(--brass)">●</span> bill: $0.00 today
+          <span style="color: var(--brass)">●</span> claude quota · 34% used
         </div>
       </div>
     </div>
@@ -1278,11 +1278,11 @@
       <div class="tile">
         <div class="num">C / KEEP THE BILL HONEST</div>
         <h3>Your Pro or Max is the ceiling.</h3>
-        <p>Same OAuth as your desktop Claude Code session. No API meter, no per-token bill, no second invoice. Hit your plan's ceiling and the product says so. It doesn't silently spend elsewhere.</p>
+        <p>Same OAuth as your desktop Claude Code session. Runs on your plan's quota, resets on Claude's clock. Hit the ceiling, the product says so. No API bill running in the background.</p>
         <div class="tile-viz viz-meter">
-          <div class="row"><span>usage · today</span><span class="val">0.00 USD</span></div>
-          <div class="bar-wrap"><span></span></div>
-          <div class="row mini"><span>api.anthropic.com</span><span>· not in use ·</span></div>
+          <div class="row"><span>claude quota · today</span><span class="val">34% used</span></div>
+          <div class="bar-wrap"><span style="width:34%"></span></div>
+          <div class="row mini"><span>resets in</span><span>5h 12m</span></div>
           <div class="flat" aria-hidden="true"></div>
         </div>
       </div>
@@ -1309,7 +1309,7 @@
     <div class="section-label">§04 · what else you get</div>
     <h2 class="section-title">Built for how you actually use this.</h2>
     <p class="section-lede">
-      Grouped by the three outcomes. Top row earns the visibility. Bottom row runs the fleet.
+      Top row earns the visibility. Bottom row runs the fleet.
     </p>
 
     <div class="features-spec">
@@ -1472,7 +1472,7 @@
           <span>bash · ~/panel</span>
           <span class="copy" onclick="(()=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('install-cmd').innerText);this.innerText='copied';setTimeout(()=>this.innerText='copy',1200);})()">copy</span>
         </div>
-        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Bootstrap a fresh box — bun, node, claude CLI, switchroom.</span>
+        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Bootstrap a fresh box: bun, node, claude CLI, switchroom.</span>
 <span class="prompt">$</span> <span class="cmd">curl -fsSL https://get.switchroom.ai | bash</span>
 <span class="ok">  ✓ installed</span>
 
