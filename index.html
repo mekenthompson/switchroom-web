@@ -355,6 +355,62 @@
   .tg-btn.allow{ background:#223A2E; border-color:#2F5A44; color:#98E4B6; }
   .tg-btn.deny{ background:#3A2426; border-color:#5A2F32; color:#E99A9E; }
 
+
+  /* Enhanced pin-card variants for hero */
+  .pin-card.sched{ border-left: 2px solid var(--teal); }
+  .pin-card.sched .sched-pin{ color: var(--teal); }
+  .pin-card.active{ border-left: 2px solid var(--cord); animation: cardIn .5s ease-out .3s both; }
+  .pin-card .steps li.sub{ padding-left: 18px; color: var(--ink-300); font-size: 11px; }
+  .pin-card .steps .tail{ margin-left:auto; color: var(--ink-400); font-size: 10px; font-family: var(--ff-mono); }
+  .pin-card .steps .pulse{ display:inline-block; animation: stepPulse 1.4s ease-in-out infinite; }
+  .pin-card .bar .fill{ display:block; height:100%; background: linear-gradient(90deg, var(--cord), var(--brass)); width: 0; animation: fillBar 2.4s ease-out .6s forwards; }
+
+  /* Diff preview in approval card */
+  .pin-card .diff{
+    font-family: var(--ff-mono); font-size: 11px; line-height: 1.5;
+    margin: 10px 0 4px; padding: 8px 10px;
+    background: var(--ink-900); border-radius: 6px;
+    border: 1px solid var(--ink-700);
+    overflow-x: auto; white-space: pre;
+  }
+  .pin-card .diff .dneg{ color: #E99A9E; display:block; }
+  .pin-card .diff .dpos{ color: #98E4B6; display:block; }
+
+  /* Status footer */
+  .tg-status{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    padding: 9px 18px;
+    border-top: 1px solid var(--ink-700);
+    background: var(--ink-900);
+    font-family: var(--ff-mono); font-size: 10.5px;
+    color: var(--ink-300);
+  }
+  .tg-status .sep{ color: var(--ink-600); }
+  .tg-status .dot-online{
+    display:inline-block; width:6px; height:6px; border-radius:50%;
+    background: var(--teal); margin-right: 4px; vertical-align: middle;
+    box-shadow: 0 0 0 2px rgba(74,155,142,.18);
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  /* Hero animations */
+  @keyframes fillBar{
+    0%{ width: 0 }
+    100%{ width: 64% }
+  }
+  @keyframes stepPulse{
+    0%,100%{ opacity: 1 }
+    50%{ opacity: .4 }
+  }
+  @keyframes cardIn{
+    0%{ opacity: 0; transform: translateY(8px) }
+    100%{ opacity: 1; transform: translateY(0) }
+  }
+  @keyframes dotPulse{
+    0%,100%{ box-shadow: 0 0 0 2px rgba(74,155,142,.18); }
+    50%{ box-shadow: 0 0 0 4px rgba(74,155,142,.32); }
+  }
+
   /* cord decoration */
   .cord-svg{
     position:absolute; inset:0; width:100%; height:100%; pointer-events:none;
@@ -1022,44 +1078,77 @@
           </div>
         </div>
         <div class="tg-body">
-          <div class="msg in">Draft a reply to the landlord about the Thursday inspection. Check the calendar for conflicts first.</div>
-
-          <div class="pin-card">
+          <!-- Scheduled task that fired unprompted (Pillar D) -->
+          <div class="pin-card sched">
             <div class="pin-head">
-              <span class="pin">📌 PINNED</span>
-              <span>progress · updates every 3s</span>
-              <span class="reaction">👨‍💻</span>
+              <span class="pin sched-pin">⏱ SCHEDULED</span>
+              <span>08:00 · weekday · klanker</span>
+              <span class="reaction">📨</span>
             </div>
-            <div class="title">Drafting reply to landlord</div>
+            <div class="title">Morning briefing</div>
             <ul class="steps">
-              <li><span class="g">✓</span> Read ~/workspace/MEMORY.md</li>
-              <li><span class="g">✓</span> Grep "inspection" in daily notes</li>
-              <li><span class="y">◐</span> <span class="active">MCP · calendar_conflicts (Thu)</span></li>
-              <li><span class="d">·</span> Compose reply</li>
-              <li><span class="d">·</span> Await review</li>
+              <li><span class="g">✓</span> Summarized 3 open PRs <span class="tail">0.6s</span></li>
+              <li><span class="g">✓</span> Checked CI: 2 failures on <code>main</code> <span class="tail">0.4s</span></li>
+              <li><span class="g">✓</span> Delivered digest <span class="tail">08:00:12</span></li>
             </ul>
-            <div class="bar"><span></span></div>
           </div>
 
+          <!-- Developer prompt -->
+          <div class="msg in">Klanker, triage the overnight checkout-timeout crash and draft a fix. Show me the diff before you touch anything.</div>
+
+          <!-- Main progress card with sub-agent nesting (Pillar A, deepened) -->
+          <div class="pin-card active">
+            <div class="pin-head">
+              <span class="pin">📌 PINNED</span>
+              <span>progress · 24s</span>
+              <span class="reaction">👨‍💻</span>
+            </div>
+            <div class="title">Fixing checkout-timeout crash</div>
+            <ul class="steps">
+              <li><span class="g">✓</span> Read <code>src/checkout/session.ts</code> <span class="tail">0.4s</span></li>
+              <li><span class="g">✓</span> Grep <code>"timeout"</code> across 12 files <span class="tail">0.9s</span></li>
+              <li><span class="g">✓</span> Sub-agent <code>researcher</code> found root cause <span class="tail">1.2s</span></li>
+              <li class="sub"><span class="g">└ ✓</span> Missing <code>await</code> on <code>Promise.race</code></li>
+              <li><span class="y pulse">◐</span> <span class="active">Sub-agent <code>test-writer</code> · generating regression test</span></li>
+              <li class="sub"><span class="g">└ ✓</span> <code>checkout.timeout.test.ts</code> · 2 cases</li>
+              <li><span class="d">·</span> Run tests</li>
+              <li><span class="d">·</span> Await review</li>
+            </ul>
+            <div class="bar"><span class="fill"></span></div>
+          </div>
+
+          <!-- Approval card with diff preview (Pillar A, security) -->
           <div class="pin-card" style="border-left-color: var(--brass)">
             <div class="pin-head">
               <span class="pin" style="color: var(--cord-soft)">⚠ APPROVAL</span>
-              <span>Bash · gated tool</span>
+              <span>Edit · gated tool</span>
             </div>
             <div class="title" style="font-size: 13px; font-weight:500">
-              Run <span class="mono" style="color:var(--brass)">gcal list --week=thu</span>?
+              Modify <span class="mono" style="color:var(--brass)">src/checkout/timeout-guard.ts</span>?
             </div>
+            <pre class="diff"><span class="dneg">-   Promise.race([fetch(url), timeout(5000)])</span>
+<span class="dpos">+   await Promise.race([fetch(url), timeout(5000)])</span></pre>
             <div class="approve-row">
               <div class="tg-btn allow">✅ Allow</div>
               <div class="tg-btn deny">❌ Deny</div>
-              <div class="tg-btn">See more</div>
+              <div class="tg-btn">See full</div>
             </div>
           </div>
 
+          <!-- Agent reply -->
           <div class="msg out">
-            Two overlaps on Thursday. Drafted a reply proposing Friday 10 AM. Send, or hold?
-            <time>10:41 · 🔥</time>
+            Fixed. Root cause: missing <code>await</code>. 2 new tests cover the race. Ready to commit and open a PR?
+            <time>10:41 · @klanker_bot · 🔥</time>
           </div>
+        </div>
+
+        <!-- Status footer: pillars B + C + D in one glance -->
+        <div class="tg-status">
+          <span><span class="dot-online"></span>3/5 agents idle</span>
+          <span class="sep">·</span>
+          <span>Pro · api meter idle</span>
+          <span class="sep">·</span>
+          <span>next: 20:00 Sun weekly review</span>
         </div>
       </div>
     </div>
