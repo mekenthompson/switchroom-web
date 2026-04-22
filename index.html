@@ -1136,7 +1136,7 @@
         <div class="fleet">
           <div class="agent"><span class="sq a"></span> assistant <small>@pa_bot</small></div>
           <div class="agent"><span class="sq b"></span> dev-helper <small>@dev_bot</small></div>
-          <div class="agent"><span class="sq c"></span> coach <small>@coach_bot</small></div>
+          <div class="agent"><span class="sq c"></span> klanker <small>@klanker_bot</small></div>
         </div>
         <div style="margin-top: 14px; display:flex; gap:10px; align-items:center; font-family:var(--ff-mono); font-size:11px; color:var(--ink-400);">
           <span style="color: var(--teal)">●</span> OAuth: ~/.claude/.oauth-token
@@ -1177,7 +1177,7 @@
           <div class="jack live"><div class="tag">pa</div></div>
           <div class="jack live"><div class="tag">dev</div></div>
           <div class="jack"></div>
-          <div class="jack live"><div class="tag">coach</div></div>
+          <div class="jack live"><div class="tag">klanker</div></div>
           <div class="jack"></div>
           <div class="jack live"><div class="tag">fin</div></div>
           <div class="jack"></div>
@@ -1379,17 +1379,17 @@
 <span class="ok">  ✓ ready</span>
 
 <span class="out"># 3. Scaffold your first agent from a profile.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">coach</span> <span class="flag">--profile</span> <span class="cmd">health-coach</span>
-<span class="ok">  ✓ added coach (extends: health-coach) to switchroom.yaml</span>
+<span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">klanker</span> <span class="flag">--profile</span> <span class="cmd">executive-assistant</span>
+<span class="ok">  ✓ added klanker (extends: executive-assistant) to switchroom.yaml</span>
 
 <span class="out"># 4. Link your Pro or Max session.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom auth login</span> <span class="cmd">coach</span>
+<span class="prompt">$</span> <span class="cmd">switchroom auth login</span> <span class="cmd">klanker</span>
 <span class="ok">  ✓ linked Claude Max session</span>
 
 <span class="out"># 5. Go.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">coach</span>
-<span class="ok">  ● switchroom-coach.service - active (running)</span>
-<span class="out">    │ listening on @coach_bot</span></div>
+<span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">klanker</span>
+<span class="ok">  ● switchroom-klanker.service - active (running)</span>
+<span class="out">    │ listening on @klanker_bot</span></div>
       </div>
     </div>
   </div>
