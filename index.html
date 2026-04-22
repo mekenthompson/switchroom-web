@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Switchroom · your Claude subscription as a fleet of agents</title>
+<title>Switchroom · your Claude Pro or Max, as a fleet of always-on agents in Telegram</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
@@ -12,16 +12,19 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="assets/site.webmanifest">
 <meta name="theme-color" content="#0E1013">
-<meta property="og:title" content="Switchroom · your Claude subscription as a fleet of agents">
-<meta property="og:description" content="A scaffolder, process manager, and Telegram plugin for the official claude CLI. Keeps you on your Pro or Max subscription instead of pay-per-token API keys.">
+<meta name="description" content="Your Claude Pro or Max, as a fleet of always-on agents in Telegram. Live progress cards, per-agent memory, runs on your subscription. No API keys.">
+<meta property="og:title" content="Switchroom · your Claude Pro or Max, as a fleet of always-on agents in Telegram">
+<meta property="og:description" content="A fleet of specialist agents you drive from Telegram. Live progress cards, per-agent memory, runs on your Pro or Max subscription. No API keys.">
 <meta property="og:image" content="https://switchroom.ai/assets/switchroom-wordmark.png">
 <meta property="og:url" content="https://switchroom.ai">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Switchroom · your Claude Pro or Max, as a fleet of always-on agents in Telegram">
+<meta name="twitter:description" content="A fleet of specialist agents you drive from Telegram. Live progress cards, per-agent memory, runs on your Pro or Max subscription. No API keys.">
 <meta name="twitter:image" content="https://switchroom.ai/assets/switchroom-wordmark.png">
 <style>
   /* ------------------------------------------------------------------
-     Switchroom — Patch Bay palette
+     Switchroom · Patch Bay palette
      Charcoal base, brass accent, signal red (the cord), bone for cards.
   ------------------------------------------------------------------ */
   :root{
@@ -566,7 +569,7 @@
     overflow: hidden;
   }
 
-  /* A — meter flatlining */
+  /* A · meter flatlining */
   .viz-meter{
     padding: 14px 16px;
     display:flex; flex-direction:column; gap: 8px;
@@ -597,7 +600,7 @@
     box-shadow: 0 0 6px rgba(232,182,87,.4);
   }
 
-  /* B — patch bay of agents */
+  /* B · patch bay of agents */
   .viz-patch{
     padding: 14px 16px;
     display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-content: center;
@@ -625,7 +628,7 @@
     letter-spacing: .1em;
   }
 
-  /* C — reactions */
+  /* C · reactions */
   .viz-react{
     padding: 18px 16px; display:flex; flex-direction:column; gap: 10px; height:100%; justify-content:center;
   }
@@ -987,9 +990,8 @@
         in Telegram.
       </h1>
       <p class="hero-sub">
-        Switchroom is a scaffolder, process manager, and Telegram plugin for the official
-        <span class="mono" style="color:var(--brass)">claude</span> CLI. Nothing patched, nothing forked.
-        The other harnesses still run. What changed is the subscription tap. Anthropic cut third-party tools off Pro and Max. They’re on pay-per-token API keys now. Switchroom uses the CLI the way Anthropic ships it, so you stay on the subscription you’re already paying for.
+        Run a fleet of specialists, not one generalist. Talk to them from your phone on the train, your laptop at a desk, wherever you are. See live progress as they work, pinned to the chat. All of it on the
+        <span class="mono" style="color:var(--brass)">claude</span> CLI Anthropic ships, authenticated with your Pro or Max OAuth. No API keys, no per-token bill.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#install">
@@ -1070,22 +1072,21 @@
   <div class="container">
     <div class="section-label">§01 · the problem</div>
     <p class="problem-quote">
-      You had agents in Telegram. Then the <em>subscription tap got cut</em> for third-party tools. You still pay for Pro or Max.
-      You still want Claude <em>on your phone</em>, <em>away from your machine</em>, <em>remembering things across sessions</em>.
-      Just not paying twice for it.
+      You want Claude <em>on your phone</em>, <em>remembering what you told it last week</em>, <em>showing you what it's actually doing</em>.
+      One agent that knows everything is a demo. A fleet of specialists, each shaped for a part of your life, is a workforce. And you want it on the subscription you already pay for, not a second bill.
     </p>
     <div class="problem-grid">
       <div>
-        <h4>On your desktop</h4>
-        <p>Claude Code is a terminal app. It sleeps when your laptop sleeps. It forgets when you close the window.</p>
+        <h4>You can't see what it's doing</h4>
+        <p>Message in, eventually a message out. The middle is a black box. Stuck, working, crashed, spawning sub-agents? No idea until it comes back, if it comes back.</p>
       </div>
       <div>
-        <h4>On your phone</h4>
-        <p>Mobile Claude is a chat app. No file access, no shell, no custom skills, no continuity with your desktop.</p>
+        <h4>You're tethered to the desktop</h4>
+        <p>Claude Code is a terminal app. It sleeps when the laptop sleeps. Mobile Claude is a chat app with no files, no shell, no continuity. Your life happens away from the keyboard.</p>
       </div>
       <div>
         <h4>The subscription tap got closed</h4>
-        <p>OpenClaw and the other harnesses still run. They just can’t ride your Pro or Max any more. It’s API keys now, billed per token. Switchroom calls the CLI Anthropic ships. Same OAuth, same limits, no middleman.</p>
+        <p>Anthropic cut third-party tools off Pro and Max. OpenClaw and friends still run, on pay-per-token API keys. Switchroom drives the CLI Anthropic ships. Same OAuth, same limits, no second invoice.</p>
       </div>
     </div>
   </div>
@@ -1153,28 +1154,28 @@
 <!-- =================== VALUE PROP TILES =================== -->
 <section id="why">
   <div class="container">
-    <div class="section-label">§03 · why you'd run this</div>
-    <h2 class="section-title">Three reasons. Everything else is a footnote.</h2>
+    <div class="section-label">§03 · what this lets you do</div>
+    <h2 class="section-title">Three outcomes. Everything else is a footnote.</h2>
 
     <div class="tiles">
       <!-- A -->
       <div class="tile">
-        <div class="num">A / BILLING</div>
-        <h3>Your Pro/Max is the ceiling.</h3>
-        <p>Switchroom runs the real claude CLI under your Pro or Max OAuth token, the same one the desktop app uses. No API meter, no per-token bill, no second invoice. Your subscription is the cap.</p>
-        <div class="tile-viz viz-meter">
-          <div class="row"><span>usage · today</span><span class="val">0.00 USD</span></div>
-          <div class="bar-wrap"><span></span></div>
-          <div class="row mini"><span>api.anthropic.com</span><span>· not in use ·</span></div>
-          <div class="flat" aria-hidden="true"></div>
+        <div class="num">A / KNOW WHAT IT'S DOING</div>
+        <h3>See every step, pinned to the chat.</h3>
+        <p>A progress card pops in when work starts and updates as tools fire. Read, Bash, Edit, Grep, each one lands with elapsed time. Sub-agent work shows in its own section. Two tasks running? Each card is labelled <span class="mono" style="color:var(--brass)">(1/N)</span> so you never lose the plot.</p>
+        <div class="tile-viz viz-react">
+          <div class="bubble pinned"><span class="emoji">👀</span> Reading MEMORY.md <span class="tail">0.3s</span></div>
+          <div class="bubble pinned"><span class="emoji">🤔</span> Checking calendar <span class="tail">1.1s</span></div>
+          <div class="bubble pinned"><span class="emoji">👨‍💻</span> Drafting reply <span class="tail">2.4s</span></div>
+          <div class="bubble pinned"><span class="emoji">🔥</span> Done · 4 lines <span class="tail">3.0s</span></div>
         </div>
       </div>
 
       <!-- B -->
       <div class="tile">
-        <div class="num">B / FLEET</div>
-        <h3>Multi-persona, one panel.</h3>
-        <p>Each agent is its own systemd service with its own SOUL, its own memory, its own Telegram topic. One bot per agent keeps routing clean.</p>
+        <div class="num">B / RUN A FLEET</div>
+        <h3>Specialists, not one generalist.</h3>
+        <p>Health coach in the morning, coding assistant after lunch, executive assistant for the inbox. Each agent has its own voice, its own memory, its own topic, its own tools. Add one the way you add a contact, not like you're migrating a service.</p>
         <div class="tile-viz viz-patch">
           <div class="jack live"><div class="tag">pa</div></div>
           <div class="jack live"><div class="tag">dev</div></div>
@@ -1189,14 +1190,14 @@
 
       <!-- C -->
       <div class="tile">
-        <div class="num">C / PRESENCE</div>
-        <h3>Persistent, present, responsive.</h3>
-        <p>Progress cards show what each agent is doing in real time. Pinned, live-updating, with sub-agent work visible in its own section. Two agents running? Each card is labelled <span class="mono" style="color:var(--brass)">(1/N)</span> so you never lose the plot.</p>
-        <div class="tile-viz viz-react">
-          <div class="bubble pinned"><span class="emoji">👀</span> Reading MEMORY.md <span class="tail">0.3s</span></div>
-          <div class="bubble pinned"><span class="emoji">🤔</span> Checking calendar <span class="tail">1.1s</span></div>
-          <div class="bubble pinned"><span class="emoji">👨‍💻</span> Drafting reply <span class="tail">2.4s</span></div>
-          <div class="bubble pinned"><span class="emoji">🔥</span> Done · 4 lines <span class="tail">3.0s</span></div>
+        <div class="num">C / KEEP THE BILL HONEST</div>
+        <h3>Your Pro or Max is the ceiling.</h3>
+        <p>Switchroom drives the real claude CLI under your Pro or Max OAuth, the same session the desktop app uses. No API meter, no per-token bill, no second invoice. If your plan can't run a feature, the product says so. It doesn't silently spend elsewhere.</p>
+        <div class="tile-viz viz-meter">
+          <div class="row"><span>usage · today</span><span class="val">0.00 USD</span></div>
+          <div class="bar-wrap"><span></span></div>
+          <div class="row mini"><span>api.anthropic.com</span><span>· not in use ·</span></div>
+          <div class="flat" aria-hidden="true"></div>
         </div>
       </div>
     </div>
@@ -1206,29 +1207,47 @@
 <!-- =================== FEATURES DETAIL =================== -->
 <section id="features">
   <div class="container">
-    <div class="section-label">§04 · features</div>
-    <h2 class="section-title">Three more things you'll want.</h2>
+    <div class="section-label">§04 · what else you get</div>
+    <h2 class="section-title">Built for how you actually use this.</h2>
     <p class="section-lede">
-      Memory that sticks around. Permissions that don't get in your way. A codebase you can actually read.
+      Remembers what you told it last week. Survives the box rebooting. Lets you steer or queue mid-flight. Extends without forking.
     </p>
 
     <div class="features-spec">
       <div class="spec">
-        <div class="spec-id">D / MEMORY</div>
-        <h4>Your memory, your files.</h4>
-        <p>Workspace-backed long-term memory: <code>MEMORY.md</code> + daily notes, BM25-searchable via MCP tools. Hindsight semantic memory with knowledge graphs for agents that want embeddings. Skills are plain markdown. Edit them like any other file in your repo. Encrypted vault (AES-256-GCM) for bot tokens and anything else secret.</p>
+        <div class="spec-id">D / REMEMBER</div>
+        <h4>Remembers across sessions.</h4>
+        <p>Per-agent workspace memory: <code>MEMORY.md</code> and daily notes, BM25-searchable via MCP. Hindsight semantic memory with knowledge graphs and mental models for agents that want embeddings. You told the coach something last Tuesday, it comes back next Tuesday, in the right moment.</p>
       </div>
 
       <div class="spec">
-        <div class="spec-id">E / SAFETY</div>
-        <h4>Safe by default.</h4>
-        <p>Permission prompts surface in Telegram as <code>✅ Allow</code> / <code>❌ Deny</code> buttons. Read-only tools are pre-approved; Bash, Edit, Write, WebFetch gate through you. PI-safe envelopes sanitize inbound untrusted text.</p>
+        <div class="spec-id">E / STEER OR QUEUE</div>
+        <h4>Course-correct mid-flight.</h4>
+        <p>A follow-up while a task runs amends in place. Prefix with <code>/queue</code> and it files a new task instead, cleanly, no bleed from the current one. The agent tells you which it did so you can correct if it picked wrong.</p>
       </div>
 
       <div class="spec">
-        <div class="spec-id">F / OPEN</div>
-        <h4>Open and tinkerable.</h4>
-        <p>TypeScript. MIT-licensed. Bun for dev, Node ≥20 at runtime. Profiles and skills live as <code>.hbs</code> templates you can fork. No vendor lock-in. Read the source, break it, send a PR.</p>
+        <div class="spec-id">F / SURVIVE REBOOTS</div>
+        <h4>Comes back after real life.</h4>
+        <p>Agents run as systemd services. The box reboots, the fleet comes back. A crash gets a real message, not silence. Context exhaustion is handled as a named event. Scheduled work fires across reboots. You ask "is everything healthy" and get a real answer.</p>
+      </div>
+
+      <div class="spec">
+        <div class="spec-id">G / SAFE BY DEFAULT</div>
+        <h4>You approve, not the agent.</h4>
+        <p>Permission prompts surface in Telegram as <code>✅ Allow</code> / <code>❌ Deny</code> buttons. Read-only tools are pre-approved. Bash, Edit, Write, WebFetch gate through you. PI-safe envelopes sanitize inbound untrusted text.</p>
+      </div>
+
+      <div class="spec">
+        <div class="spec-id">H / TALK FROM ANYWHERE</div>
+        <h4>Phone-first, laptop-friendly.</h4>
+        <p>Telegram is the surface. Start a task walking to the shops, finish it on the train, pick up the reply while making dinner. Attachments are real input, not stripped. Notifications fire on the bit that mattered, not every edit.</p>
+      </div>
+
+      <div class="spec">
+        <div class="spec-id">I / EXTEND WITHOUT FORKING</div>
+        <h4>Config, not a code change.</h4>
+        <p>Add an agent by editing YAML. Graft a skill onto an existing agent without touching its core. MIT-licensed TypeScript. Profiles and skills are plain files you fork in your own repo. No vendor lock-in, no framework to learn.</p>
       </div>
     </div>
   </div>
@@ -1239,6 +1258,9 @@
   <div class="container">
     <div class="section-label">§05 · how it works</div>
     <h2 class="section-title">Five moving parts. All files you can read.</h2>
+    <p class="section-lede">
+      Not a harness. Doesn't patch the CLI, doesn't intercept inference, doesn't forge tokens. Scaffolds files, starts processes, routes messages. Gets out of the way.
+    </p>
 
     <div class="how-grid">
       <ol class="how-list">
@@ -1334,13 +1356,13 @@
     <div class="install-wrap">
       <div class="install-copy">
         <div class="section-label">§07 · install</div>
-        <h2 class="section-title">Four commands. One cup of coffee.</h2>
+        <h2 class="section-title">Five commands. One cup of coffee.</h2>
         <p class="section-lede">
-          You'll need a Linux box (VPS, Pi, old laptop), a Claude Pro or Max subscription, and a Telegram bot token from @BotFather for each persona.
+          Ubuntu 24.04 LTS, 4GB RAM. Linux only. A Claude Pro or Max subscription. A Telegram bot token from @BotFather for each persona. That's the lot.
         </p>
         <div class="small">
-          <span><b>req</b> · Linux or WSL · Node ≥ 20</span>
-          <span><b>req</b> · active Claude Pro or Max session</span>
+          <span><b>req</b> · Ubuntu 24.04 LTS · Node ≥ 20.11</span>
+          <span><b>req</b> · active Claude Pro or Max subscription</span>
           <span><b>opt</b> · one Telegram bot per persona</span>
         </div>
       </div>
@@ -1351,26 +1373,26 @@
           <span>bash · ~/panel</span>
           <span class="copy" onclick="(()=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('install-cmd').innerText);this.innerText='copied';setTimeout(()=>this.innerText='copy',1200);})()">copy</span>
         </div>
-        <div class="terminal-body" id="install-cmd"><span class="prompt">$</span> <span class="cmd">npm install -g switchroom-ai</span>
-<span class="out">  → added switchroom-ai to /usr/local/bin</span>
-<span class="out">  → ok</span>
+        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Install the CLI</span>
+<span class="prompt">$</span> <span class="cmd">npm install -g switchroom-ai</span>
 
+<span class="out"># 2. Check the version</span>
+<span class="prompt">$</span> <span class="cmd">switchroom --version</span>
+<span class="ok">  1.0.0</span>
+
+<span class="out"># 3. Log in to Claude with your Pro or Max subscription</span>
 <span class="prompt">$</span> <span class="cmd">switchroom auth login</span>
-<span class="out">  → reading ~/.claude/.oauth-token</span>
 <span class="ok">  ✓ linked Claude Max session</span>
 
+<span class="out"># 4. Interactive setup. Installs deps, scaffolds config, links Telegram.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom setup</span>
-<span class="out">  → scaffolding ~/.switchroom</span>
 <span class="ok">  ✓ ready</span>
 
-<span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="flag">assistant --profile</span> <span class="cmd">executive-assistant</span>
-<span class="out">  → workspace · ~/work/assistant</span>
-<span class="out">  → systemd unit · switchroom-assistant.service</span>
-<span class="ok">  ✓ created</span>
-
-<span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">assistant</span>
-<span class="ok">  ● switchroom-assistant.service - active (running)</span>
-<span class="out">    │ pid 48213  │ handoff loaded  │ listening on @assistant_bot</span></div>
+<span class="out"># 5. Create your first agent from a profile, then start it</span>
+<span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">coach</span> <span class="flag">--profile</span> <span class="cmd">health-coach</span>
+<span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">coach</span>
+<span class="ok">  ● switchroom-coach.service - active (running)</span>
+<span class="out">    │ listening on @coach_bot</span></div>
       </div>
     </div>
   </div>
@@ -1400,8 +1422,8 @@
         <div class="a">Yes, that's the point. One systemd service per agent, one Telegram bot per agent, one topic per agent. Each has its own workspace, its own memory, its own persona.</div>
       </details>
       <details class="q">
-        <summary><span class="plus">+</span> Windows support?</summary>
-        <div class="a">WSL works. Native Windows does not and probably won't. Systemd and the surrounding process model are core to the design.</div>
+        <summary><span class="plus">+</span> What do I need to run it?</summary>
+        <div class="a">Ubuntu 24.04 LTS, 4GB RAM, Node 20.11 or later, and an active Claude Pro or Max subscription. Linux only. Native Windows is not supported and probably won't be. Systemd and the surrounding process model are core to the design. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Is this like OpenClaw?</summary>
@@ -1413,7 +1435,7 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Does Switchroom collect any telemetry?</summary>
-        <div class="a">Anonymous usage events and errors go to PostHog so regressions get caught early. <strong>No personal data, code, or message content ever leaves your machine.</strong> The anonymous ID lives at <code>~/.switchroom/analytics-id</code> — a random UUID, not tied to your username, email, IP, or machine identifier. Opt out any time with <code>export SWITCHROOM_TELEMETRY_DISABLED=1</code>. Full event catalogue in the <a href="https://github.com/switchroom/switchroom/blob/main/docs/posthog.md" target="_blank" rel="noopener">posthog docs</a>.</div>
+        <div class="a">Anonymous usage events and errors go to PostHog so regressions get caught early. <strong>No personal data, code, or message content ever leaves your machine.</strong> The anonymous ID lives at <code>~/.switchroom/analytics-id</code>. It's a random UUID, not tied to your username, email, IP, or machine identifier. Opt out any time with <code>export SWITCHROOM_TELEMETRY_DISABLED=1</code>. Full event catalogue in the <a href="https://github.com/switchroom/switchroom/blob/main/docs/posthog.md" target="_blank" rel="noopener">posthog docs</a>.</div>
       </details>
     </div>
   </div>
@@ -1456,7 +1478,7 @@
 
 <script>
   // Fetch real GitHub star count once per page load. Fails silent if the
-  // API is rate-limited or offline — the header just keeps the bare
+  // API is rate-limited or offline. The header just keeps the bare
   // GitHub badge without a count.
   (function () {
     var host = document.getElementById('gh-star');
