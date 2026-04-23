@@ -1005,7 +1005,10 @@
     .container{ padding: 0 20px; }
     .nav-links a:not(.nav-cta){ display:none; }
     .hero{ padding: 48px 0 72px; }
-    .hero-inner{ grid-template-columns: 1fr; gap: 48px; }
+    /* minmax(0, 1fr) lets the column shrink below intrinsic min-content;
+       plain 1fr is minmax(auto, 1fr) which refuses to shrink below the
+       longest un-wrappable text, blowing out the viewport. */
+    .hero-inner{ grid-template-columns: minmax(0, 1fr); gap: 48px; }
     h1.hero-title{
       font-size: clamp(22px, 5.8vw, 38px);
       text-wrap: wrap;          /* override the balance: prevent long-line bias */
