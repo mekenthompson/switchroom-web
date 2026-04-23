@@ -66,7 +66,7 @@
   }
 
   *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; }
+  html,body{ margin:0; padding:0; overflow-x: hidden; }
   html{ background: var(--ink-900); }
   body{
     font-family: var(--ff-sans);
@@ -1002,10 +1002,18 @@
 
   /* ---------------- Mobile ---------------- */
   @media (max-width: 960px){
+    .container{ padding: 0 20px; }
     .nav-links a:not(.nav-cta){ display:none; }
     .hero{ padding: 48px 0 72px; }
     .hero-inner{ grid-template-columns: 1fr; gap: 48px; }
-    .tg-window{ transform: none; }
+    h1.hero-title{ font-size: clamp(28px, 7.6vw, 44px); }
+    .hero-sub{ font-size: 17px; }
+    .hero-meta{ gap: 14px 18px; font-size: 11px; }
+    .tg-stage{ padding: 0; }
+    .tg-window{ transform: none; max-width: 100%; }
+    .tg-body{ padding: 14px 12px; }
+    .pin-card{ padding: 10px 12px; }
+    .pin-card .steps{ font-size: 11px; }
     section{ padding: 64px 0; }
     .problem-grid{ grid-template-columns: 1fr; }
     .problem-grid > div{ border-right: none; border-bottom: 1px solid var(--ink-700); }
@@ -1017,6 +1025,16 @@
     .spec:not(:last-child){ border-bottom: 1px solid var(--ink-700); }
     .who-grid{ grid-template-columns: 1fr; }
     .foot-row{ grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Narrow phones: scale the hero a touch further so the 3-line
+     dual-pain headline fits cleanly. */
+  @media (max-width: 420px){
+    .container{ padding: 0 16px; }
+    h1.hero-title{ font-size: 30px; line-height: 1.08; }
+    .hero-sub{ font-size: 16px; }
+    .tg-body{ padding: 12px 10px; }
+    .pin-card .steps{ font-size: 10.5px; }
   }
 </style>
 </head>
