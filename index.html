@@ -66,8 +66,9 @@
   }
 
   *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; overflow-x: hidden; }
-  html{ background: var(--ink-900); }
+  html,body{ margin:0; padding:0; }
+  /* overflow-x:clip (not hidden) — hidden creates a scroll container that silently breaks position:sticky */
+  html{ overflow-x: clip; background: var(--ink-900); }
   body{
     font-family: var(--ff-sans);
     font-feature-settings: "ss01","cv11";
@@ -138,7 +139,10 @@
   .hero{
     position: relative;
     overflow: hidden;
-    padding: 72px 0 96px;
+    padding: 48px 0 56px;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
     background:
       radial-gradient(1100px 600px at 85% -10%, rgba(232,182,87,.08), transparent 60%),
       radial-gradient(900px 500px at -10% 30%, rgba(200,48,44,.06), transparent 60%),
@@ -160,6 +164,7 @@
     display:grid; grid-template-columns: 1.05fr .95fr; gap:72px;
     align-items:center;
     position:relative; z-index:1;
+    width: 100%;
   }
   .eyebrow{
     display:inline-flex; align-items:center; gap:10px;
@@ -183,7 +188,7 @@
     font-size: clamp(40px, 5.2vw, 68px);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    margin: 22px 0 20px;
+    margin: 18px 0 16px;
     color: var(--bone);
     text-wrap: balance;
   }
@@ -201,8 +206,24 @@
     font-size: 19px; line-height: 1.55;
     color: var(--ink-200);
     max-width: 540px;
-    margin: 0 0 32px;
+    margin: 0 0 24px;
     text-wrap: pretty;
+  }
+
+  .hero-tagline{
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bone);
+    margin: 0 0 18px;
+    max-width: 480px;
+    line-height: 1.4;
+  }
+
+  .hero-wordmark{
+    font-family: var(--ff-mono);
+    font-size: 15px;
+    color: var(--brass);
+    letter-spacing: .03em;
   }
 
   .cta-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
@@ -1004,7 +1025,7 @@
   @media (max-width: 960px){
     .container{ padding: 0 20px; }
     .nav-links a:not(.nav-cta){ display:none; }
-    .hero{ padding: 48px 0 72px; }
+    .hero{ padding: 48px 0 56px; min-height: unset; }
     /* minmax(0, 1fr) lets the column shrink below intrinsic min-content;
        plain 1fr is minmax(auto, 1fr) which refuses to shrink below the
        longest un-wrappable text, blowing out the viewport. */
@@ -1018,7 +1039,7 @@
        let the browser wrap naturally so lines don't overflow. */
     h1.hero-title br{ display: none; }
     .hero-sub{ font-size: 17px; }
-    .hero-meta{ gap: 14px 18px; font-size: 11px; }
+    .hero-tagline{ font-size: 16px; }
     .tg-stage{ padding: 0; }
     .tg-window{ transform: none; max-width: 100%; }
     .tg-body{ padding: 14px 12px; }
@@ -1074,7 +1095,7 @@
 <section class="hero">
   <div class="container hero-inner">
     <div>
-      <img src="assets/switchroom-mark.png" alt="Switchroom mark" width="84" height="84" style="width:84px;height:84px;display:block;margin-bottom:28px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45));">
+      <img src="assets/switchroom-mark.png" alt="Switchroom mark" width="84" height="84" style="width:84px;height:84px;display:block;margin-bottom:20px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45));">
       <span class="eyebrow"><span class="dot"></span> self-hosted · MIT-licensed · works with Pro &amp; Max</span>
       <h1 class="hero-title">
         I loved OpenClaw + Telegram.<br>
@@ -1082,22 +1103,10 @@
         And the <em>UX done properly</em>.
       </h1>
       <p class="hero-sub">
-        Switchroom is opinionated: stock <span class="mono" style="color:var(--brass)">claude</span> CLI, Claude models, Telegram as the UX. No other providers, no other channels. Built for my problems. Open-sourced for yours.
+        Introducing Switchroom. Opinionated Telegram UX for Claude Code. Stock <span class="mono" style="color:var(--brass)">claude</span> CLI, Claude models, Telegram only. Runs on your Pro or Max subscription.
       </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#install">
-          Get started
-          <svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn btn-secondary" href="#how">How it works</a>
-      </div>
-      <div class="hero-meta">
-        <span><strong>Pro / Max</strong> OAuth · not the API</span>
-        <span class="sep">·</span>
-        <span><strong>Stock</strong> claude CLI</span>
-        <span class="sep">·</span>
-        <span><strong>Not</strong> a harness</span>
-      </div>
+      <p class="hero-tagline">Built for my problems. Open-sourced for yours.</p>
+      <div class="hero-wordmark">switchroom.ai</div>
     </div>
 
     <!-- Telegram mock -->
