@@ -1033,14 +1033,14 @@
        longest un-wrappable text, blowing out the viewport. */
     .hero-inner{ grid-template-columns: minmax(0, 1fr); gap: 48px; }
     h1.hero-title{
-      font-size: clamp(22px, 5.8vw, 38px);
+      font-size: clamp(20px, 5.4vw, 32px);
       text-wrap: wrap;          /* override the balance: prevent long-line bias */
       white-space: normal;      /* undo desktop nowrap on mobile */
       overflow-wrap: break-word;
     }
-    /* Explicit <br>s were designed for desktop typography. On mobile,
-       let the browser wrap naturally so lines don't overflow. */
-    h1.hero-title br{ display: none; }
+    /* Keep the 3-line narrative structure on mobile. Each key term
+       (Telegram · Claude subscription · UX done properly) lands on
+       its own line. Smaller font above keeps lines inside 375px-ish. */
     .hero-sub{ font-size: 17px; }
     .hero-tagline{ font-size: 16px; }
     .tg-stage{ padding: 0; }
@@ -1065,7 +1065,7 @@
      dual-pain headline fits cleanly. */
   @media (max-width: 420px){
     .container{ padding: 0 16px; }
-    h1.hero-title{ font-size: 22px; line-height: 1.1; }
+    h1.hero-title{ font-size: clamp(17px, 5.0vw, 22px); line-height: 1.15; }
     .hero-sub{ font-size: 16px; }
     .tg-body{ padding: 12px 10px; }
     .pin-card .steps{ font-size: 10.5px; }
