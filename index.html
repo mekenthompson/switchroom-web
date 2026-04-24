@@ -1033,11 +1033,11 @@
        longest un-wrappable text, blowing out the viewport. */
     .hero-inner{ grid-template-columns: minmax(0, 1fr); gap: 48px; }
     h1.hero-title{
-      /* Scale with viewport so the 3 lines fill the column at any
-         mobile width. 8vw hits ~26px at 320 / ~30px at 375 / ~34px cap.
-         Longest line ("I wanted my Claude subscription.") is the
-         limiter — at 34px it still fits inside a ~380px inner width. */
-      font-size: clamp(24px, 8.0vw, 34px);
+      /* Longest line "I wanted my Claude subscription." dictates the
+         cap — at 28px it needs ~355px, fits inside a 380px inner at
+         Pixel-10 width (412px viewport - 32px padding). Cap raised
+         via breakpoints below for wider tablets. */
+      font-size: clamp(22px, 7.0vw, 28px);
       text-wrap: wrap;          /* override the balance: prevent long-line bias */
       white-space: normal;      /* undo desktop nowrap on mobile */
       overflow-wrap: break-word;
