@@ -161,7 +161,7 @@
     pointer-events:none;
   }
   .hero-inner{
-    display:grid; grid-template-columns: 1.05fr .95fr; gap:72px;
+    display:grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .85fr); gap:56px;
     align-items:center;
     position:relative; z-index:1;
     width: 100%;
@@ -185,12 +185,13 @@
   h1.hero-title{
     font-family: var(--ff-display);
     font-weight: 500;
-    font-size: clamp(32px, 3.8vw, 50px);
+    font-size: clamp(30px, 3.4vw, 46px);
     line-height: 1.08;
     letter-spacing: -0.02em;
     margin: 18px 0 16px;
     color: var(--bone);
     text-wrap: balance;
+    white-space: nowrap;
   }
   h1.hero-title .cord{
     color: var(--bone);
@@ -1034,6 +1035,7 @@
     h1.hero-title{
       font-size: clamp(22px, 5.8vw, 38px);
       text-wrap: wrap;          /* override the balance: prevent long-line bias */
+      white-space: normal;      /* undo desktop nowrap on mobile */
       overflow-wrap: break-word;
     }
     /* Explicit <br>s were designed for desktop typography. On mobile,
