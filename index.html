@@ -1262,7 +1262,7 @@
       <div>
         <h2 class="section-title">A switchboard for your Pro or Max.</h2>
         <p>
-          Switchroom drives the <strong>stock claude CLI</strong>. Each persona gets two <strong>systemd user units</strong>, an agent unit running the REPL inside tmux and a gateway unit running the Telegram bot, joined by IPC. One bot per agent, one topic per agent. You plug the cords. Switchroom holds the panel.
+          Switchroom drives the <strong>stock claude CLI</strong>. Each persona is a <strong>long-running service</strong> with its own Telegram bot, joined by IPC. One bot per agent, one topic per agent. Survives reboots, network drops, your laptop closing. You plug the cords. Switchroom holds the panel.
         </p>
         <p style="margin-top:18px; color: var(--ink-300);">
           Not a harness. Doesn't patch the CLI, doesn't intercept the protocol, doesn't forge tokens. Scaffolds files, starts processes, routes messages. Gets out of the way.
@@ -1272,7 +1272,7 @@
       <!-- system diagram -->
       <div class="diagram">
         <div class="label-top">Per-agent · two units</div>
-        <svg class="sketch" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two systemd units per agent topology — agent REPL plus gateway, joined by IPC, with vault broker and watchdog underneath and Telegram up top.">
+        <svg class="sketch" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Per-agent topology — agent REPL plus gateway, joined by IPC, with vault broker and watchdog underneath and Telegram up top.">
           <!-- Telegram cloud, top-right -->
           <g transform="translate(360,18) rotate(-2)">
             <path class="stroke-teal" d="M10,30 q-12,0 -10,-14 q-2,-14 12,-14 q4,-12 18,-10 q8,-10 22,-4 q14,-2 18,10 q12,-2 10,14 q4,12 -10,16 z"/>
@@ -1281,10 +1281,10 @@
           <!-- arrow from Telegram down to gateway -->
           <path class="stroke" d="M400,52 q-6,30 -42,42" marker-end="url(#arr)"/>
 
-          <!-- systemd label, top-left -->
+          <!-- long-running service label, top-left -->
           <g transform="translate(28,28) rotate(-3)">
-            <rect class="fill-paper" x="0" y="0" width="120" height="36" rx="6"/>
-            <text class="label" x="60" y="24" text-anchor="middle">systemd --user</text>
+            <rect class="fill-paper" x="0" y="0" width="140" height="36" rx="6"/>
+            <text class="label" x="70" y="24" text-anchor="middle">long-running service</text>
           </g>
           <path class="stroke" d="M88,66 q4,16 24,30" marker-end="url(#arr)"/>
 
@@ -1299,8 +1299,8 @@
               <text class="label" x="85" y="26" text-anchor="middle">switchroom-</text>
               <text class="label" x="85" y="46" text-anchor="middle">klanker.service</text>
               <line class="stroke" x1="14" y1="58" x2="156" y2="58"/>
-              <text class="cap" x="85" y="80" text-anchor="middle">claude REPL</text>
-              <text class="cap" x="85" y="102" text-anchor="middle">inside tmux</text>
+              <text class="cap" x="85" y="80" text-anchor="middle">stock claude CLI</text>
+              <text class="cap" x="85" y="102" text-anchor="middle">survives reboots</text>
             </g>
 
             <!-- IPC arrow between units -->
@@ -1418,7 +1418,7 @@
       <div class="tile">
         <div class="num">D / WORK WITHOUT YOU</div>
         <h3>Your agents clock in while you sleep.</h3>
-        <p>Scheduled tasks as systemd user timers, not a hack. Cron syntax in YAML, per-task model selection, output delivered to Telegram. Morning briefing at 8 AM, weekly review Sunday night, hourly on-call digest. Survives reboots, survives the laptop being shut.</p>
+        <p>Scheduled tasks that fire across reboots, not a hack. Cron syntax in YAML, per-task model selection, output delivered to Telegram. Morning briefing at 8 AM, weekly review Sunday night, hourly on-call digest. Survives reboots, survives the laptop being shut.</p>
         <div class="tile-viz viz-meter">
           <div class="row"><span>08:00 weekday</span><span class="val">morning briefing</span></div>
           <div class="row"><span>20:00 sun</span><span class="val">weekly review</span></div>
@@ -1473,7 +1473,7 @@
       <div class="spec">
         <div class="spec-id">A · F / SURVIVE REBOOTS</div>
         <h4>Comes back after real life.</h4>
-        <p>Agents run as systemd services. Box reboots, the fleet comes back. A crash gets a real message, not silence. Context exhaustion is a named event. Scheduled work fires across reboots. Ask "is everything healthy" and get a real answer.</p>
+        <p>Each agent is a long-running service. Box reboots, the fleet comes back. A crash auto-recovers with an audit trail, not silence. Context exhaustion is a named event. Scheduled work fires across reboots. Ask "is everything healthy" and get a real answer.</p>
       </div>
 
       <div class="spec">
@@ -1527,8 +1527,8 @@
     <div class="how-grid">
       <ol class="how-list">
         <li><div class="idx">1</div><div>
-          <h5>Two systemd units per agent</h5>
-          <p><code>switchroom-&lt;name&gt;.service</code> runs the claude REPL inside tmux. <code>switchroom-&lt;name&gt;-gateway.service</code> runs the Telegram bot, MCP plugin, and SQLite buffer. They talk over IPC. Manage either with <code>switchroom agent start|stop|restart</code>.</p>
+          <h5>One long-running service per agent</h5>
+          <p>Each agent runs the stock <code>claude</code> CLI as a long-running service alongside its own gateway (Telegram bot, MCP plugin, SQLite buffer). They talk over IPC. Manage either with <code>switchroom agent start|stop|restart</code>. Per-agent logs you can grep.</p>
         </div></li>
         <li><div class="idx">2</div><div>
           <h5>OAuth, not API. Per-agent slot pool.</h5>
@@ -1608,7 +1608,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r=".5"/><circle cx="7" cy="17" r=".5"/></svg>
         </div>
         <h4>Home-lab hosts</h4>
-        <p>Pi or mini-PC humming in a closet. systemd is a friend, not a stranger. You'd rather edit YAML than sign up for a SaaS.</p>
+        <p>Pi or mini-PC humming in a closet. You'd rather edit YAML than sign up for a SaaS.</p>
         <div class="uses"><span class="tag">USES</span> · nightly-digest · home-ops · finance-watch</div>
       </div>
       <div class="who-card">
@@ -1631,10 +1631,10 @@
         <div class="section-label">§08 · install</div>
         <h2 class="section-title">Five commands. One cup of coffee.</h2>
         <p class="section-lede">
-          Ubuntu 24.04 LTS, 4GB RAM. A Pro or Max subscription. A Telegram bot token from @BotFather per persona. That's the lot.
+          A box you already have, 4GB RAM. A Pro or Max subscription. A Telegram bot token from @BotFather per persona. That's the lot.
         </p>
         <div class="small">
-          <span><b>req</b> · Ubuntu 24.04 LTS · Node ≥ 20.11</span>
+          <span><b>req</b> · Ubuntu 24.04 LTS today · Node ≥ 20.11</span>
           <span><b>req</b> · active Claude Pro or Max subscription</span>
           <span><b>opt</b> · one Telegram bot per persona</span>
         </div>
@@ -1692,11 +1692,11 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Can I run multiple agents at once?</summary>
-        <div class="a">Yes, that's the point. One systemd service per agent, one bot per agent, one topic per agent. Each with its own workspace, memory, persona.</div>
+        <div class="a">Yes, that's the point. One long-running service per agent, one bot per agent, one topic per agent. Each with its own workspace, memory, persona.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> What do I need to run it?</summary>
-        <div class="a">Ubuntu 24.04 LTS, 4GB RAM, Node 20.11+, and an active Pro or Max subscription. Linux only. Native Windows isn't supported and probably won't be: systemd is core to the design. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
+        <div class="a">A box you already have, 4GB RAM, Node 20.11+, and an active Pro or Max subscription. Today the supported install path is Ubuntu 24.04 LTS; container packaging that opens up other hosts is on the roadmap. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Why not just use Claude Code?</summary>
@@ -1704,7 +1704,7 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> What happens when an agent crashes?</summary>
-        <div class="a">A user-level watchdog babysits every agent. If the REPL hangs or the gateway disconnects, the watchdog logs a reason, captures the tmux pane for forensics, and lets systemd restart the unit. On the next boot the agent runs a wake audit: any user message you sent that never got a reply, any sub-agent killed mid-flight, any in-progress todo, surfaces as an explicit <code>⚠ Issue</code> reply in the topic. No silent dropped work.</div>
+        <div class="a">A watchdog babysits every agent. If the agent hangs or the gateway disconnects, the watchdog logs a reason, captures a crash-pane snapshot for forensics, and auto-recovers the agent. On the next boot the agent runs a wake audit: any user message you sent that never got a reply, any sub-agent killed mid-flight, any in-progress todo, surfaces as an explicit <code>⚠ Issue</code> reply in the topic. No silent dropped work.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Can it touch my Google Drive?</summary>
