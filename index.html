@@ -1364,10 +1364,44 @@
   </div>
 </section>
 
+<!-- =================== APPROVALS & SAFETY =================== -->
+<section id="approvals">
+  <div class="container">
+    <div class="section-label">§04 · approvals &amp; safety</div>
+    <h2 class="section-title">You approve. The agent waits.</h2>
+    <p class="section-lede">
+      Read-only tools run free. Anything that writes, runs a shell, fetches the web, or touches Drive pauses for a tap.
+    </p>
+
+    <div class="approvals-grid" style="display:grid; grid-template-columns: 1.05fr .95fr; gap: 32px; margin-top: 28px; align-items: start;">
+      <div>
+        <p>
+          Switchroom ships an <strong>approval kernel</strong>. Every gated tool call goes through an IPC broker into a SQLite kernel, the agent pauses, and an inline card lands in your topic with the tool name, the args, and a diff if there is one. <code>✅ Allow</code> resumes the call. <code>❌ Deny</code> kills it cleanly. Grants are TTL'd so a one-off Allow doesn't quietly become forever.
+        </p>
+        <p style="margin-top: 14px;">
+          Every decision is appended to <code>card-events.jsonl</code>: who approved, when, what tool, what args, what the result was. Forensic replay if you ever need it.
+        </p>
+        <p style="margin-top: 14px; color: var(--ink-300);">
+          The kernel underwrites Drive too. Drive MCP is opt-in via <code>switchroom drive connect</code>, then every write or destructive call surfaces the same Allow/Deny card with the file in question. No silent fan-out.
+        </p>
+      </div>
+
+      <!-- placeholder for SVG diagram, filled in next commit -->
+      <div id="approval-diagram-slot" class="diagram" style="min-height: 280px;">
+        <div class="label-top">Kernel · grant flow</div>
+        <div style="font-family:var(--ff-mono); font-size:11px; color:var(--ink-300); letter-spacing:.1em;">
+          PHONE → BROKER → AGENT
+        </div>
+        <p style="color: var(--ink-300); font-size: 13px; margin-top: 16px;">tool call · kernel pause · user taps Allow · tool resumes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- =================== FEATURES DETAIL =================== -->
 <section id="features">
   <div class="container">
-    <div class="section-label">§04 · what else you get</div>
+    <div class="section-label">§05 · what else you get</div>
     <h2 class="section-title">Built for how you actually use this.</h2>
     <p class="section-lede">
       Top row earns the visibility. Bottom row runs the fleet.
@@ -1409,6 +1443,12 @@
         <h4>Config, not a code change.</h4>
         <p>Add an agent by editing YAML. Graft a skill onto an existing one without touching its core. MIT-licensed TypeScript. Profiles and skills are plain files you fork in your own repo. No framework to learn.</p>
       </div>
+
+      <div class="spec">
+        <div class="spec-id">B · J / GOOGLE DRIVE, GATED</div>
+        <h4>Drive in the loop, kernel on the door.</h4>
+        <p>Opt in with <code>switchroom drive connect &lt;agent&gt;</code>. Desktop-loopback OAuth, no service-account JSON. Reads run free, every write hits the approval kernel as an inline card with the file and the change. Configure scope and defaults in the <code>drive:</code> block.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1416,7 +1456,7 @@
 <!-- =================== HOW IT WORKS =================== -->
 <section class="how" id="how">
   <div class="container">
-    <div class="section-label">§05 · how it works</div>
+    <div class="section-label">§06 · how it works</div>
     <h2 class="section-title">Five moving parts. All files you can read.</h2>
     <p class="section-lede">
       Scaffolds files. Starts processes. Routes messages.
@@ -1489,7 +1529,7 @@
 <!-- =================== WHO IT'S FOR =================== -->
 <section class="who" id="who">
   <div class="container">
-    <div class="section-label">§06 · who it's for</div>
+    <div class="section-label">§07 · who it's for</div>
     <h2 class="section-title">Built for people who already run things themselves.</h2>
 
     <div class="who-grid">
@@ -1526,7 +1566,7 @@
   <div class="container">
     <div class="install-wrap">
       <div class="install-copy">
-        <div class="section-label">§07 · install</div>
+        <div class="section-label">§08 · install</div>
         <h2 class="section-title">Five commands. One cup of coffee.</h2>
         <p class="section-lede">
           Ubuntu 24.04 LTS, 4GB RAM. A Pro or Max subscription. A Telegram bot token from @BotFather per persona. That's the lot.
@@ -1572,7 +1612,7 @@
 <!-- =================== FAQ =================== -->
 <section class="faq" id="faq">
   <div class="container">
-    <div class="section-label">§08 · faq</div>
+    <div class="section-label">§09 · faq</div>
     <h2 class="section-title">Questions that keep coming up.</h2>
 
     <div class="faq-list">
