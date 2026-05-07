@@ -1119,7 +1119,7 @@
         And the <em>UX done properly</em>.
       </h1>
       <p class="hero-sub">
-        Introducing Switchroom. Opinionated Telegram UX for Claude Code. Stock <span class="mono" style="color:var(--brass)">claude</span> CLI, Claude models, Telegram only. Runs on your Pro or Max subscription.
+        See what your agent is actually doing. A live progress card pins to the chat, every Read, Bash, Edit landing in real time. Drives the stock <span class="mono" style="color:var(--brass)">claude</span> CLI on your Pro or Max. No API keys, no second invoice.
       </p>
       <p class="hero-tagline">Built for my problems. Open-sourced for yours.</p>
       <div class="hero-wordmark">switchroom.ai</div>
@@ -1249,7 +1249,7 @@
       <div>
         <h2 class="section-title">A switchboard for your Pro or Max.</h2>
         <p>
-          Switchroom drives the <strong>stock claude CLI</strong> and runs one long-lived process per persona. Each one is a <strong>systemd service</strong>, wired into its own Telegram bot, on its own topic. You plug the cords. Switchroom holds the panel.
+          Switchroom drives the <strong>stock claude CLI</strong>. Each persona gets two <strong>systemd user units</strong>, an agent unit running the REPL inside tmux and a gateway unit running the Telegram bot, joined by IPC. One bot per agent, one topic per agent. You plug the cords. Switchroom holds the panel.
         </p>
         <p style="margin-top:18px; color: var(--ink-300);">
           Not a harness. Doesn't patch the CLI, doesn't intercept the protocol, doesn't forge tokens. Scaffolds files, starts processes, routes messages. Gets out of the way.
@@ -1425,12 +1425,12 @@
     <div class="how-grid">
       <ol class="how-list">
         <li><div class="idx">1</div><div>
-          <h5>One systemd service per agent</h5>
-          <p><code>switchroom-&lt;name&gt;.service</code>, managed by the CLI: <code>start</code>, <code>stop</code>, <code>restart</code>, <code>reset</code>.</p>
+          <h5>Two systemd units per agent</h5>
+          <p><code>switchroom-&lt;name&gt;.service</code> runs the claude REPL inside tmux. <code>switchroom-&lt;name&gt;-gateway.service</code> runs the Telegram bot, MCP plugin, and SQLite buffer. They talk over IPC. Manage either with <code>switchroom agent start|stop|restart</code>.</p>
         </div></li>
         <li><div class="idx">2</div><div>
-          <h5>OAuth, not API</h5>
-          <p>Uses <code>CLAUDE_CODE_OAUTH_TOKEN</code> from <code>~/.claude/.oauth-token</code>. Run <code>switchroom auth login</code> once.</p>
+          <h5>OAuth, not API. Per-agent slot pool.</h5>
+          <p>Each agent has its own pool of Claude OAuth slots, scoped to its own <code>CLAUDE_CONFIG_DIR</code>. <code>switchroom auth login &lt;agent&gt;</code> for the first slot, <code>switchroom auth add &lt;agent&gt;</code> for fallbacks. Hit the active slot's quota, the next one in the pool takes over.</p>
         </div></li>
         <li><div class="idx">3</div><div>
           <h5>Telegram as the surface</h5>
@@ -1449,26 +1449,37 @@
       <div class="code-window">
         <div class="code-head">
           <div class="dots"><i></i><i></i><i></i></div>
-          <span class="file">~/.switchroom/agents/assistant/switchroom.yaml</span>
+          <span class="file">~/.switchroom/switchroom.yaml</span>
         </div>
-        <div class="code-body"><pre><span class="c"># Persona: personal assistant</span>
-<span class="k">name</span><span class="n">:</span> <span class="s">assistant</span>
-<span class="k">profile</span><span class="n">:</span> <span class="s">executive-assistant</span>
+        <div class="code-body"><pre><span class="c"># One file. The whole fleet.</span>
+<span class="k">switchroom</span><span class="n">:</span>
+  <span class="k">version</span><span class="n">:</span> <span class="v">1</span>
+
 <span class="k">telegram</span><span class="n">:</span>
-  <span class="k">bot_token_env</span><span class="n">:</span> <span class="s">ASSISTANT_BOT_TOKEN</span>
-  <span class="k">topic_id</span><span class="n">:</span> <span class="v">4281</span>
-  <span class="k">allowlist</span><span class="n">:</span> [<span class="v">182934</span>]
-<span class="k">workspace</span><span class="n">:</span> <span class="s">~/work/assistant</span>
-<span class="k">skills</span><span class="n">:</span>
-  <span class="n">-</span> <span class="s">calendar</span>
-  <span class="n">-</span> <span class="s">notes</span>
-  <span class="n">-</span> <span class="s">email-draft</span>
-<span class="k">mcp</span><span class="n">:</span>
-  <span class="k">hindsight</span><span class="n">:</span>    <span class="v">true</span>   <span class="c"># semantic memory, graphs, models</span>
-  <span class="k">memory</span><span class="n">:</span>       <span class="v">true</span>   <span class="c"># MEMORY.md + daily notes</span>
-<span class="k">permissions</span><span class="n">:</span>
-  <span class="k">auto_allow</span><span class="n">:</span> [<span class="s">Read</span>, <span class="s">Grep</span>, <span class="s">Glob</span>, <span class="s">LS</span>]
-  <span class="k">ask</span><span class="n">:</span>        [<span class="s">Bash</span>, <span class="s">Edit</span>, <span class="s">Write</span>, <span class="s">WebFetch</span>]
+  <span class="k">bot_token</span><span class="n">:</span> <span class="s">"vault:telegram-bot-token"</span>
+  <span class="k">forum_chat_id</span><span class="n">:</span> <span class="s">"-1001234567890"</span>
+
+<span class="k">defaults</span><span class="n">:</span>
+  <span class="k">model</span><span class="n">:</span> <span class="s">opus</span>
+  <span class="k">tools</span><span class="n">:</span> { <span class="k">allow</span><span class="n">:</span> [<span class="s">all</span>] }
+  <span class="k">subagents</span><span class="n">:</span>
+    <span class="k">worker</span><span class="n">:</span>
+      <span class="k">description</span><span class="n">:</span> <span class="s">"Implementation tasks"</span>
+      <span class="k">model</span><span class="n">:</span> <span class="s">sonnet</span>
+      <span class="k">background</span><span class="n">:</span> <span class="v">true</span>
+      <span class="k">isolation</span><span class="n">:</span> <span class="s">worktree</span>
+
+<span class="k">agents</span><span class="n">:</span>
+  <span class="k">assistant</span><span class="n">:</span>
+    <span class="k">topic_name</span><span class="n">:</span> <span class="s">"General"</span>
+    <span class="k">extends</span><span class="n">:</span> <span class="s">executive-assistant</span>
+
+  <span class="k">klanker</span><span class="n">:</span>
+    <span class="k">topic_name</span><span class="n">:</span> <span class="s">"Klanker"</span>
+    <span class="k">extends</span><span class="n">:</span> <span class="s">coding</span>
+    <span class="k">schedule</span><span class="n">:</span>
+      <span class="n">-</span> <span class="k">cron</span><span class="n">:</span> <span class="s">"0 8 * * 1-5"</span>
+        <span class="k">prompt</span><span class="n">:</span> <span class="s">"Morning briefing"</span>
 </pre></div>
       </div>
     </div>
@@ -1587,7 +1598,15 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Why not just use Claude Code?</summary>
-        <div class="a">Claude Code is great for live sessions on your laptop. Switchroom is for when you want your agents to keep thinking while you're sleeping, or while you're actually getting work done. Different contexts, different power. Use both.</div>
+        <div class="a">Use both. Claude Code is the live session at your desk. Switchroom is everything around it: a fleet of personas instead of one generalist, a real progress card so you can see what's happening from your phone, scheduled work that fires while you sleep, and an approval kernel so destructive tools wait for a tap before they run. Same <code>claude</code> binary underneath. Switchroom is the panel.</div>
+      </details>
+      <details class="q">
+        <summary><span class="plus">+</span> What happens when an agent crashes?</summary>
+        <div class="a">A user-level watchdog babysits every agent. If the REPL hangs or the gateway disconnects, the watchdog logs a reason, captures the tmux pane for forensics, and lets systemd restart the unit. On the next boot the agent runs a wake audit: any user message you sent that never got a reply, any sub-agent killed mid-flight, any in-progress todo, surfaces as an explicit <code>⚠ Issue</code> reply in the topic. No silent dropped work.</div>
+      </details>
+      <details class="q">
+        <summary><span class="plus">+</span> Can it touch my Google Drive?</summary>
+        <div class="a">Yes, opt-in. <code>switchroom drive connect &lt;agent&gt;</code> wires up the Drive MCP via desktop-loopback OAuth (no service-account JSON). Reads are free; every write or destructive action goes through the approval kernel as an inline <code>✅ Allow</code> / <code>❌ Deny</code> card in Telegram, with the file and the diff. Disconnect any time with <code>switchroom drive disconnect</code>.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Is this like OpenClaw?</summary>
