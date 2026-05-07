@@ -6,7 +6,7 @@
 <title>Switchroom · the opinionated Telegram UX for Claude Code on your Pro or Max</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/android-chrome-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
@@ -63,7 +63,20 @@
     --ff-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
     --ff-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     --ff-display: "Fraunces", "Geist", serif;
+    --ff-hand: "Caveat", "Fraunces", cursive;
   }
+  /* Hand-drawn diagram aesthetic */
+  .sketch{ width:100%; height:auto; display:block; }
+  .sketch text.label{ font-family: var(--ff-hand); font-size: 18px; fill: var(--bone); }
+  .sketch text.cap{ font-family: var(--ff-hand); font-size: 16px; fill: var(--ink-200); }
+  .sketch text.num{ font-family: var(--ff-hand); font-size: 22px; font-weight: 700; fill: var(--brass); }
+  .sketch text.mono{ font-family: var(--ff-mono); font-size: 11px; fill: var(--ink-300); }
+  .sketch .stroke{ fill: none; stroke: var(--ink-200); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sketch .stroke-brass{ fill: none; stroke: var(--brass); stroke-width: 2; stroke-linecap: round; }
+  .sketch .stroke-cord{ fill: none; stroke: var(--cord); stroke-width: 2.5; stroke-linecap: round; }
+  .sketch .stroke-teal{ fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; }
+  .sketch .fill-paper{ fill: var(--ink-800); stroke: var(--ink-200); stroke-width: 2; }
+  .sketch .fill-card{ fill: var(--ink-850); stroke: var(--bone-2); stroke-width: 2; }
 
   *{ box-sizing: border-box; }
   html,body{ margin:0; padding:0; }
@@ -1258,40 +1271,87 @@
 
       <!-- system diagram -->
       <div class="diagram">
-        <div class="label-top">System · topology</div>
-        <div style="font-family:var(--ff-mono); font-size:11px; color:var(--ink-300); letter-spacing:.1em;">
-          HOST · ubuntu 24.04 lts
-        </div>
+        <div class="label-top">Per-agent · two units</div>
+        <svg class="sketch" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two systemd units per agent topology — agent REPL plus gateway, joined by IPC, with vault broker and watchdog underneath and Telegram up top.">
+          <!-- Telegram cloud, top-right -->
+          <g transform="translate(360,18) rotate(-2)">
+            <path class="stroke-teal" d="M10,30 q-12,0 -10,-14 q-2,-14 12,-14 q4,-12 18,-10 q8,-10 22,-4 q14,-2 18,10 q12,-2 10,14 q4,12 -10,16 z"/>
+            <text class="cap" x="40" y="20" text-anchor="middle">Telegram</text>
+          </g>
+          <!-- arrow from Telegram down to gateway -->
+          <path class="stroke" d="M400,52 q-6,30 -42,42" marker-end="url(#arr)"/>
 
-        <div class="diagram-row">
-          <div class="node brass">
-            <div class="n-label">init</div>
-            <div class="n-name">systemd</div>
-          </div>
-          <div class="arrow">→</div>
-          <div class="node">
-            <div class="n-label">wrapper</div>
-            <div class="n-name">start.sh</div>
-          </div>
-          <div class="arrow">→</div>
-          <div class="node cord">
-            <div class="n-label">runtime</div>
-            <div class="n-name">claude cli</div>
-          </div>
-        </div>
+          <!-- systemd label, top-left -->
+          <g transform="translate(28,28) rotate(-3)">
+            <rect class="fill-paper" x="0" y="0" width="120" height="36" rx="6"/>
+            <text class="label" x="60" y="24" text-anchor="middle">systemd --user</text>
+          </g>
+          <path class="stroke" d="M88,66 q4,16 24,30" marker-end="url(#arr)"/>
 
-        <div style="margin: 20px 0 10px; font-family:var(--ff-mono); font-size:11px; color:var(--ink-300); letter-spacing:.1em;">
-          FLEET · 3 agents active
-        </div>
-        <div class="fleet">
-          <div class="agent"><span class="sq a"></span> assistant <small>@pa_bot</small></div>
-          <div class="agent"><span class="sq b"></span> dev-helper <small>@dev_bot</small></div>
-          <div class="agent"><span class="sq c"></span> klanker <small>@klanker_bot</small></div>
-        </div>
-        <div style="margin-top: 14px; display:flex; gap:10px; align-items:center; font-family:var(--ff-mono); font-size:11px; color:var(--ink-400);">
-          <span style="color: var(--teal)">●</span> OAuth: ~/.claude/.oauth-token
-          <span style="color: var(--ink-600)">·</span>
-          <span style="color: var(--brass)">●</span> claude quota · 34% used
+          <!-- Outer "agent box" containing both units -->
+          <g transform="translate(60,110) rotate(-0.6)">
+            <rect class="fill-card" x="0" y="0" width="400" height="180" rx="10" stroke-dasharray="6,5"/>
+            <text class="mono" x="14" y="18">AGENT · klanker</text>
+
+            <!-- Unit 1: REPL -->
+            <g transform="translate(20,38) rotate(-1.2)">
+              <rect class="fill-paper" x="0" y="0" width="170" height="120" rx="8"/>
+              <text class="label" x="85" y="26" text-anchor="middle">switchroom-</text>
+              <text class="label" x="85" y="46" text-anchor="middle">klanker.service</text>
+              <line class="stroke" x1="14" y1="58" x2="156" y2="58"/>
+              <text class="cap" x="85" y="80" text-anchor="middle">claude REPL</text>
+              <text class="cap" x="85" y="102" text-anchor="middle">inside tmux</text>
+            </g>
+
+            <!-- IPC arrow between units -->
+            <g transform="translate(195,98)">
+              <path class="stroke-cord" d="M0,0 q15,-12 30,0" marker-end="url(#arr-cord)"/>
+              <path class="stroke-cord" d="M30,12 q-15,12 -30,0" marker-end="url(#arr-cord)"/>
+              <text class="cap" x="15" y="-8" text-anchor="middle" style="font-size:14px;">IPC</text>
+            </g>
+
+            <!-- Unit 2: gateway -->
+            <g transform="translate(225,38) rotate(0.8)">
+              <rect class="fill-paper" x="0" y="0" width="170" height="120" rx="8"/>
+              <text class="label" x="85" y="26" text-anchor="middle">switchroom-</text>
+              <text class="label" x="85" y="46" text-anchor="middle">klanker-gateway</text>
+              <line class="stroke" x1="14" y1="58" x2="156" y2="58"/>
+              <text class="cap" x="85" y="76" text-anchor="middle">Telegram bot</text>
+              <text class="cap" x="85" y="94" text-anchor="middle">MCP plugin</text>
+              <text class="cap" x="85" y="112" text-anchor="middle">SQLite buffer</text>
+            </g>
+          </g>
+
+          <!-- Vault broker, bottom-left -->
+          <g transform="translate(40,322) rotate(-2)">
+            <rect class="fill-paper" x="0" y="0" width="150" height="58" rx="8"/>
+            <text class="label" x="75" y="24" text-anchor="middle">vault broker</text>
+            <text class="cap" x="75" y="46" text-anchor="middle">unix socket · cgroup id</text>
+          </g>
+          <path class="stroke-brass" d="M115,322 q0,-18 35,-30" marker-end="url(#arr-brass)"/>
+
+          <!-- Watchdog, bottom-right -->
+          <g transform="translate(310,322) rotate(1.5)">
+            <rect class="fill-paper" x="0" y="0" width="170" height="58" rx="8"/>
+            <text class="label" x="85" y="24" text-anchor="middle">watchdog</text>
+            <text class="cap" x="85" y="46" text-anchor="middle">crash-pane · wake-audit</text>
+          </g>
+          <path class="stroke-brass" d="M395,322 q4,-18 -30,-30" marker-end="url(#arr-brass)"/>
+
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-200)"/>
+            </marker>
+            <marker id="arr-cord" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--cord)"/>
+            </marker>
+            <marker id="arr-brass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--brass)"/>
+            </marker>
+          </defs>
+        </svg>
+        <div style="margin-top: 10px; font-family:var(--ff-mono); font-size:11px; color:var(--ink-400); text-align:center;">
+          one bot per agent · one topic per agent · OAuth scoped to <span style="color:var(--teal)">CLAUDE_CONFIG_DIR/&lt;agent&gt;</span>
         </div>
       </div>
     </div>
@@ -1303,6 +1363,85 @@
   <div class="container">
     <div class="section-label">§03 · what this lets you do</div>
     <h2 class="section-title">Four outcomes. Everything else is a footnote.</h2>
+
+    <!-- Progress card anatomy diagram -->
+    <div class="diagram" style="margin: 8px 0 28px;">
+      <div class="label-top">Progress card · anatomy</div>
+      <svg class="sketch" viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomy of a Switchroom progress card: pin badge, user quote, step list with sub-agent indent, in-flight pulse marker, elapsed timer.">
+        <!-- The card itself, center -->
+        <g transform="translate(260,30) rotate(-0.4)">
+          <rect class="fill-card" x="0" y="0" width="460" height="290" rx="10"/>
+          <!-- left accent bar -->
+          <rect x="0" y="0" width="3" height="290" fill="var(--cord)"/>
+          <!-- pin head row -->
+          <text class="mono" x="18" y="26" style="fill:var(--brass); font-size:13px; font-weight:600;">⚙ Working…</text>
+          <text class="mono" x="160" y="26" style="font-size:12px;">⏱ 24s</text>
+          <text class="mono" x="430" y="26" text-anchor="end" style="font-size:13px;">👨‍💻</text>
+          <!-- quote -->
+          <rect x="18" y="40" width="424" height="34" rx="3" fill="var(--ink-800)"/>
+          <line x1="22" y1="44" x2="22" y2="70" stroke="var(--brass)" stroke-width="2"/>
+          <text class="mono" x="32" y="62" style="font-size:11px; fill: var(--ink-200);">Triage the overnight checkout-timeout crash…</text>
+          <!-- steps -->
+          <g font-family="JetBrains Mono, monospace" font-size="12" fill="var(--ink-200)">
+            <text x="18" y="100"><tspan fill="var(--teal)">●</tspan>  Read src/checkout/session.ts</text>
+            <text x="18" y="122"><tspan fill="var(--teal)">●</tspan>  Grep "timeout" across 12 files     0.9s</text>
+            <text x="18" y="144"><tspan fill="var(--teal)">●</tspan>  Agent: researcher                 1.2s</text>
+            <text x="34" y="164" style="font-size:11px; fill:var(--ink-300);">└ ●  Missing await on Promise.race</text>
+            <text x="18" y="188"><tspan fill="var(--brass)">🤖</tspan> Agent: test-writer               12.4s</text>
+            <text x="34" y="208" style="font-size:11px; fill:var(--ink-300);">└ ◉  Write checkout.timeout.test.ts</text>
+            <text x="18" y="232" fill="var(--ink-400)">○  Run tests</text>
+            <text x="18" y="252" fill="var(--ink-400)">○  Await review</text>
+          </g>
+          <!-- progress bar -->
+          <rect x="18" y="266" width="424" height="4" rx="2" fill="var(--ink-700)"/>
+          <rect x="18" y="266" width="220" height="4" rx="2" fill="url(#barGrad)"/>
+        </g>
+
+        <!-- Annotation: pin badge (top-left) -->
+        <text class="num" x="60" y="42">①</text>
+        <text class="label" x="80" y="42">pin badge</text>
+        <text class="cap" x="80" y="62">flips Working → Done → Unpinned</text>
+        <path class="stroke" d="M180,52 q40,-4 80,-22" marker-end="url(#arr-3)"/>
+
+        <!-- Annotation: elapsed timer (top-right) -->
+        <text class="num" x="850" y="42">②</text>
+        <text class="label" x="868" y="42">elapsed timer</text>
+        <text class="cap" x="868" y="62">tells you if it's stuck</text>
+        <path class="stroke" d="M848,52 q-30,-4 -64,-22" marker-end="url(#arr-3)"/>
+
+        <!-- Annotation: user quote (left middle) -->
+        <text class="num" x="60" y="124">③</text>
+        <text class="label" x="80" y="124">user quote</text>
+        <text class="cap" x="80" y="144">what triggered this turn</text>
+        <path class="stroke" d="M200,128 q40,-8 78,-66" marker-end="url(#arr-3)"/>
+
+        <!-- Annotation: in-flight pulse (right middle) -->
+        <text class="num" x="780" y="200">④</text>
+        <text class="label" x="800" y="200">in-flight pulse</text>
+        <text class="cap" x="800" y="220">current tool, animated</text>
+        <path class="stroke" d="M790,206 q-30,-2 -60,-16" marker-end="url(#arr-3)"/>
+
+        <!-- Annotation: sub-agent indent (right lower) -->
+        <text class="num" x="780" y="276">⑤</text>
+        <text class="label" x="800" y="276">sub-agent indent</text>
+        <text class="cap" x="800" y="296">delegated work, in line</text>
+        <path class="stroke" d="M790,282 q-30,-30 -60,-66" marker-end="url(#arr-3)"/>
+
+        <!-- Annotation: step list (bottom-left) -->
+        <text class="num" x="60" y="270">⑥</text>
+        <text class="label" x="80" y="270">step list</text>
+        <text class="cap" x="80" y="290">Read · Bash · Edit · Grep, live</text>
+        <path class="stroke" d="M200,278 q40,-12 78,-44" marker-end="url(#arr-3)"/>
+
+        <defs>
+          <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="var(--cord)"/>
+            <stop offset="100%" stop-color="var(--brass)"/>
+          </linearGradient>
+          <marker id="arr-3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-200)"/></marker>
+        </defs>
+      </svg>
+    </div>
 
     <div class="tiles">
       <!-- A -->
@@ -1386,13 +1525,74 @@
         </p>
       </div>
 
-      <!-- placeholder for SVG diagram, filled in next commit -->
-      <div id="approval-diagram-slot" class="diagram" style="min-height: 280px;">
+      <div class="diagram">
         <div class="label-top">Kernel · grant flow</div>
-        <div style="font-family:var(--ff-mono); font-size:11px; color:var(--ink-300); letter-spacing:.1em;">
-          PHONE → BROKER → AGENT
-        </div>
-        <p style="color: var(--ink-300); font-size: 13px; margin-top: 16px;">tool call · kernel pause · user taps Allow · tool resumes</p>
+        <svg class="sketch" viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Approval kernel grant flow: agent makes a tool call, kernel pauses it and posts an Allow/Deny card to the user's phone, user taps Allow, the kernel resumes the tool.">
+          <!-- Phone, left -->
+          <g transform="translate(28,40) rotate(-2)">
+            <rect class="fill-paper" x="0" y="0" width="150" height="260" rx="18"/>
+            <rect x="50" y="10" width="50" height="6" rx="3" fill="var(--ink-600)"/>
+            <!-- approval card mock inside phone -->
+            <g transform="translate(12,32)">
+              <rect class="fill-card" x="0" y="0" width="126" height="200" rx="6"/>
+              <text class="mono" x="8" y="16" style="fill:var(--cord-soft);">⚠ APPROVAL</text>
+              <text class="cap" x="8" y="38" style="font-size:13px;">Edit timeout-</text>
+              <text class="cap" x="8" y="54" style="font-size:13px;">guard.ts?</text>
+              <rect x="8" y="66" width="110" height="22" rx="3" fill="#3a1f22"/>
+              <text class="mono" x="12" y="81" style="fill:#E99A9E; font-size:9px;">- Promise.race(...)</text>
+              <rect x="8" y="92" width="110" height="22" rx="3" fill="#1f3a2a"/>
+              <text class="mono" x="12" y="107" style="fill:#98E4B6; font-size:9px;">+ await Promise...</text>
+              <!-- Allow/Deny buttons -->
+              <rect x="8" y="128" width="52" height="26" rx="4" fill="#1f3a2a" stroke="#98E4B6"/>
+              <text class="cap" x="34" y="146" text-anchor="middle" style="fill:#98E4B6; font-size:13px;">✅ Allow</text>
+              <rect x="66" y="128" width="52" height="26" rx="4" fill="#3a1f22" stroke="#E99A9E"/>
+              <text class="cap" x="92" y="146" text-anchor="middle" style="fill:#E99A9E; font-size:13px;">❌ Deny</text>
+              <text class="mono" x="63" y="180" text-anchor="middle" style="fill:var(--ink-400);">TTL · 10 min</text>
+            </g>
+          </g>
+
+          <!-- Broker, center -->
+          <g transform="translate(220,140) rotate(1)">
+            <rect class="fill-paper" x="0" y="0" width="120" height="80" rx="8"/>
+            <text class="label" x="60" y="30" text-anchor="middle">IPC broker</text>
+            <text class="cap" x="60" y="54" text-anchor="middle">SQLite kernel</text>
+            <text class="mono" x="60" y="72" text-anchor="middle" style="font-size:10px;">card-events.jsonl</text>
+          </g>
+
+          <!-- Agent, right -->
+          <g transform="translate(380,150) rotate(-1.5)">
+            <rect class="fill-paper" x="0" y="0" width="120" height="60" rx="8"/>
+            <text class="label" x="60" y="26" text-anchor="middle">agent</text>
+            <text class="cap" x="60" y="46" text-anchor="middle">claude REPL</text>
+          </g>
+
+          <!-- Numbered arrows -->
+          <!-- 1: agent -> broker (tool call, pause) -->
+          <path class="stroke-cord" d="M380,180 q-22,4 -42,0" marker-end="url(#arr-cord-2)"/>
+          <text class="num" x="358" y="168" text-anchor="middle">1</text>
+          <text class="cap" x="358" y="200" text-anchor="middle" style="font-size:14px;">tool call</text>
+
+          <!-- 2: broker -> phone (post card) -->
+          <path class="stroke-brass" d="M222,178 q-20,-10 -40,-20" marker-end="url(#arr-brass-2)"/>
+          <text class="num" x="208" y="148" text-anchor="middle">2</text>
+          <text class="cap" x="180" y="178" text-anchor="middle" style="font-size:14px;">kernel pause</text>
+
+          <!-- 3: phone -> broker (user taps Allow) -->
+          <path class="stroke-teal" d="M180,210 q22,12 42,16" marker-end="url(#arr-teal-2)"/>
+          <text class="num" x="200" y="246" text-anchor="middle">3</text>
+          <text class="cap" x="200" y="266" text-anchor="middle" style="font-size:14px;">tap Allow</text>
+
+          <!-- 4: broker -> agent (resume) -->
+          <path class="stroke-teal" d="M340,196 q22,4 42,2" marker-end="url(#arr-teal-2)"/>
+          <text class="num" x="362" y="220" text-anchor="middle">4</text>
+          <text class="cap" x="362" y="240" text-anchor="middle" style="font-size:14px;">resume</text>
+
+          <defs>
+            <marker id="arr-cord-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--cord)"/></marker>
+            <marker id="arr-brass-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--brass)"/></marker>
+            <marker id="arr-teal-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/></marker>
+          </defs>
+        </svg>
       </div>
     </div>
   </div>
