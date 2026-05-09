@@ -1558,8 +1558,8 @@
   <span class="k">version</span><span class="n">:</span> <span class="v">1</span>
 
 <span class="k">telegram</span><span class="n">:</span>
+  <span class="c"># Per-agent bot token. DM-only by default.</span>
   <span class="k">bot_token</span><span class="n">:</span> <span class="s">"vault:telegram-bot-token"</span>
-  <span class="k">forum_chat_id</span><span class="n">:</span> <span class="s">"-1001234567890"</span>
 
 <span class="k">defaults</span><span class="n">:</span>
   <span class="k">model</span><span class="n">:</span> <span class="s">opus</span>
@@ -1629,12 +1629,12 @@
     <div class="install-wrap">
       <div class="install-copy">
         <div class="section-label">§08 · install</div>
-        <h2 class="section-title">Five commands. One cup of coffee.</h2>
+        <h2 class="section-title">Three commands. One cup of coffee.</h2>
         <p class="section-lede">
-          A box you already have, 4GB RAM. A Pro or Max subscription. A Telegram bot token from @BotFather per persona. That's the lot.
+          A box you already have, 4GB RAM, Docker. A Pro or Max subscription. A Telegram bot token from @BotFather per persona. That's the lot.
         </p>
         <div class="small">
-          <span><b>req</b> · Ubuntu 24.04 LTS today · Node ≥ 20.11</span>
+          <span><b>req</b> · Linux + Docker (Ubuntu 24.04 LTS canonical)</span>
           <span><b>req</b> · active Claude Pro or Max subscription</span>
           <span><b>opt</b> · one Telegram bot per persona</span>
         </div>
@@ -1646,25 +1646,20 @@
           <span>bash · ~/panel</span>
           <span class="copy" onclick="(()=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('install-cmd').innerText);this.innerText='copied';setTimeout(()=>this.innerText='copy',1200);})()">copy</span>
         </div>
-        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Bootstrap a fresh box: bun, node, claude CLI, switchroom.</span>
-<span class="prompt">$</span> <span class="cmd">curl -fsSL https://get.switchroom.ai | bash</span>
-<span class="ok">  ✓ installed</span>
+        <div class="terminal-body" id="install-cmd"><span class="out"># 1. Drop the static switchroom binary on your box.</span>
+<span class="prompt">$</span> <span class="cmd">curl -fsSL https://github.com/switchroom/switchroom/raw/main/install.sh | sh</span>
+<span class="ok">  ✓ installed /usr/local/bin/switchroom</span>
 
-<span class="out"># 2. Interactive setup. Scaffolds config, links Telegram, wires the vault.</span>
+<span class="out"># 2. Interactive setup. Telegram token, vault, first agent. DM-only by default.</span>
 <span class="prompt">$</span> <span class="cmd">switchroom setup</span>
 <span class="ok">  ✓ ready</span>
 
-<span class="out"># 3. Scaffold your first agent from a profile.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom agent create</span> <span class="cmd">klanker</span> <span class="flag">--profile</span> <span class="cmd">executive-assistant</span>
-<span class="ok">  ✓ added klanker (extends: executive-assistant) to switchroom.yaml</span>
-
-<span class="out"># 4. Link your Pro or Max session.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom auth login</span> <span class="cmd">klanker</span>
-<span class="ok">  ✓ linked Claude Max session</span>
-
-<span class="out"># 5. Go.</span>
-<span class="prompt">$</span> <span class="cmd">switchroom agent start</span> <span class="cmd">klanker</span>
-<span class="ok">  ● switchroom-klanker.service - active (running)</span>
+<span class="out"># 3. Apply config + bring the fleet up. Pulls 5 GHCR images on first run.</span>
+<span class="prompt">$</span> <span class="cmd">switchroom apply &amp;&amp; docker compose -p switchroom \</span>
+<span class="cmd">    -f ~/.switchroom/compose/docker-compose.yml pull &amp;&amp; \</span>
+<span class="cmd">  docker compose -p switchroom \</span>
+<span class="cmd">    -f ~/.switchroom/compose/docker-compose.yml up -d --remove-orphans</span>
+<span class="ok">  ● switchroom-klanker — running (healthy)</span>
 <span class="out">    │ listening on @klanker_bot</span></div>
       </div>
     </div>
@@ -1696,7 +1691,7 @@
       </details>
       <details class="q">
         <summary><span class="plus">+</span> What do I need to run it?</summary>
-        <div class="a">A box you already have, 4GB RAM, Node 20.11+, and an active Pro or Max subscription. Today the supported install path is Ubuntu 24.04 LTS; container packaging that opens up other hosts is on the roadmap. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
+        <div class="a">A Linux box you already have with Docker and 4GB RAM, plus an active Claude Pro or Max subscription. The supported runtime is Linux + Docker (Ubuntu 24.04 LTS canonical; other distros work). macOS via Docker Desktop runs the same compose file but isn't release-validated yet. A cheap VPS (~$6/mo on Hetzner or DigitalOcean) is plenty.</div>
       </details>
       <details class="q">
         <summary><span class="plus">+</span> Why not just use Claude Code?</summary>
