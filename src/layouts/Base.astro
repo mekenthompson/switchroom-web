@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import fraunces from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
+
+const title =
+  'Switchroom · A switchboard for your Pro or Max';
+const description =
+  'Switchroom turns the Claude subscription you already pay for into a team of always-on assistants you text on Telegram. Each one has a name, remembers you, and does the actual work. They stop and ask before anything with consequences.';
+const canonical = 'https://switchroom.ai/';
+const ogImage = 'https://switchroom.ai/assets/og.png';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="preload" href={fraunces} as="font" type="font/woff2" crossorigin />
+    <style is:inline set:html={`@font-face{font-family:'Fraunces';font-style:normal;font-display:swap;font-weight:100 900;src:url(${fraunces}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}`}></style>
+
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E1013" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF7EF" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Switchroom" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>
