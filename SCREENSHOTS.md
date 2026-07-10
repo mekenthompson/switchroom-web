@@ -7,6 +7,12 @@
 > `public/assets/og.png`. Real phone captures can still replace any entry later
 > per the notes below.
 
+> **Hero note (feat/storyline-hero):** the hero now plays `StorylineHero.astro`
+> — a ~76s pure-CSS animated "ship day" arc (fleet list → progress card →
+> approval tap → rich reply → `/usage` quota card → marko hop → loop). It is
+> not replaceable by a single capture; entry #1 (`HeroPhone.astro`) lives on
+> as the static money shot used by `/shots` and the OG image.
+
 The page currently ships hand-built Telegram-style HTML/CSS mockups (in `src/components/`). Each entry below is a real capture that can replace one, with the content, crop, and theme wanted. Capture on a phone (Telegram iOS or Android, default dark theme unless noted), full quality, no compression apps. Redact anything personal before committing.
 
 | # | Replaces | Content wanted | Crop | Theme |
