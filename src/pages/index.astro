@@ -1,0 +1,273 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroPhone from '../components/HeroPhone.astro';
+import FleetList from '../components/FleetList.astro';
+import MarkoChat from '../components/MarkoChat.astro';
+import ProgressCard from '../components/ProgressCard.astro';
+import ApprovalCard from '../components/ApprovalCard.astro';
+import RichReply from '../components/RichReply.astro';
+import QuotaCard from '../components/QuotaCard.astro';
+import RichShowcase from '../components/RichShowcase.astro';
+import LeashSequence from '../components/LeashSequence.astro';
+
+const repo = 'https://github.com/switchroom/switchroom';
+const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
+---
+
+<Base>
+  <header class="nav">
+    <div class="container nav-row">
+      <a class="brand" href="/">
+        <img src="/assets/switchroom-mark-64.png" alt="" width="30" height="30" />
+        Switchroom
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a class="anchor" href="#how">How it works</a>
+        <a class="anchor" href="#pillars">Why</a>
+        <a class="anchor" href="#leash">On a leash</a>
+        <a class="anchor" href="#install">Install</a>
+        <a class="nav-cta" href={repo}><span aria-hidden="true">★</span> GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open source · MIT · runs on your box</p>
+          <h1 class="hero-title display">A switchboard for your <span class="brass">Pro or Max</span>.</h1>
+          <p class="hero-kicker">A team of always-on assistants you text. <span class="leash">On a leash.</span></p>
+          <p class="lede hero-sub">
+            Switchroom turns the Claude subscription you already pay for into a team of
+            always-on assistants you text on Telegram. Each one has a name, remembers you,
+            and does the actual work. They stop and ask before anything with consequences,
+            and only your tap says go.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href={repo}>Install from GitHub</a>
+            <a class="btn btn-secondary" href={docs}>Read the docs</a>
+          </div>
+          <p class="hero-note">Unmodified <code>claude</code> CLI · your existing OAuth · no API keys, no second bill</p>
+        </div>
+        <HeroPhone />
+      </div>
+    </section>
+
+    <!-- ============ How it works ============ -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">How it works</p>
+          <h2 class="section-title">Name them. Text them. They work — on your subscription, on a leash.</h2>
+        </div>
+        <div class="beats">
+          <div class="beat reveal">
+            <span class="beat-num">01</span>
+            <div>
+              <h3>Name your specialists</h3>
+              <p>
+                One bot per job — a chief of staff, a marketer, a health coach, a writing
+                partner. Each has its own name, memory, tools, and credentials. Adding one
+                is ten lines of YAML.
+              </p>
+            </div>
+            <figure class="shot">
+              <FleetList />
+              <figcaption>Your fleet is just chats in Telegram.</figcaption>
+            </figure>
+          </div>
+          <div class="beat reveal">
+            <span class="beat-num">02</span>
+            <div>
+              <h3>Text them on Telegram</h3>
+              <p>
+                Like you'd text a good assistant. They know your context, so you rarely
+                re-explain. Not coding bots — whatever job you give them.
+              </p>
+            </div>
+            <figure class="shot">
+              <MarkoChat />
+              <figcaption>A specialist that remembers your voice.</figcaption>
+            </figure>
+          </div>
+          <div class="beat reveal">
+            <span class="beat-num">03</span>
+            <div>
+              <h3>They work — on a leash</h3>
+              <p>
+                Each runs the unmodified <code>claude</code> CLI on your own Pro or Max
+                login. You watch progress in plain words, and anything with consequences
+                waits for your tap.
+              </p>
+            </div>
+            <figure class="shot">
+              <ProgressCard />
+              <figcaption>Live status, pinned to the chat.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Pillars ============ -->
+    <section class="section alt" id="pillars">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Why Switchroom</p>
+          <h2 class="section-title">Four things it does properly</h2>
+        </div>
+        <div class="pillars">
+          <article class="pillar reveal">
+            <span class="tag">standing-team</span>
+            <h3>A real team, not a chatbot</h3>
+            <p>
+              One specialist per job, each with its own name, memory, and tools. It feels
+              like a colleague who knows your context, not a chat window that forgets you
+              every session.
+            </p>
+            <div class="proof"><RichReply /></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="tag">always-available</span>
+            <h3>There when you reach for them</h3>
+            <p>
+              Each specialist is a long-running service. It survives reboots, network
+              drops, your laptop closing — and runs its scheduled work whether or not
+              you're watching. Available and punctual, not autonomous.
+            </p>
+            <div class="proof"><ProgressCard /></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="tag">hold-the-leash</span>
+            <h3>You hold the leash</h3>
+            <p>
+              Your assistants don't roam. They act only on what you ask or the schedules
+              you set, then stop at anything with consequences and ask first. Only your
+              authenticated tap grants it — no agent can self-elevate or route around you.
+            </p>
+            <div class="proof"><ApprovalCard /></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="tag">subscription-honest</span>
+            <h3>The rest of your Claude subscription</h3>
+            <p>
+              It runs on the Pro or Max plan you already pay for, the same login as the
+              desktop. No API meter, no second invoice. One bill — the one you already pay.
+            </p>
+            <div class="proof"><QuotaCard /></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Telegram done properly ============ -->
+    <section class="section" id="telegram">
+      <div class="container">
+        <div class="install-grid">
+          <div>
+            <p class="kicker">Telegram, done properly</p>
+            <h2 class="section-title">Replies that read like they were made for the app</h2>
+            <p class="lede" style="margin-top:14px">
+              Answers render as native Telegram rich messages: real tables, syntax-lit code
+              blocks, expandable quotes for the long tail, live-updating progress cards
+              pinned to the chat. Short answers stay plain prose. Structure shows up only
+              when it earns its place on your screen.
+            </p>
+            <p class="lede" style="margin-top:14px">
+              Seventeen Telegram tools under the hood — reply, stream, react, edit, pin,
+              checklists, attachments, approval cards — so the chat feels like a person who
+              knows the platform, not a bot dumping monospace.
+            </p>
+          </div>
+          <figure class="shot reveal">
+            <RichShowcase />
+            <figcaption>One reply: table, code, expandable quote — all native.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ On a leash ============ -->
+    <section class="section alt" id="leash">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">On a leash</p>
+          <h2 class="section-title">Most agent tools act first. Switchroom asks first.</h2>
+          <p class="lede">
+            Give an assistant broad standing access and one day it helpfully does something
+            irreversible. Switchroom is built the other way: every credential, tool, and
+            consequential action is a deliberate grant you approve. The control isn't a
+            setting — it's the design.
+          </p>
+        </div>
+        <LeashSequence />
+      </div>
+    </section>
+
+    <!-- ============ Install ============ -->
+    <section class="section" id="install">
+      <div class="container">
+        <div class="install-grid">
+          <div class="install-copy">
+            <p class="kicker">Install</p>
+            <h2 class="section-title">Five minutes to your first specialist</h2>
+            <p style="margin-top:14px">
+              One box you own — a cheap VPS or the Linux machine under your desk. One
+              script installs the dependencies, one wizard sets up Telegram, the vault,
+              and your first agent. OAuth with the same flow as the desktop app, and
+              you never touch the server again.
+            </p>
+            <h3>Already in Claude Code?</h3>
+            <p>Shortest path — from inside any session:</p>
+            <div class="mini">/plugin marketplace add switchroom/switchroom<br />/plugin install switchroom@switchroom<br />/switchroom:setup</div>
+            <div class="install-ctas">
+              <a class="btn btn-primary" href={repo}>Install from GitHub</a>
+              <a class="btn btn-secondary" href={docs}>Read the docs</a>
+            </div>
+          </div>
+          <div class="term reveal">
+            <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>you@your-box</span></div>
+            <pre><code><span class="c"># fresh Linux box, one script</span>
+<span class="p">$</span> curl -fsSL https://github.com/switchroom/switchroom\
+    /raw/main/scripts/install-deps.sh | sudo bash
+
+<span class="c"># Telegram + vault + first agent, interactive</span>
+<span class="p">$</span> switchroom setup
+<span class="p">$</span> switchroom apply
+<span class="p">$</span> docker compose -p switchroom up -d
+
+<span class="c"># OAuth your Pro/Max — same login as the desktop</span>
+<span class="p">$</span> switchroom auth add default --via-claude
+<span class="p">$</span> switchroom auth use default</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <a class="brand" href="/">
+          <img src="/assets/switchroom-mark-64.png" alt="" width="30" height="30" loading="lazy" />
+          Switchroom
+        </a>
+        <nav class="footer-links" aria-label="Footer">
+          <a href={repo}>GitHub</a>
+          <a href={docs}>Docs</a>
+          <a href="https://github.com/switchroom/switchroom/blob/main/LICENSE">MIT License</a>
+          <a href="https://github.com/switchroom/switchroom/blob/main/CHANGELOG.md">Changelog</a>
+        </nav>
+      </div>
+      <p class="footnote">
+        Switchroom runs the unmodified <code>claude</code> CLI on the Claude Pro or Max
+        plan you already pay for — the same OAuth login as the desktop app. No API meter,
+        no second invoice. Self-hosted on your own machine, on your terms. Open source.
+        Always on. On a leash.
+      </p>
+    </div>
+  </footer>
+</Base>

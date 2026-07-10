@@ -1,0 +1,43 @@
+---
+// Telegram, done properly: tables, code blocks, expandable quotes — native.
+---
+
+<div
+  class="tg-card tg"
+  role="img"
+  aria-label="A single Telegram reply from klanker showing native rich formatting: a status table of three services, a syntax-highlighted diff code block, and an expandable quote holding the full deploy log."
+>
+  <div class="tg-head" aria-hidden="true">
+    <span class="tg-ava a4">k</span>
+    <span class="who"><b>klanker</b><span>bot</span></span>
+    <span class="dots">⋮</span>
+  </div>
+  <div class="tg-body" aria-hidden="true">
+    <div class="msg out">
+      <p>how did the deploy go?</p>
+      <span class="meta">17:20 <span class="ticks">✓✓</span></span>
+    </div>
+    <div class="msg in" style="max-width:94%">
+      <span class="name">klanker</span>
+      <p><b>Clean deploy, all three services healthy.</b></p>
+      <table>
+        <thead>
+          <tr><th>service</th><th>status</th><th>p95</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>api</td><td>✅ up</td><td>84ms</td></tr>
+          <tr><td>web</td><td>✅ up</td><td>112ms</td></tr>
+          <tr><td>worker</td><td>✅ up</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p>One config change shipped with it:</p>
+      <pre><span class="k">- healthcheck_interval: 60s</span>
+<span class="s">+ healthcheck_interval: 15s</span></pre>
+      <div class="quote">
+        Full deploy log, 214 lines — rollout took 3m 41s end to end…
+        <span class="expander">▼ expand</span>
+      </div>
+      <span class="meta">17:21</span>
+    </div>
+  </div>
+</div>
