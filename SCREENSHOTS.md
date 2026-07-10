@@ -1,5 +1,12 @@
 # Real-screenshot manifest
 
+> **Status (2026-07):** all 12 shots below now render from the upgraded HTML/CSS
+> mockups using the operator-approved staged scripts (fictional content, real
+> agent names). `/shots` (`src/pages/shots.astro`, noindex) is the capture
+> gallery; `scripts/capture.mjs` exports the 3x-DPR finals and regenerates
+> `public/assets/og.png`. Real phone captures can still replace any entry later
+> per the notes below.
+
 The page currently ships hand-built Telegram-style HTML/CSS mockups (in `src/components/`). Each entry below is a real capture that can replace one, with the content, crop, and theme wanted. Capture on a phone (Telegram iOS or Android, default dark theme unless noted), full quality, no compression apps. Redact anything personal before committing.
 
 | # | Replaces | Content wanted | Crop | Theme |

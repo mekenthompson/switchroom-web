@@ -1,50 +1,57 @@
 ---
 // Hero: a Telegram chat with `clerk`, the canonical specialist.
 // Pure HTML/CSS mockup — messages animate in via CSS (reduced-motion safe).
+// Pass class="tg-light" (or view in light mode) for the iOS Day Classic variant.
+const { class: className = '' } = Astro.props;
 ---
 
 <div
-  class="phone tg"
+  class={`phone tg ${className}`.trim()}
   role="img"
   aria-label="Telegram chat with clerk, a Switchroom assistant. You ask how tomorrow looks and to fit the dentist in. Clerk replies that the morning has three meetings and the afternoon is clear, offers a 2:30 slot at Dr Chen, then posts an approval card asking permission to email the practice, with Approve and Deny buttons."
 >
   <div class="phone-screen">
     <div class="phone-status" aria-hidden="true">
       <span>9:41</span>
-      <span class="pills"><i class="pill sig"></i><i class="pill"></i></span>
+      <span class="pills">
+        <span class="sig"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"><svg width="16" height="11" viewBox="0 0 16 11" fill="none" aria-hidden="true"><circle cx="8" cy="9.3" r="1.3" fill="currentColor"/><path d="M5.2 7.3a4.2 4.2 0 0 1 5.6 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 4.9a7.4 7.4 0 0 1 10 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M.9 2.5a10.6 10.6 0 0 1 14.2 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <span class="batt"></span>
+      </span>
     </div>
     <div class="tg-head" aria-hidden="true">
       <span class="back">‹</span>
-      <span class="tg-ava a1">c</span>
       <span class="who"><b>clerk</b><span>bot</span></span>
-      <span class="dots">⋮</span>
+      <span class="tg-ava a1">c</span>
     </div>
     <div class="tg-body" aria-hidden="true">
       <span class="tg-pill">Today</span>
-      <div class="msg out">
+      <div class="msg out tail">
         <p>clerk, how's tomorrow looking? and see if the dentist can fit me in</p>
         <span class="meta">9:41 <span class="ticks">✓✓</span></span>
       </div>
-      <div class="msg in">
+      <div class="msg in tail">
         <span class="name">clerk</span>
         <p><b>Three meetings, all before noon.</b> Clear after 1pm.</p>
         <ul>
           <li>9:00 standup</li>
-          <li>10:30 board prep with Lisa</li>
+          <li>10:30 board prep with Priya</li>
           <li>11:30 1:1 with Sam</li>
         </ul>
         <p>Dr Chen has 2:30 or 4:00 open. 2:30 keeps your evening free.</p>
         <span class="meta">9:41</span>
       </div>
-      <div class="msg in">
-        <span class="name">clerk</span>
-        <p class="card-title">🔐 Approval needed</p>
-        <p>Email Dr Chen's front desk to book <b>Thu 2:30pm</b>?</p>
+      <div class="mgroup in wide">
+        <div class="msg in tail">
+          <span class="name">clerk</span>
+          <p class="card-title">🔐 Approval needed</p>
+          <p>Email Dr Chen's front desk to book <b>Thu 2:30pm</b>?</p>
+          <span class="meta">9:42</span>
+        </div>
         <div class="tg-kb">
           <span class="kb-btn">✅ Approve</span>
           <span class="kb-btn">🚫 Deny</span>
         </div>
-        <span class="meta">9:42</span>
       </div>
     </div>
   </div>
