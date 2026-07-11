@@ -7,19 +7,19 @@
     <div
       class="tg-card tg"
       role="img"
-      aria-label="Step one, you ask: a Telegram message to quill saying the draft is good, publish it to the blog. Quill replies that it is ready to push and will ask before it does."
+      aria-label="Step one, you ask: a Telegram message to quill saying the Acme case-study draft is good, publish it. Quill replies that it is ready to push to blog-site, which deploys on merge, so it will ask first."
     >
       <div class="tg-head" aria-hidden="true">
-        <span class="tg-ava a5">q</span>
+        <span class="back">‹</span>
         <span class="who"><b>quill</b><span>bot</span></span>
-        <span class="dots">⋮</span>
+        <span class="tg-ava a5">q</span>
       </div>
       <div class="tg-body" aria-hidden="true">
-        <div class="msg out">
-          <p>the draft's good — publish it</p>
+        <div class="msg out tail">
+          <p>the Acme case-study draft's good — publish it</p>
           <span class="meta">16:02 <span class="ticks">✓✓</span></span>
         </div>
-        <div class="msg in">
+        <div class="msg in tail">
           <span class="name">quill</span>
           <p>Ready to push to <code>blog-site</code>. That deploys on merge, so I'll ask first.</p>
           <span class="meta">16:02</span>
@@ -36,20 +36,22 @@
       aria-label="Step two, the card: quill posts an approval card requesting to push one commit to blog-site main, which deploys on merge, with Approve and Deny buttons."
     >
       <div class="tg-head" aria-hidden="true">
-        <span class="tg-ava a5">q</span>
+        <span class="back">‹</span>
         <span class="who"><b>quill</b><span>bot</span></span>
-        <span class="dots">⋮</span>
+        <span class="tg-ava a5">q</span>
       </div>
       <div class="tg-body" aria-hidden="true">
-        <div class="msg in" style="max-width:100%">
-          <span class="name">quill</span>
-          <p class="card-title">🔐 Approval needed</p>
-          <p>Push 1 commit to <code>blog-site:main</code> — deploys on merge.</p>
+        <div class="mgroup in wide">
+          <div class="msg in tail">
+            <span class="name">quill</span>
+            <p class="card-title">🔐 Approval needed</p>
+            <p>Push 1 commit to <code>blog-site:main</code> — deploys on merge.</p>
+            <span class="meta">16:03</span>
+          </div>
           <div class="tg-kb">
             <span class="kb-btn">✅ Approve</span>
             <span class="kb-btn">🚫 Deny</span>
           </div>
-          <span class="meta">16:03</span>
         </div>
       </div>
     </div>
@@ -60,21 +62,21 @@
     <div
       class="tg-card tg"
       role="img"
-      aria-label="Step three, done: the approval card shows Approved by you, and quill confirms the post is live with a link, noting the grant was logged and expired."
+      aria-label="Step three, done: the approval card now shows Approved by you at 16:04 where the buttons were, and quill confirms the post is live, noting the grant was used once, logged, and expired."
     >
       <div class="tg-head" aria-hidden="true">
-        <span class="tg-ava a5">q</span>
+        <span class="back">‹</span>
         <span class="who"><b>quill</b><span>bot</span></span>
-        <span class="dots">⋮</span>
+        <span class="tg-ava a5">q</span>
       </div>
       <div class="tg-body" aria-hidden="true">
-        <div class="msg in" style="max-width:100%">
+        <div class="msg in tail" style="max-width:92%; width:100%">
           <span class="name">quill</span>
           <p class="card-title">✅ Approved · by you, 16:04</p>
           <p>Push 1 commit to <code>blog-site:main</code></p>
           <span class="meta">16:04</span>
         </div>
-        <div class="msg in">
+        <div class="msg in tail">
           <span class="name">quill</span>
           <p><b>Live.</b> Grant used once, logged, expired.</p>
           <span class="meta">16:05</span>

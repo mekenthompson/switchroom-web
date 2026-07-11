@@ -1,0 +1,200 @@
+---
+// Capture gallery for the SCREENSHOTS.md manifest — not linked from the site,
+// noindex. `scripts/capture.mjs` screenshots the elements on this page at 3x
+// DPR to produce the final shot assets (and regenerates the OG image).
+import '../styles/global.css';
+import fraunces from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
+import HeroPhone from '../components/HeroPhone.astro';
+import FleetList from '../components/FleetList.astro';
+import MarkoChat from '../components/MarkoChat.astro';
+import ProgressCard from '../components/ProgressCard.astro';
+import ApprovalCard from '../components/ApprovalCard.astro';
+import RichReply from '../components/RichReply.astro';
+import QuotaCard from '../components/QuotaCard.astro';
+import RichShowcase from '../components/RichShowcase.astro';
+import LeashSequence from '../components/LeashSequence.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Shot gallery (capture only)</title>
+    <style is:inline set:html={`@font-face{font-family:'Fraunces';font-style:normal;font-display:swap;font-weight:100 900;src:url(${fraunces}) format('woff2');}`}></style>
+    <style>
+      body { background: #0e1013; padding: 40px; display: flex; flex-direction: column; gap: 48px; align-items: flex-start; }
+      .w340 { width: 340px; }
+      .w380 { width: 380px; }
+      .leash-wrap { width: 1100px; }
+      .leash-wrap .cap { display: none; }
+      .leash-wrap .leash-step::before { display: none; }
+      h2 { color: #8a8f98; font-size: 13px; font-family: monospace; margin: 0; }
+
+      /* OG canvas — 1200x630, mirrors the hero composition */
+      .og {
+        width: 1200px;
+        height: 630px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(700px 420px at 88% -8%, rgba(232, 182, 87, 0.10), transparent 60%),
+          radial-gradient(650px 420px at -6% 105%, rgba(200, 48, 44, 0.08), transparent 60%),
+          #0e1013;
+        display: flex;
+        align-items: center;
+      }
+      .og::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(#191d23 1px, transparent 1px),
+          linear-gradient(90deg, #191d23 1px, transparent 1px);
+        background-size: 56px 56px;
+        opacity: 0.35;
+        mask-image: radial-gradient(ellipse 80% 70% at 45% 40%, #000 40%, transparent 85%);
+      }
+      .og-left {
+        position: relative;
+        z-index: 1;
+        padding: 0 48px 0 72px;
+        flex: 1;
+        min-width: 0;
+      }
+      .og-brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: #f5f1e8;
+        font-weight: 650;
+        letter-spacing: 0.22em;
+        font-size: 22px;
+        margin-bottom: 44px;
+      }
+      .og-brand img { width: 44px; height: 44px; border-radius: 10px; }
+      .og-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 550;
+        font-size: 52px;
+        line-height: 1.08;
+        color: #f5f1e8;
+        letter-spacing: -0.015em;
+        margin: 0 0 26px;
+      }
+      .og-title .brass { color: #e8b657; }
+      .og-sub { font-size: 25px; color: #b8bcc3; line-height: 1.35; margin: 0 0 40px; }
+      .og-sub .leash { color: #e85550; }
+      .og-note { font-family: ui-monospace, Menlo, monospace; font-size: 15px; color: #8a8f98; white-space: nowrap; margin: 0; }
+      .og-right {
+        position: relative;
+        z-index: 1;
+        flex: none;
+        width: 420px;
+        margin-right: 56px;
+      }
+      .og-right .tg { font-size: 15px; }
+      .og-right .tg-card { border-radius: 18px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5); }
+      .og-right .tg-ava { width: 40px; height: 40px; font-size: 16px; }
+    </style>
+  </head>
+  <body>
+    <h2>shot-01 hero dark</h2>
+    <div id="shot-01"><HeroPhone /></div>
+
+    <h2>shot-01b hero light</h2>
+    <div id="shot-01b"><HeroPhone class="tg-light" /></div>
+
+    <h2>shot-02 fleet list</h2>
+    <div id="shot-02" class="w340"><FleetList /></div>
+
+    <h2>shot-03 marko</h2>
+    <div id="shot-03" class="w340"><MarkoChat /></div>
+
+    <h2>shot-04 progress card</h2>
+    <div id="shot-04" class="w340"><ProgressCard /></div>
+
+    <h2>shot-05 approval card</h2>
+    <div id="shot-05" class="w340"><ApprovalCard /></div>
+
+    <h2>shot-06 rich reply</h2>
+    <div id="shot-06" class="w340"><RichReply /></div>
+
+    <h2>shot-07 quota</h2>
+    <div id="shot-07" class="w340"><QuotaCard /></div>
+
+    <h2>shot-08 rich showcase</h2>
+    <div id="shot-08" class="w380"><RichShowcase /></div>
+
+    <h2>shots 09–11 leash frames</h2>
+    <div id="shot-leash" class="leash-wrap"><LeashSequence /></div>
+
+    <h2>shot-12 og inset (hero chat, header + 2 messages)</h2>
+    <div id="shot-12" class="w340">
+      <div class="tg-card tg" aria-hidden="true">
+        <div class="tg-head">
+          <span class="back">‹</span>
+          <span class="who"><b>clerk</b><span>bot</span></span>
+          <span class="tg-ava a1">c</span>
+        </div>
+        <div class="tg-body">
+          <div class="msg out tail">
+            <p>clerk, how's tomorrow looking? and see if the dentist can fit me in</p>
+            <span class="meta">9:41 <span class="ticks">✓✓</span></span>
+          </div>
+          <div class="msg in tail">
+            <span class="name">clerk</span>
+            <p><b>Three meetings, all before noon.</b> Clear after 1pm.</p>
+            <ul>
+              <li>9:00 standup</li>
+              <li>10:30 board prep with Priya</li>
+              <li>11:30 1:1 with Sam</li>
+            </ul>
+            <p>Dr Chen has 2:30 or 4:00 open. 2:30 keeps your evening free.</p>
+            <span class="meta">9:41</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>og canvas 1200x630</h2>
+    <div id="og-canvas" class="og">
+      <div class="og-left">
+        <div class="og-brand">
+          <img src="/assets/switchroom-mark-64.png" alt="" width="44" height="44" />
+          SWITCHROOM
+        </div>
+        <p class="og-title">A switchboard for your<br /><span class="brass">Pro or Max.</span></p>
+        <p class="og-sub">A team of always-on assistants you text. <span class="leash">On a leash.</span></p>
+        <p class="og-note">unmodified claude CLI · your OAuth · no API keys · open source</p>
+      </div>
+      <div class="og-right">
+        <div class="tg-card tg" aria-hidden="true">
+          <div class="tg-head">
+            <span class="back">‹</span>
+            <span class="who"><b>clerk</b><span>bot</span></span>
+            <span class="tg-ava a1">c</span>
+          </div>
+          <div class="tg-body">
+            <div class="msg out tail">
+              <p>clerk, how's tomorrow looking? and see if the dentist can fit me in</p>
+              <span class="meta">9:41 <span class="ticks">✓✓</span></span>
+            </div>
+            <div class="msg in tail">
+              <span class="name">clerk</span>
+              <p><b>Three meetings, all before noon.</b> Clear after 1pm.</p>
+              <ul>
+                <li>9:00 standup</li>
+                <li>10:30 board prep with Priya</li>
+                <li>11:30 1:1 with Sam</li>
+              </ul>
+              <p>Dr Chen has 2:30 or 4:00 open. 2:30 keeps your evening free.</p>
+              <span class="meta">9:41</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -511,67 +511,176 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
 }
 
 /* ==========================================================================
-   Telegram mockups — always dark (Telegram-native aesthetic)
+   Telegram mockups — iOS dark theme (primary). The hero phone also carries a
+   light (Day Classic) variant: `.tg-light` forces it, and the hero switches
+   automatically under prefers-color-scheme: light.
    ========================================================================== */
 
 .tg {
   --tg-bg: #0e1621;
+  --tg-pattern: rgba(255, 255, 255, 0.028);
   --tg-header: #17212b;
+  --tg-header-text: #f1f4f7;
   --tg-in: #182533;
   --tg-out: #2b5278;
+  --tg-in-text: #f1f4f7;
+  --tg-out-text: #f1f4f7;
   --tg-text: #f1f4f7;
   --tg-muted: #96a4b1;
+  --tg-meta-in: #6d7f8f;
+  --tg-meta-out: #7da8d3;
+  --tg-tick: #71bafa;
   --tg-link: #64b5ef;
   --tg-accent: #5eb5f7;
   --tg-name: #e8b657;
-  --tg-btn: rgba(255, 255, 255, 0.09);
-  font-family: var(--ff-sans);
+  --tg-code: #8fd0ff;
+  --tg-code-bg: rgba(94, 181, 247, 0.12);
+  --tg-pre-bg: rgba(0, 0, 0, 0.32);
+  --tg-btn: rgba(101, 132, 158, 0.38);
+  --tg-btn-text: #ffffff;
+  --tg-pill-bg: rgba(0, 0, 0, 0.35);
+  --tg-pill-text: #cfd8e0;
+  --tg-sep: rgba(0, 0, 0, 0.35);
+  /* SF Pro on Apple devices; Inter is the closest widely-available stand-in */
+  font-family: -apple-system, "SF Pro Text", Inter, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   color: var(--tg-text);
   font-size: 13.5px;
   line-height: 1.42;
 }
 
-.tg p { color: var(--tg-text); }
+/* Telegram iOS "Day Classic" palette — hero light variant */
+.tg.tg-light {
+  --tg-bg: #d8e3ec;
+  --tg-pattern: rgba(59, 105, 138, 0.05);
+  --tg-header: #f6f6f6;
+  --tg-header-text: #000000;
+  --tg-in: #ffffff;
+  --tg-out: #e1fec6;
+  --tg-in-text: #000000;
+  --tg-out-text: #000000;
+  --tg-text: #000000;
+  --tg-muted: #8e8e93;
+  --tg-meta-in: #a1aab3;
+  --tg-meta-out: #62ac55;
+  --tg-tick: #4fae4e;
+  --tg-link: #007aff;
+  --tg-accent: #007aff;
+  --tg-name: #b8873a;
+  --tg-code: #0e6db3;
+  --tg-code-bg: rgba(0, 122, 255, 0.08);
+  --tg-pre-bg: rgba(0, 60, 110, 0.06);
+  --tg-btn: rgba(255, 255, 255, 0.85);
+  --tg-btn-text: #007aff;
+  --tg-pill-bg: rgba(116, 142, 160, 0.55);
+  --tg-pill-text: #ffffff;
+  --tg-sep: rgba(0, 0, 0, 0.12);
+}
+@media (prefers-color-scheme: light) {
+  .hero .tg {
+    --tg-bg: #d8e3ec;
+    --tg-pattern: rgba(59, 105, 138, 0.05);
+    --tg-header: #f6f6f6;
+    --tg-header-text: #000000;
+    --tg-in: #ffffff;
+    --tg-out: #e1fec6;
+    --tg-in-text: #000000;
+    --tg-out-text: #000000;
+    --tg-text: #000000;
+    --tg-muted: #8e8e93;
+    --tg-meta-in: #a1aab3;
+    --tg-meta-out: #62ac55;
+    --tg-tick: #4fae4e;
+    --tg-link: #007aff;
+    --tg-accent: #007aff;
+    --tg-name: #b8873a;
+    --tg-code: #0e6db3;
+    --tg-code-bg: rgba(0, 122, 255, 0.08);
+    --tg-pre-bg: rgba(0, 60, 110, 0.06);
+    --tg-btn: rgba(255, 255, 255, 0.85);
+    --tg-btn-text: #007aff;
+    --tg-pill-bg: rgba(116, 142, 160, 0.55);
+    --tg-pill-text: #ffffff;
+    --tg-sep: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.tg p { color: inherit; }
 
 /* phone frame */
 .phone {
   width: min(340px, 100%);
   margin: 0 auto;
-  border-radius: 38px;
+  border-radius: 42px;
   background: #060809;
-  padding: 10px;
+  padding: 9px;
   border: 1px solid #2a2f36;
   box-shadow: var(--shadow-2), 0 0 0 1px rgba(0, 0, 0, 0.6);
 }
 .phone-screen {
-  border-radius: 29px;
+  border-radius: 34px;
   overflow: hidden;
   background: var(--tg-bg);
   display: flex;
   flex-direction: column;
-  min-height: 520px;
+  min-height: 540px;
   position: relative;
 }
 .phone-status {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 22px 4px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #dfe6ec;
+  padding: 12px 26px 2px;
+  font-size: 12.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--tg-header-text);
   background: var(--tg-header);
+  font-variant-numeric: tabular-nums;
 }
-.phone-status .pills { display: flex; gap: 5px; align-items: center; }
-.phone-status .pill {
+.phone-status .pills { display: flex; gap: 6px; align-items: flex-end; }
+/* signal bars */
+.phone-status .sig { display: inline-flex; gap: 1.5px; align-items: flex-end; height: 10px; }
+.phone-status .sig i {
   display: inline-block;
-  width: 15px;
-  height: 8px;
-  border-radius: 2px;
-  background: #dfe6ec;
-  opacity: 0.9;
+  width: 3px;
+  border-radius: 1px;
+  background: var(--tg-header-text);
 }
-.phone-status .pill.sig { width: 12px; }
+.phone-status .sig i:nth-child(1) { height: 4px; }
+.phone-status .sig i:nth-child(2) { height: 6px; }
+.phone-status .sig i:nth-child(3) { height: 8px; }
+.phone-status .sig i:nth-child(4) { height: 10px; }
+/* wifi fan (inline SVG in the component) */
+.phone-status .wifi { display: inline-flex; align-items: center; color: var(--tg-header-text); }
+/* battery */
+.phone-status .batt {
+  position: relative;
+  width: 22px;
+  height: 11px;
+  border: 1px solid color-mix(in srgb, var(--tg-header-text) 45%, transparent);
+  border-radius: 3.5px;
+  padding: 1.5px;
+}
+.phone-status .batt::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 78%;
+  border-radius: 1.5px;
+  background: var(--tg-header-text);
+}
+.phone-status .batt::after {
+  content: "";
+  position: absolute;
+  right: -3.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 4px;
+  border-radius: 0 2px 2px 0;
+  background: color-mix(in srgb, var(--tg-header-text) 45%, transparent);
+}
 
 /* smaller framed card (desktop-style crop) */
 .tg-card {
@@ -582,152 +691,272 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   box-shadow: var(--shadow-1);
 }
 
-/* chat header */
+/* chat header — iOS: back chevron · centered title/subtitle · avatar right */
 .tg-head {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 14px;
+  padding: 8px 12px 9px;
   background: var(--tg-header);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid var(--tg-sep);
+  position: relative;
+  z-index: 2;
 }
-.tg-head .back { color: var(--tg-accent); font-size: 17px; line-height: 1; }
+.tg-head .back {
+  color: var(--tg-accent);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: -2px;
+  flex: none;
+}
 .tg-ava {
   width: 34px;
   height: 34px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   color: #fff;
   flex: none;
 }
-.tg-ava.a1 { background: linear-gradient(135deg, #e8b657, #b8873a); color: #241703; }
-.tg-ava.a2 { background: linear-gradient(135deg, #5eb5f7, #2b5278); }
-.tg-ava.a3 { background: linear-gradient(135deg, #67c587, #2e7d4f); }
-.tg-ava.a4 { background: linear-gradient(135deg, #e85550, #8f1e1b); }
-.tg-ava.a5 { background: linear-gradient(135deg, #9d7bea, #5b3fa8); }
-.tg-head .who { min-width: 0; }
-.tg-head .who b { display: block; font-size: 13.5px; }
+.tg-ava.a1 { background: linear-gradient(180deg, #ffcd6a, #e0a03e); color: #fff; }
+.tg-ava.a2 { background: linear-gradient(180deg, #72d5fd, #2a9ef1); }
+.tg-ava.a3 { background: linear-gradient(180deg, #a0de7e, #54cb68); }
+.tg-ava.a4 { background: linear-gradient(180deg, #ff885e, #ff516a); }
+.tg-ava.a5 { background: linear-gradient(180deg, #82b1ff, #665fff); }
+.tg-head .who { min-width: 0; flex: 1; text-align: center; color: var(--tg-header-text); }
+.tg-head .who b { display: block; font-size: 14px; font-weight: 650; }
 .tg-head .who span { display: block; font-size: 11.5px; color: var(--tg-muted); }
-.tg-head .dots { margin-left: auto; color: var(--tg-muted); letter-spacing: 2px; }
+.tg-head .dots { display: none; }
 
-/* message area */
+/* pinned-message bar (sits under the header) */
+.tg-pinbar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 12px 6px;
+  background: var(--tg-header);
+  border-bottom: 1px solid var(--tg-sep);
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+}
+.tg-pinbar .pin-rail {
+  flex: none;
+  width: 2px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--tg-accent);
+}
+.tg-pinbar .pin-lines { min-width: 0; flex: 1; }
+.tg-pinbar .pin-label {
+  display: block;
+  color: var(--tg-accent);
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 1.3;
+}
+.tg-pinbar .pin-preview {
+  display: block;
+  color: var(--tg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+}
+.tg-pinbar .pin-x { flex: none; color: var(--tg-muted); font-size: 13px; }
+
+/* message area — subtle wallpaper pattern like the iOS default */
 .tg-body {
   padding: 14px 10px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  background:
+    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
+    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
+    var(--tg-bg);
+  background-size: 28px 28px, 28px 28px;
+  background-position: 0 0, 14px 14px;
 }
 .msg {
-  max-width: 88%;
-  padding: 7px 10px 6px;
-  border-radius: 14px;
+  max-width: 86%;
+  padding: 6px 11px 7px;
+  border-radius: 17px;
   position: relative;
   width: fit-content;
+  color: var(--tg-text);
 }
-.msg.in { background: var(--tg-in); border-bottom-left-radius: 4px; align-self: flex-start; }
-.msg.out { background: var(--tg-out); border-bottom-right-radius: 4px; align-self: flex-end; }
+.msg.in {
+  background: var(--tg-in);
+  color: var(--tg-in-text);
+  border-bottom-left-radius: 5px;
+  align-self: flex-start;
+}
+.msg.out {
+  background: var(--tg-out);
+  color: var(--tg-out-text);
+  border-bottom-right-radius: 5px;
+  align-self: flex-end;
+}
+/* iOS bubble tails (curved, on the last bubble of a group) */
+.msg.tail { overflow: visible; }
+.msg.tail.in { border-bottom-left-radius: 0; }
+.msg.tail.out { border-bottom-right-radius: 0; }
+.msg.tail.in::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  bottom: 0;
+  width: 7px;
+  height: 14px;
+  background: radial-gradient(circle at 0 0, transparent 13.5px, var(--tg-in) 14px);
+}
+.msg.tail.out::before {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: 0;
+  width: 7px;
+  height: 14px;
+  background: radial-gradient(circle at 100% 0, transparent 13.5px, var(--tg-out) 14px);
+}
 .msg .meta {
   display: inline-flex;
   gap: 3px;
+  align-items: center;
   float: right;
-  margin: 8px -2px 0 8px;
+  margin: 9px -3px 0 8px;
   font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.68);
+  line-height: 1;
+  color: var(--tg-meta-in);
+  font-variant-numeric: tabular-nums;
 }
-.msg .meta .ticks { color: var(--tg-accent); letter-spacing: -3px; }
+.msg.out .meta { color: var(--tg-meta-out); }
+.msg .meta .ticks { color: var(--tg-tick); letter-spacing: -3.5px; font-size: 11.5px; }
+.msg.out .meta .ticks { color: var(--tg-tick); }
 .msg p { margin: 0 0 6px; }
 .msg p:last-of-type { margin-bottom: 0; }
-.msg b { color: #fff; }
+.msg b { color: inherit; font-weight: 650; }
 .msg .name {
   display: block;
-  font-weight: 700;
+  font-weight: 650;
   color: var(--tg-name);
   font-size: 12.5px;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 .msg code {
-  background: rgba(94, 181, 247, 0.12);
-  color: #8fd0ff;
+  background: var(--tg-code-bg);
+  color: var(--tg-code);
   border-radius: 4px;
-  padding: 1px 5px;
+  padding: 1px 4px;
   font-size: 12px;
 }
 .msg pre {
-  background: #0b1219;
+  background: var(--tg-pre-bg);
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 7px 10px;
   margin: 6px 0;
   font-size: 11.5px;
   line-height: 1.6;
   overflow-x: auto;
-  color: #cfe3f5;
+  color: var(--tg-text);
 }
-.msg pre .k { color: #8fd0ff; }
-.msg pre .s { color: #a8d5a2; }
+/* diff colouring — deletions red, additions green */
+.msg pre .k { color: #ff8a80; }
+.msg pre .s { color: #9ae184; }
 .msg table {
   border-collapse: collapse;
-  margin: 6px 0;
+  margin: 7px 0;
   font-size: 12px;
   width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
 }
 .msg th, .msg td {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 4px 8px;
   text-align: left;
 }
-.msg th { color: #fff; background: rgba(255, 255, 255, 0.05); }
+.msg th { color: #fff; background: rgba(255, 255, 255, 0.06); font-weight: 650; }
+/* expandable blockquote — collapsed, with the ▼ expander bottom-right */
 .msg .quote {
   border-left: 3px solid var(--tg-accent);
-  background: rgba(94, 181, 247, 0.08);
-  border-radius: 6px;
-  padding: 6px 9px;
-  margin: 6px 0;
+  background: var(--tg-code-bg);
+  border-radius: 4px 8px 8px 4px;
+  padding: 6px 9px 5px;
+  margin: 6px 0 2px;
   font-size: 12.5px;
 }
+.msg .quote b { font-weight: 650; }
 .msg .quote .expander {
   color: var(--tg-accent);
   font-size: 11px;
-  margin-top: 4px;
-  display: block;
+  margin-top: 3px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
 }
 .msg ul { margin: 4px 0; padding-left: 18px; }
 .msg li { margin: 2px 0; }
 
-/* inline keyboard */
-.tg-kb { display: flex; gap: 6px; margin-top: 8px; }
+/* message + inline keyboard group (keyboard sits UNDER the bubble) */
+.mgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 86%;
+  width: fit-content;
+}
+.mgroup.in { align-self: flex-start; }
+.mgroup.out { align-self: flex-end; }
+.mgroup .msg { max-width: 100%; }
+.mgroup.wide { width: 100%; max-width: 92%; }
+.mgroup.wide .msg { width: 100%; }
+
+/* inline keyboard — translucent buttons below the bubble, Telegram-style */
+.tg-kb { display: flex; gap: 3px; width: 100%; }
 .tg-kb button, .tg-kb .kb-btn {
   flex: 1;
   background: var(--tg-btn);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border: 0;
-  border-radius: 8px;
-  color: var(--tg-accent);
+  border-radius: 7px;
+  color: var(--tg-btn-text);
   font-size: 12.5px;
-  font-weight: 600;
-  padding: 8px 6px;
+  font-weight: 550;
+  padding: 9px 6px;
   text-align: center;
   font-family: inherit;
+  white-space: nowrap;
 }
-.tg-kb .kb-btn.tapped {
-  background: rgba(94, 181, 247, 0.22);
-  outline: 1px solid var(--tg-accent);
+/* resolved (post-tap) approval state */
+.msg .kb-state {
+  display: block;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--tg-muted);
+  font-size: 12px;
 }
 
 /* system / date pill */
 .tg-pill {
   align-self: center;
-  background: rgba(0, 0, 0, 0.35);
-  color: #cfd8e0;
+  background: var(--tg-pill-bg);
+  color: var(--tg-pill-text);
   font-size: 11px;
+  font-weight: 550;
   padding: 3px 10px;
   border-radius: 999px;
 }
 
 /* progress card look */
-.msg .card-title { font-weight: 700; color: #fff; margin-bottom: 4px; display: flex; gap: 6px; align-items: center; }
+.msg .card-title { font-weight: 650; color: inherit; margin-bottom: 4px; display: flex; gap: 6px; align-items: center; }
 .msg .rows { display: flex; flex-direction: column; gap: 3px; font-size: 12.3px; }
 .msg .rows .row { display: flex; gap: 7px; align-items: baseline; }
 .msg .rows .st { width: 14px; text-align: center; flex: none; }
@@ -735,16 +964,17 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
 .msg .rows .run { color: var(--tg-name); }
 .msg .rows .dim { color: var(--tg-muted); }
 .msg .bar {
+  display: block;
   height: 4px;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 99px;
-  margin-top: 7px;
+  margin-top: 8px;
   overflow: hidden;
 }
 .msg .bar i {
   display: block;
   height: 100%;
-  width: 64%;
+  width: 60%;
   border-radius: 99px;
   background: linear-gradient(90deg, #5eb5f7, #67c587);
 }
@@ -773,26 +1003,39 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   30% { transform: translateY(-3px); opacity: 1; }
 }
 
-/* chat list (fleet) */
-.tg-list { display: flex; flex-direction: column; }
+/* chat list (fleet) — iOS: bigger avatars, inset separators, blue badge */
+.tg-list { display: flex; flex-direction: column; background: var(--tg-bg); }
 .tg-list .chat {
   display: flex;
   gap: 11px;
-  padding: 9px 12px;
+  padding: 8px 12px;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  position: relative;
 }
+.tg-list .chat + .chat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 63px;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.tg-list .tg-ava { width: 44px; height: 44px; font-size: 17px; }
 .tg-list .chat .cbody { min-width: 0; flex: 1; }
-.tg-list .chat .l1 { display: flex; justify-content: space-between; gap: 8px; }
-.tg-list .chat .l1 b { font-size: 13.5px; }
-.tg-list .chat .l1 time { font-size: 11px; color: var(--tg-muted); flex: none; }
+.tg-list .chat .l1 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.tg-list .chat .l1 b { font-size: 13.5px; font-weight: 650; }
+.tg-list .chat .l1 time { font-size: 11px; color: var(--tg-muted); flex: none; font-variant-numeric: tabular-nums; }
+.tg-list .chat .l1 time .ticks { color: var(--tg-tick); letter-spacing: -3.5px; margin-right: 3px; }
 .tg-list .chat .l2 {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 8px;
   color: var(--tg-muted);
   font-size: 12.5px;
   white-space: nowrap;
+  margin-top: 1px;
 }
 .tg-list .chat .l2 span { overflow: hidden; text-overflow: ellipsis; }
 .tg-list .chat .badge {
@@ -808,7 +1051,19 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   place-items: center;
   padding: 0 5px;
 }
-.tg-list .chat .l2 .muted-check { color: var(--tg-accent); }
+.tg-list .chat .l2 .muted-check { color: var(--tg-tick); letter-spacing: -3.5px; margin-right: 4px; flex: none; }
+/* chat-list header: iOS "Chats" title bar */
+.tg-head.list-head { justify-content: center; }
+.tg-head.list-head .who { text-align: center; }
+.tg-head.list-head .who b { font-size: 15px; }
+.tg-head.list-head .edit,
+.tg-head.list-head .compose {
+  color: var(--tg-accent);
+  font-size: 13px;
+  flex: none;
+  width: 52px;
+}
+.tg-head.list-head .compose { text-align: right; }
 
 /* shot = a framed mockup with caption */
 .shot figcaption {
