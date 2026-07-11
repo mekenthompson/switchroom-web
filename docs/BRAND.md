@@ -12,14 +12,19 @@ is the in-repo copy for anyone who needs an asset or a rule.
 
 | Token | Hex | Use |
 |---|---|---|
-| brass | `#e8b657` → `#b8873a` | plate gradient (matte two-stop vertical) |
-| brass shadow | `#6f5421` | plate shadow / bevel depths |
-| brass highlight | `#f4cc7c` | plate sheen / top highlight |
+| brass | `#e8b657` → `#cf9c45` | plate gradient (two-stop vertical) |
+| brass edge | `#a67a30` | plate keyline / jack rims |
+| brass flat | `#e0aa4e` | favicon plate (single flat stop) |
+| brass highlight | `#f6d288` | jack-bevel top catchlight (full-depth rendering) |
 | cable red | `#c8302c` | the cord — the only element that is ever red |
 | cable keyline | `#7c1a17` | cord outline / dark edge |
+| frame red on dark | `#e05550` | notched frame on dark backgrounds only |
 | charcoal | `#1a1d21` | dark field; mono ink on light backgrounds |
 | bone | `#ece5d8` | mono ink on dark; wordmark on dark |
 | dark bg | `#14171c` | preferred dark surface behind on-dark marks |
+
+(Hexes verified against `build.py` in the brand source — that file is the
+single source of truth if this table ever drifts.)
 
 ## Typography
 
