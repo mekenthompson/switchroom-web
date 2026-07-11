@@ -378,32 +378,65 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   color: var(--text-muted);
 }
 
-/* hero stage — device frame with depth, ambient glow, gentle float */
-.hero-stage { position: relative; }
+/* hero stage — device frame with depth, ambient glow, gentle float + CSS tilt */
+.hero-stage {
+  position: relative;
+  /* perspective for the reel-grade CSS-only 3D tilt of the device */
+  perspective: 1600px;
+  perspective-origin: 60% 40%;
+}
+/* radial depth glow behind the device */
 .hero-stage::before {
   content: "";
   position: absolute;
   inset: -8% -14%;
   background:
-    radial-gradient(45% 42% at 50% 42%, rgba(232, 182, 87, 0.16), transparent 70%),
-    radial-gradient(38% 36% at 58% 68%, rgba(200, 48, 44, 0.10), transparent 70%);
-  filter: blur(22px);
+    radial-gradient(46% 44% at 50% 40%, rgba(232, 182, 87, 0.18), transparent 70%),
+    radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.11), transparent 70%);
+  filter: blur(26px);
   pointer-events: none;
+  z-index: 0;
+}
+/* gentle vignette — settles the device onto the dark navy backdrop */
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: -14% -20%;
+  background: radial-gradient(
+    62% 58% at 50% 46%,
+    transparent 52%,
+    rgba(4, 6, 9, 0.28) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 @media (prefers-color-scheme: light) {
   .hero-stage::before {
     background:
-      radial-gradient(45% 42% at 50% 42%, rgba(184, 135, 58, 0.18), transparent 70%),
-      radial-gradient(38% 36% at 58% 68%, rgba(200, 48, 44, 0.08), transparent 70%);
+      radial-gradient(46% 44% at 50% 40%, rgba(184, 135, 58, 0.2), transparent 70%),
+      radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), transparent 70%);
+  }
+  .hero-stage::after {
+    background: radial-gradient(
+      62% 58% at 50% 46%,
+      transparent 55%,
+      rgba(60, 48, 20, 0.12) 100%
+    );
   }
 }
 .hero-stage .phone {
   position: relative;
+  z-index: 1;
   border-color: #333a43;
+  /* soft drop shadow (large blur, low opacity, y-offset) + hairline + brass halo */
   box-shadow:
-    0 34px 80px -24px rgba(0, 0, 0, 0.6),
+    0 38px 90px -26px rgba(0, 0, 0, 0.62),
+    0 12px 34px -16px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(0, 0, 0, 0.6),
-    0 0 70px -18px rgba(232, 182, 87, 0.35);
+    0 0 76px -18px rgba(232, 182, 87, 0.36);
+  transform: none;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .hero-demo-cap {
   position: relative;
@@ -416,10 +449,19 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   max-width: 340px;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-stage .phone { animation: phone-float 9s ease-in-out infinite alternate; }
+  /* resting 3D tilt pose, breathing with a slow float */
+  .hero-stage .phone {
+    transform: rotateX(4deg) rotateY(-8deg) translateY(0);
+    animation: phone-float 9s ease-in-out infinite alternate;
+  }
   @keyframes phone-float {
-    from { transform: translateY(4px); }
-    to { transform: translateY(-6px); }
+    from { transform: rotateX(4.5deg) rotateY(-8.5deg) translateY(4px); }
+    to { transform: rotateX(3deg) rotateY(-6.5deg) translateY(-6px); }
+  }
+  /* on hover: settle to (nearly) flat, pause the float, lift a touch */
+  .hero-stage .phone:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateY(-3px);
+    animation-play-state: paused;
   }
 }
 
@@ -758,11 +800,14 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
 
 /* smaller framed card (desktop-style crop) */
 .tg-card {
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid #26313d;
   background: var(--tg-bg);
-  box-shadow: var(--shadow-1);
+  /* reel-grade soft depth: contact shadow + wide low-opacity ambient blur */
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 18px 44px -20px rgba(0, 0, 0, 0.5);
 }
 
 /* chat header — iOS: back chevron · centered title/subtitle · avatar right */
