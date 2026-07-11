@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import HeroPhone from '../components/HeroPhone.astro';
+import StorylineHero from '../components/StorylineHero.astro';
 import FleetList from '../components/FleetList.astro';
 import MarkoChat from '../components/MarkoChat.astro';
 import ProgressCard from '../components/ProgressCard.astro';
@@ -51,7 +51,10 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
           </div>
           <p class="hero-note">Unmodified <code>claude</code> CLI · your existing OAuth · no API keys, no second bill</p>
         </div>
-        <HeroPhone />
+        <div class="hero-stage">
+          <StorylineHero />
+          <p class="hero-demo-cap">One take · five agents · one tap — a real ship day, on loop.</p>
+        </div>
       </div>
     </section>
 
