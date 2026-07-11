@@ -1,7 +1,7 @@
 ---
 // StorylineHero — "A day on the switchboard", the hero demo.
 //
-// A ~76s loopable, silent, pure-CSS animation of one ship-day arc at Acme
+// A ~60s loopable, silent, pure-CSS animation of one ship-day arc at Acme
 // Robotics, played inside the Telegram phone frame: fleet list → ask klanker →
 // live progress card editing in place → approval card + tap → rich native
 // reply → /usage quota card → notification-banner hop to marko → back-chevron
@@ -17,8 +17,12 @@
 // Implementation: every animated element carries ONE full-loop animation
 // (duration = var(--sl-loop), infinite). Scene timing lives in the keyframe
 // percentages; the master duration is the single knob. Percent = seconds/76*100.
+// NB: the second values in the table below are the ORIGINAL 76s design
+// reference used to derive the percentages. --sl-loop is now 60s, so real
+// wall-clock times are ×(60/76); the percentages (the actual choreography)
+// are unchanged.
 //
-// ── Timing table (seconds → % of --sl-loop: 76s) ──────────────────────────
+// ── Timing table (seconds → % · derived at the 76s design reference) ───────
 //  Scene 1  fleet list           0.0–4.4    (badge pulse 2.0=2.63%, row tap 3.6=4.74%, push 4.0–4.4=5.26–5.79%)
 //  Scene 2  the ask              4.4–14     (out msg 5.5=7.24%, ✓✓ 6.3=8.29%, typing 7.5–10=9.87–13.16%, reply 10=13.16%)
 //  Scene 3  progress card        14–30      (card 14=18.42%, edits 18=23.68% / 22.5=29.61% / 27=35.53%)
@@ -302,8 +306,10 @@ const { class: className = '' } = Astro.props;
      ════════════════════════════════════════════════════════════════════════ */
 
   .sl-phone {
-    /* master loop duration — the one knob. Keyframe % map in the component header. */
-    --sl-loop: 76s;
+    /* master loop duration — the one knob. Keyframe % map in the component header.
+       Tightened 76s → 60s for a snappier, more engaging hero (all keyframes are
+       percentage-anchored, so the choreography proportions are unchanged). */
+    --sl-loop: 60s;
     /* auto-scroll stops for the klanker chat (tuned against rendered heights
        at the 340px frame width; verified by the capture run) */
     --sl-s1: -12px;   /* progress card fully visible   (t=14s) */
