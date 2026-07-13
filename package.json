@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "lint:gradients": "node scripts/lint-gradients.mjs",
+    "lint": "npm run lint:gradients",
+    "prebuild": "npm run lint:gradients"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.9",
