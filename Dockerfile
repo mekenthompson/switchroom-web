@@ -6,6 +6,7 @@ RUN npm ci
 COPY astro.config.mjs ./
 COPY public ./public
 COPY src ./src
+COPY scripts ./scripts
 RUN npm run build
 
 FROM nginx:1.27-alpine
