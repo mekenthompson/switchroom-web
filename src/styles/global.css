@@ -286,8 +286,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   padding: 56px 0 64px;
   border-bottom: 1px solid var(--border);
   background:
-    radial-gradient(1100px 600px at 85% -10%, var(--hero-glow-a), transparent 60%),
-    radial-gradient(900px 500px at -10% 30%, var(--hero-glow-b), transparent 60%),
+    radial-gradient(1100px 600px at 85% -10%, var(--hero-glow-a), rgba(232, 182, 87, 0) 60%),
+    radial-gradient(900px 500px at -10% 30%, var(--hero-glow-b), rgba(200, 48, 44, 0) 60%),
     var(--bg);
 }
 .hero::before {
@@ -391,8 +391,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   position: absolute;
   inset: -8% -14%;
   background:
-    radial-gradient(46% 44% at 50% 40%, rgba(232, 182, 87, 0.18), transparent 70%),
-    radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.11), transparent 70%);
+    radial-gradient(46% 44% at 50% 40%, rgba(232, 182, 87, 0.18), rgba(232, 182, 87, 0) 70%),
+    radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.11), rgba(200, 48, 44, 0) 70%);
   filter: blur(26px);
   pointer-events: none;
   z-index: 0;
@@ -404,7 +404,7 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   inset: -14% -20%;
   background: radial-gradient(
     62% 58% at 50% 46%,
-    transparent 52%,
+    rgba(4, 6, 9, 0) 52%,
     rgba(4, 6, 9, 0.28) 100%
   );
   pointer-events: none;
@@ -413,13 +413,13 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
 @media (prefers-color-scheme: light) {
   .hero-stage::before {
     background:
-      radial-gradient(46% 44% at 50% 40%, rgba(184, 135, 58, 0.2), transparent 70%),
-      radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), transparent 70%);
+      radial-gradient(46% 44% at 50% 40%, rgba(184, 135, 58, 0.2), rgba(184, 135, 58, 0) 70%),
+      radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), rgba(200, 48, 44, 0) 70%);
   }
   .hero-stage::after {
     background: radial-gradient(
       62% 58% at 50% 46%,
-      transparent 55%,
+      rgba(60, 48, 20, 0) 55%,
       rgba(60, 48, 20, 0.12) 100%
     );
   }
