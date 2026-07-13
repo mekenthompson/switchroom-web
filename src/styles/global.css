@@ -47,6 +47,9 @@
   --grid-line: var(--ink-800);
   --hero-glow-a: rgba(232, 182, 87, 0.08);
   --hero-glow-b: rgba(200, 48, 44, 0.06);
+  /* theme-correct zero-alpha fade targets (same hue as glow, alpha 0) */
+  --hero-glow-a0: rgba(232, 182, 87, 0);
+  --hero-glow-b0: rgba(200, 48, 44, 0);
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.18);
   --shadow-2: 0 8px 32px rgba(0, 0, 0, 0.35);
   --nav-bg: rgba(14, 16, 19, 0.82);
@@ -81,6 +84,9 @@
     --grid-line: #eee8d9;
     --hero-glow-a: rgba(184, 135, 58, 0.1);
     --hero-glow-b: rgba(200, 48, 44, 0.05);
+    /* light theme fades to its own brass hue, not the dark brass */
+    --hero-glow-a0: rgba(184, 135, 58, 0);
+    --hero-glow-b0: rgba(200, 48, 44, 0);
     --shadow-1: 0 1px 2px rgba(40, 32, 12, 0.08), 0 2px 8px rgba(40, 32, 12, 0.06);
     --shadow-2: 0 8px 32px rgba(40, 32, 12, 0.12);
     --nav-bg: rgba(250, 247, 239, 0.85);
@@ -203,7 +209,7 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   bottom: 0;
   left: -70%;
   width: 45%;
-  background: linear-gradient(105deg, transparent, rgba(255, 250, 235, 0.5), transparent);
+  background: linear-gradient(105deg, rgba(255, 250, 235, 0), rgba(255, 250, 235, 0.5), rgba(255, 250, 235, 0));
   transform: skewX(-18deg);
   transition: left 0.5s ease;
   pointer-events: none;
@@ -286,8 +292,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   padding: 56px 0 64px;
   border-bottom: 1px solid var(--border);
   background:
-    radial-gradient(1100px 600px at 85% -10%, var(--hero-glow-a), transparent 60%),
-    radial-gradient(900px 500px at -10% 30%, var(--hero-glow-b), transparent 60%),
+    radial-gradient(1100px 600px at 85% -10%, var(--hero-glow-a), var(--hero-glow-a0) 60%),
+    radial-gradient(900px 500px at -10% 30%, var(--hero-glow-b), var(--hero-glow-b0) 60%),
     var(--bg);
 }
 .hero::before {
@@ -295,11 +301,11 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),  /* GRADIENT-GUARD-ALLOW: hard 1px grid line */
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);  /* GRADIENT-GUARD-ALLOW: hard 1px grid line */
   background-size: 56px 56px;
   opacity: 0.35;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 80%);  /* GRADIENT-GUARD-ALLOW: alpha mask, no colour band */
   pointer-events: none;
 }
 .hero-inner {
@@ -391,8 +397,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   position: absolute;
   inset: -8% -14%;
   background:
-    radial-gradient(46% 44% at 50% 40%, rgba(232, 182, 87, 0.18), transparent 70%),
-    radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.11), transparent 70%);
+    radial-gradient(46% 44% at 50% 40%, rgba(232, 182, 87, 0.18), rgba(232, 182, 87, 0) 70%),
+    radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.11), rgba(200, 48, 44, 0) 70%);
   filter: blur(26px);
   pointer-events: none;
   z-index: 0;
@@ -404,7 +410,7 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   inset: -14% -20%;
   background: radial-gradient(
     62% 58% at 50% 46%,
-    transparent 52%,
+    rgba(4, 6, 9, 0) 52%,
     rgba(4, 6, 9, 0.28) 100%
   );
   pointer-events: none;
@@ -413,13 +419,13 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
 @media (prefers-color-scheme: light) {
   .hero-stage::before {
     background:
-      radial-gradient(46% 44% at 50% 40%, rgba(184, 135, 58, 0.2), transparent 70%),
-      radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), transparent 70%);
+      radial-gradient(46% 44% at 50% 40%, rgba(184, 135, 58, 0.2), rgba(184, 135, 58, 0) 70%),
+      radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), rgba(200, 48, 44, 0) 70%);
   }
   .hero-stage::after {
     background: radial-gradient(
       62% 58% at 50% 46%,
-      transparent 55%,
+      rgba(60, 48, 20, 0) 55%,
       rgba(60, 48, 20, 0.12) 100%
     );
   }
@@ -639,6 +645,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   --tg-header-text: #f1f4f7;
   --tg-in: #182533;
   --tg-out: #2b5278;
+  --tg-in-0: rgba(24, 37, 51, 0);
+  --tg-out-0: rgba(43, 82, 120, 0);
   --tg-in-text: #f1f4f7;
   --tg-out-text: #f1f4f7;
   --tg-text: #f1f4f7;
@@ -673,6 +681,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   --tg-header-text: #000000;
   --tg-in: #ffffff;
   --tg-out: #e1fec6;
+  --tg-in-0: rgba(255, 255, 255, 0);
+  --tg-out-0: rgba(225, 254, 198, 0);
   --tg-in-text: #000000;
   --tg-out-text: #000000;
   --tg-text: #000000;
@@ -700,6 +710,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
     --tg-header-text: #000000;
     --tg-in: #ffffff;
     --tg-out: #e1fec6;
+    --tg-in-0: rgba(255, 255, 255, 0);
+    --tg-out-0: rgba(225, 254, 198, 0);
     --tg-in-text: #000000;
     --tg-out-text: #000000;
     --tg-text: #000000;
@@ -895,8 +907,8 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   gap: 8px;
   flex: 1;
   background:
-    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
-    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
+    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),  /* GRADIENT-GUARD-ALLOW: hard 1.5px dot pattern */
+    radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),  /* GRADIENT-GUARD-ALLOW: hard 1.5px dot pattern */
     var(--tg-bg);
   background-size: 28px 28px, 28px 28px;
   background-position: 0 0, 14px 14px;
@@ -932,7 +944,7 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   bottom: 0;
   width: 7px;
   height: 14px;
-  background: radial-gradient(circle at 0 0, transparent 13.5px, var(--tg-in) 14px);
+  background: radial-gradient(circle at 0 0, var(--tg-in-0) 13.5px, var(--tg-in) 14px);
 }
 .msg.tail.out::before {
   content: "";
@@ -941,7 +953,7 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   bottom: 0;
   width: 7px;
   height: 14px;
-  background: radial-gradient(circle at 100% 0, transparent 13.5px, var(--tg-out) 14px);
+  background: radial-gradient(circle at 100% 0, var(--tg-out-0) 13.5px, var(--tg-out) 14px);
 }
 .msg .meta {
   display: inline-flex;

@@ -347,8 +347,8 @@ const { class: className = '' } = Astro.props;
     min-height: 0;
     position: relative;
     background:
-      radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
-      radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),
+      radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),  /* GRADIENT-GUARD-ALLOW: hard 1.5px dot pattern */
+      radial-gradient(var(--tg-pattern) 1.5px, transparent 1.5px),  /* GRADIENT-GUARD-ALLOW: hard 1.5px dot pattern */
       var(--tg-bg);
     background-size: 28px 28px, 28px 28px;
     background-position: 0 0, 14px 14px;
