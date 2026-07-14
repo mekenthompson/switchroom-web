@@ -423,11 +423,16 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
       radial-gradient(40% 38% at 58% 70%, rgba(200, 48, 44, 0.09), rgba(200, 48, 44, 0) 70%);
   }
   .hero-stage::after {
-    background: radial-gradient(
-      62% 58% at 50% 46%,
-      rgba(60, 48, 20, 0) 55%,
-      rgba(60, 48, 20, 0.12) 100%
-    );
+    /* No dark vignette in light mode. The vignette exists to settle the device
+       onto the DARK navy backdrop; in light mode the backdrop is cream, so a
+       radial whose OUTER stop is a semi-opaque dark colour (rgba(...,0.12))
+       paints the pseudo-element's rectangular box corners/edges as a grey
+       wash — a hard-edged grey panel down the right column (box left edge at
+       inset -20%). The device's own drop shadow already seats it on cream, so
+       the light-mode vignette is dropped entirely. (This is NOT the WebKit
+       `transparent`-keyword bug — it renders identically in Chromium; the
+       gradient guard is clean here.) */
+    background: none;
   }
 }
 .hero-stage .phone {
