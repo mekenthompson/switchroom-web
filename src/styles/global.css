@@ -403,15 +403,24 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   pointer-events: none;
   z-index: 0;
 }
-/* gentle vignette — settles the device onto the dark navy backdrop */
+/* gentle ambient halo — a soft darkened ring that seats the device on the
+   dark navy backdrop. The outer stop MUST return to zero alpha (same hue)
+   BEFORE the pseudo-element's box edge: a radial whose final stop is a
+   semi-opaque dark colour continues that colour past the ellipse into the
+   box corners/edges, painting a darker rectangle (visible boundary) and,
+   because this box's left edge sits near the page centre, a vertical seam
+   down the middle (dark-mode analogue of the light-mode grey-panel bug).
+   Feathering 0 → 0.20 → 0 keeps the tasteful depth with no detectable
+   rectangular edge and no centre seam. */
 .hero-stage::after {
   content: "";
   position: absolute;
   inset: -14% -20%;
   background: radial-gradient(
-    62% 58% at 50% 46%,
-    rgba(4, 6, 9, 0) 52%,
-    rgba(4, 6, 9, 0.28) 100%
+    60% 56% at 50% 46%,
+    rgba(4, 6, 9, 0) 40%,
+    rgba(4, 6, 9, 0.2) 66%,
+    rgba(4, 6, 9, 0) 92%
   );
   pointer-events: none;
   z-index: 0;
