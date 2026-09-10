@@ -2,11 +2,11 @@
 import '../styles/global.css';
 import fraunces from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
 
-const title =
+const title = Astro.props.title ??
   'Switchroom · A switchboard for your Pro or Max';
-const description =
+const description = Astro.props.description ??
   'Switchroom turns the Claude subscription you already pay for into a team of always-on assistants you text on Telegram. Each one has a name, remembers you, and does the actual work. They stop and ask before anything with consequences.';
-const canonical = 'https://switchroom.ai/';
+const canonical = Astro.props.canonical ?? 'https://switchroom.ai/';
 const ogImage = 'https://switchroom.ai/assets/og.png';
 ---
 
