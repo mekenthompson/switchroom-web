@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+
+const repo = 'https://github.com/switchroom/switchroom';
+---
+
+<Base>
+  <header class="nav">
+    <div class="container nav-row">
+      <a class="brand" href="/">
+        <img src="/assets/switchroom-mark-64.png" alt="" width="30" height="30" />
+        Switchroom
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a class="nav-cta" href={repo}><span aria-hidden="true">★</span> GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="legal-page">
+    <article class="container legal-content">
+      <p class="kicker">Switchroom</p>
+      <h1 class="display">Privacy Policy</h1>
+      <p class="lede">This policy covers the independently operated Switchroom service and its Google account integration.</p>
+
+      <h2>What we access and why</h2>
+      <p>We process your requests, agent conversations, connected-account details and the information needed to carry out the work you request. If you connect Google, the permissions shown during consent determine what the integration can access:</p>
+      <ul>
+        <li><strong>Calendar:</strong> calendar information and events, including titles, times, attendees and descriptions, to find availability and manage events you request.</li>
+        <li><strong>Drive:</strong> file names, metadata and file contents accessible under your grant, to find, retrieve, organise and work with files.</li>
+        <li><strong>Docs, Sheets and Slides:</strong> document text, spreadsheet data and presentation contents, to read, draft or edit the material you request.</li>
+      </ul>
+      <p>This integration does not request Gmail access. We request permissions for enabled features, not unrelated future uses. If a permission permits broader access than a single file, the Google consent screen describes that grant; asking an agent to use selected files does not technically narrow the OAuth permission itself.</p>
+      <p>Google handles your sign-in. Switchroom receives OAuth authorisation tokens, not your Google password. Connecting an account is optional. Every account owner must authorise their own connection.</p>
+
+      <h2>AI processing and sharing</h2>
+      <p>Relevant portions of your requests and retrieved Google data may be sent to the AI providers configured for your agent to produce answers and perform the requested work. Responses and attachments you ask to receive may pass through your connected messaging service. Hosting, storage and other service providers may process data necessary to operate these features. Processing may take place outside your country.</p>
+      <p>Before authorisation, your agent must explain the relevant AI and messaging providers and the requested permissions. Google-connected agents must use provider configurations that do not use Google-derived data to train general-purpose AI models. Switchroom does not use Google data for that training, advertising, sale to data brokers or creditworthiness decisions.</p>
+      <p>Switchroom's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+      <h2>Storage and access</h2>
+      <p>Authorisation tokens are maintained separately in the assigned agent's persistent profile. A shared OAuth application registration is not a shared account token. Retrieved content and derived information may also appear in conversations, working files, agent memory, operational logs or backups where needed for the features you use. Do not assume that Google data disappears when a chat ends.</p>
+      <p>Access is limited through deployment permissions and administrative controls. Authorised administrators may need access to systems for operation and security, but must not read your Google content except with your affirmative agreement to specific content, as necessary for security, or as required by law. Google-derived content must not be shared with other users or agents outside your authorised workflow.</p>
+
+      <h2>Retention, revocation and deletion</h2>
+      <p>Tokens are kept while your connection remains active. Conversation history, working files, memory and backups follow the deployment's retention settings; there is no single automatic deletion period across these stores.</p>
+      <p>You can revoke Switchroom's Google access at <a href="https://myaccount.google.com/connections">Google Account connections</a>. Revocation stops future authorised API access but does not automatically erase material already stored in chats, files or backups.</p>
+      <p>To disconnect an agent or request deletion of your tokens, retrieved Google data and related stored copies, contact <a href="mailto:info@switchroom.ai">info@switchroom.ai</a>. We will identify the relevant agent and account, remove data from active stores unless retention is legally required, and explain any backup or third-party retention that prevents immediate removal. Data you asked us to create in your Google account remains there unless you separately ask for its deletion. Your messaging and AI providers' applicable retention terms also apply to copies they process.</p>
+
+      <h2>Changes and contact</h2>
+      <p>We will update this page when our practices change. Material changes to how Google data is used require notice and renewed consent before the new use begins. For access, deletion, privacy or authorisation questions, email <a href="mailto:info@switchroom.ai">info@switchroom.ai</a>.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+      </nav>
+    </div>
+  </footer>
+</Base>

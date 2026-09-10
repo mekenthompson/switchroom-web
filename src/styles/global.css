@@ -646,6 +646,19 @@ h1, h2, h3 { color: var(--text-strong); line-height: 1.15; margin: 0; }
   max-width: 72ch;
 }
 
+/* ---------------- legal pages ---------------- */
+
+.legal-page { padding: 72px 0 32px; }
+.legal-content { max-width: 800px; }
+.legal-content h1 { font-size: clamp(2.3rem, 1.8rem + 2.2vw, 3.4rem); margin: 0 0 18px; }
+.legal-content h2 { font-family: var(--ff-display); font-size: 1.6rem; margin: 42px 0 12px; }
+.legal-content p, .legal-content li { color: var(--text-muted); }
+.legal-content p { margin: 0 0 16px; }
+.legal-content ul { margin: 0 0 16px; padding-left: 1.3rem; }
+.legal-content li + li { margin-top: 8px; }
+.legal-content strong { color: var(--text-strong); }
+.legal-content a { color: var(--link); }
+
 /* ==========================================================================
    Telegram mockups — iOS dark theme (primary). The hero phone also carries a
    light (Day Classic) variant: `.tg-light` forces it, and the hero switches
