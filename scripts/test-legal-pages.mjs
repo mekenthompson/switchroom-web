@@ -21,8 +21,8 @@ assert.match(terms, /<h1[^>]*>Terms of Use<\/h1>/);
 assert.match(terms, /Google connections are optional/);
 assert.match(terms, /info@switchroom\.ai/);
 
-assert.match(homepage, /<a href="\/privacy">Privacy Policy<\/a>/);
-assert.match(homepage, /<a href="\/terms">Terms of Use<\/a>/);
+assert.match(homepage, /<a href="\/privacy\/">Privacy Policy<\/a>/);
+assert.match(homepage, /<a href="\/terms\/">Terms of Use<\/a>/);
 
 const oauthLogo = path.join(root, 'public/assets/switchroom-oauth-120.png');
 const logo = await readFile(oauthLogo);
