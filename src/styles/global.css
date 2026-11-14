@@ -1413,3 +1413,23 @@ figure.shot { margin: 0; }
 .surfaces .shot > :first-child { flex: 1; }
 .sk-ch { min-width: 0; }
 @media (max-width: 480px) { .term pre { font-size: 11.5px; padding: 14px 14px 18px; } }
+
+/* what switchroom adds */
+.eyebrow a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.hero-sub a { color: var(--text-strong); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.adds { display: grid; gap: 20px; }
+@media (min-width: 960px) { .adds { grid-template-columns: 0.8fr 1.2fr; gap: 28px; } }
+.adds-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-1);
+}
+.adds-col.brass { border-color: var(--accent); }
+.adds-k { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+.adds-col ul { margin: 0; padding-left: 1.1rem; color: var(--text-muted); }
+.adds-col li + li { margin-top: 10px; }
+.adds-col b { color: var(--text-strong); }
+.hero-title, .hero-title .nowrap-block, .section-title { text-wrap: balance; }
+.hero-sub { text-wrap: pretty; }

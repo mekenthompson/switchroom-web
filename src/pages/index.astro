@@ -20,8 +20,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
         Switchroom
       </a>
       <nav class="nav-links" aria-label="Site">
+        <a class="anchor" href="#adds">What it adds</a>
         <a class="anchor" href="#how">How it works</a>
-        <a class="anchor" href="#pillars">Why</a>
         <a class="anchor" href="#chat">Chat</a>
         <a class="anchor" href="#start">Early access</a>
         <a class="nav-cta" href={REPO}><span aria-hidden="true">★</span> GitHub</a>
@@ -34,14 +34,15 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
     <section class="hero">
       <div class="container hero-inner">
         <div>
-          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Early access · Open source · MIT · runs on your box</p>
-          <h1 class="hero-title display">A team of AI agents you text. <span class="brass nowrap-block">Each in its own box.</span></h1>
-          <p class="hero-kicker">Built on <a href={HERMES}>Hermes Agent</a> by Nous Research. <span class="leash">On a leash.</span></p>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> <span>An opinionated <a href={HERMES}>Hermes Agent</a> distribution · open source · early access</span></p>
+          <h1 class="hero-title display">Hermes, run as a team. <span class="brass nowrap-block">Each agent in its own box.</span></h1>
+          <p class="hero-kicker">The Hermes you already like, set up properly for a team of specialists you text. <span class="leash">On a leash.</span></p>
           <p class="lede hero-sub">
-            Switchroom is an opinionated way to run Hermes as a standing team of
-            specialists. Every agent gets its own container, memory, workspace and
-            credentials. Text them on Telegram, Slack or Hermes Desktop. When one goes
-            sideways, the rest keep working.
+            Switchroom takes <a href={HERMES}>Hermes Agent</a> by Nous Research and adds
+            the opinions it doesn't ship with: one container per agent, secrets from a
+            vault, digest-pinned images, and Telegram, Slack and Hermes Desktop held to
+            the same bar. Same Hermes skills, memory and tools. No way for one agent to
+            reach into another.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
@@ -51,7 +52,43 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
         </div>
         <div class="hero-stage">
           <StorylineHero />
-          <p class="hero-demo-cap">One take · five agents · one tap. A ship day, on loop.</p>
+          <p class="hero-demo-cap">One take · five agents · one tap, on loop.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ What Switchroom adds to Hermes ============ -->
+    <section class="section alt" id="adds">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Hermes, plus opinions</p>
+          <h2 class="section-title">Hermes is the agent. Switchroom is how you run a team of them.</h2>
+          <p class="lede">
+            Every agent is a full Hermes Agent gateway, built from a pinned Hermes image
+            kept in step with Nous upstream, with its skills, memory, tools and model
+            providers intact. Switchroom is the packaging and the rules around it.
+          </p>
+        </div>
+        <div class="adds">
+          <div class="adds-col">
+            <p class="adds-k">Hermes Agent gives you</p>
+            <ul>
+              <li>An agent that learns skills and remembers you across sessions</li>
+              <li>Telegram, Slack, Desktop and a dozen more chat surfaces</li>
+              <li>Any model provider: Claude, Codex, Grok, OpenRouter, local</li>
+              <li>Tools, cron, MCP, delegation and profiles</li>
+            </ul>
+          </div>
+          <div class="adds-col brass">
+            <p class="adds-k">Switchroom adds</p>
+            <ul>
+              <li><b>One agent, one container, one gateway.</b> Own volume, network and workspace. No Docker socket, no host network, no privileged mode.</li>
+              <li><b>No shared credentials.</b> Each agent gets its own vault token and logins, injected at runtime. 1Password Connect by default.</li>
+              <li><b>Digest or it didn't happen.</b> A provenance-checked child of an exact Hermes image, with gh, Claude Code, Codex, Grok and OpenCode baked in.</li>
+              <li><b>Plugins off until you say so.</b> Linear, browser handoff, local Kokoro voice and Claude ACP, each disabled by default.</li>
+              <li><b>You stay in the overlay.</b> Identity, compose and secret bindings live in your private repo, never in the image.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -246,8 +283,9 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
       </div>
       <p class="footnote">
         Switchroom is an opinionated distribution of Hermes Agent by Nous Research: one
-        container per agent, secrets from a vault, the model plans you choose. Self-hosted
-        on your own machine. Open source. Early access. On a leash.
+        container per agent, secrets from a vault, the model plans you choose. Not
+        affiliated with Nous Research. Self-hosted on your own machine. Open source.
+        Early access. On a leash.
       </p>
     </div>
   </footer>

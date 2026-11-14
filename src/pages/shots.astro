@@ -13,6 +13,12 @@ import RichReply from '../components/RichReply.astro';
 import QuotaCard from '../components/QuotaCard.astro';
 import RichShowcase from '../components/RichShowcase.astro';
 import LeashSequence from '../components/LeashSequence.astro';
+import PlansCard from '../components/PlansCard.astro';
+import SlackShot from '../components/SlackShot.astro';
+import DesktopShot from '../components/DesktopShot.astro';
+import ArchDiagram from '../components/ArchDiagram.astro';
+import BoxesTerm from '../components/BoxesTerm.astro';
+import VaultTerm from '../components/VaultTerm.astro';
 ---
 
 <!doctype html>
@@ -158,6 +164,24 @@ import LeashSequence from '../components/LeashSequence.astro';
       </div>
     </div>
 
+    <h2>shot-13 model plans</h2>
+    <div id="shot-13" class="w340"><PlansCard /></div>
+
+    <h2>shot-14 slack</h2>
+    <div id="shot-14" class="w380"><SlackShot /></div>
+
+    <h2>shot-15 hermes desktop</h2>
+    <div id="shot-15" class="w380"><DesktopShot /></div>
+
+    <h2>shot-16 architecture</h2>
+    <div id="shot-16" class="leash-wrap"><ArchDiagram /></div>
+
+    <h2>shot-17 own box terminal</h2>
+    <div id="shot-17" class="w380"><BoxesTerm /></div>
+
+    <h2>shot-18 vault terminal</h2>
+    <div id="shot-18" class="w380"><VaultTerm /></div>
+
     <h2>og canvas 1200x630</h2>
     <div id="og-canvas" class="og">
       <div class="og-left">
@@ -165,9 +189,9 @@ import LeashSequence from '../components/LeashSequence.astro';
           <img src="/assets/switchroom-mark-64.png" alt="" width="44" height="44" />
           SWITCHROOM
         </div>
-        <p class="og-title">A switchboard for your<br /><span class="brass">Pro or Max.</span></p>
-        <p class="og-sub">A team of always-on assistants you text. <span class="leash">On a leash.</span></p>
-        <p class="og-note">unmodified claude CLI · your OAuth · no API keys · open source</p>
+        <p class="og-title">Hermes, run as a team.<br /><span class="brass">Each agent in<br />its own box.</span></p>
+        <p class="og-sub">An opinionated Hermes Agent distribution.</p>
+        <p class="og-note">one box per agent · vault secrets · open source</p>
       </div>
       <div class="og-right">
         <div class="tg-card tg" aria-hidden="true">

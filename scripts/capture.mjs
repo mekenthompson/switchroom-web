@@ -43,6 +43,12 @@ const shots = [
   ['#shot-leash .leash-step:nth-child(2) .tg-body', 'shot-10-leash-card.png'],
   ['#shot-leash .leash-step:nth-child(3) .tg-body', 'shot-11-leash-approved.png'],
   ['#shot-12 .tg-card', 'shot-12-og-inset.png'],
+  ['#shot-13 .tg-card', 'shot-13-model-plans.png'],
+  ['#shot-14 .sk', 'shot-14-slack.png'],
+  ['#shot-15 .dk', 'shot-15-desktop.png'],
+  ['#shot-16 .arch', 'shot-16-architecture.png'],
+  ['#shot-17 .term', 'shot-17-own-box.png'],
+  ['#shot-18 .term', 'shot-18-vault.png'],
 ];
 
 const browser = await chromium.launch();
