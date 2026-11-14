@@ -64,9 +64,9 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
           <p class="kicker">Hermes, plus opinions</p>
           <h2 class="section-title">Hermes is the agent. Switchroom is how you run a team of them.</h2>
           <p class="lede">
-            Every agent is a full Hermes Agent gateway, built from a pinned Hermes image
-            kept in step with Nous upstream, with its skills, memory, tools and model
-            providers intact. Switchroom is the packaging and the rules around it.
+            Every agent is a full Hermes Agent gateway, built on an exact, digest-pinned
+            Hermes Agent image, with its skills, memory, tools and model providers
+            intact. Switchroom is the packaging and the rules around it.
           </p>
         </div>
         <div class="adds">
@@ -130,8 +130,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
             <span class="beat-num">03</span>
             <h3>Text them anywhere</h3>
             <p>
-              Telegram, Slack and Hermes Desktop, held to the same bar. A restart doesn't
-              drop who they are, what tools they have, or where you left off.
+              Telegram, Slack and Hermes Desktop, held to the same bar. The bar: a restart
+              shouldn't drop who they are, what tools they have, or where you left off.
             </p>
           </div>
         </div>
@@ -181,8 +181,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
             <h3>Bring your own plans and keys</h3>
             <p>
               Claude, Codex, Grok, OpenRouter, or a model on your own GPU, chosen per
-              agent. A plan login stays a plan login: no quiet fallback to a metered API
-              key you forgot about.
+              agent. A Claude plan login stays a plan login, with no fallback to an API
+              key. Every other plan is held to the same rule.
             </p>
             <div class="proof"><PlansCard /></div>
           </article>
@@ -255,7 +255,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
 <span class="c"># one service per agent;</span>
 <span class="c"># secrets at runtime, never in git</span>
 <span class="p">$</span> cd ~/my-switchroom
-<span class="p">$</span> export HERMES_FLEET_IMAGE=…@sha256:&lt;digest&gt;
+<span class="p">$</span> export HERMES_FLEET_IMAGE='…@sha256:&lt;digest&gt;'
 <span class="p">$</span> docker compose config</code></pre>
           </div>
         </div>
@@ -285,7 +285,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
         Switchroom is an opinionated distribution of Hermes Agent by Nous Research: one
         container per agent, secrets from a vault, the model plans you choose. Not
         affiliated with Nous Research. Self-hosted on your own machine. Open source.
-        Early access. On a leash.
+        Early access. On a leash. Chat mockups on this page are illustrative.
       </p>
     </div>
   </footer>
