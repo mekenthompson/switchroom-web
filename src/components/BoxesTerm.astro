@@ -1,0 +1,22 @@
+---
+// "Each in its own box" proof: a synthetic compose listing.
+---
+
+<div
+  class="term"
+  role="img"
+  aria-label="Terminal showing a synthetic docker compose ps listing: four agent containers, clerk, marko, coach and klanker, plus a separate browser sidecar. coach was upgraded this morning while the others kept running."
+>
+  <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>you@your-box</span></div>
+  <pre aria-hidden="true"><code><span class="p">$</span> docker compose ps --format \
+    'table &#123;&#123;.Name&#125;&#125;\t&#123;&#123;.Status&#125;&#125;'
+NAME      STATUS
+clerk     Up 9 days
+marko     Up 9 days
+coach     Up 2 hours
+klanker   Up 9 days
+browser   Up 9 days
+
+<span class="c"># coach was upgraded this morning.</span>
+<span class="c"># nobody else noticed.</span></code></pre>
+</div>

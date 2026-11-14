@@ -44,7 +44,7 @@ const { class: className = '' } = Astro.props;
 <div
   class={`phone tg sl-phone ${className}`.trim()}
   role="img"
-  aria-label="Animated Telegram demo of one Switchroom ship day. A chat list shows five named assistants: clerk, marko, coach, quill and klanker. You open klanker and ask it to refresh the Acme landing page before launch. klanker dispatches a worker and pins a live progress card that updates itself: repo cloned, hero copy applied, Lighthouse 99 mobile, PR 41 open. It then stops and asks approval to push to acme-site main, which deploys on merge. You tap Approve, the card resolves, and one rich reply lands: a status table, a config diff, an expandable deploy log. You send slash-usage and get a plan-quota card: 41 percent of the 5-hour window used, zero API spend. A notification from marko drops in — the launch email is queued — you hop over, say go, marko locks the 9am send, and you return to the chat list with updated previews. The loop restarts."
+  aria-label="Animated Telegram demo of one Switchroom ship day. A chat list shows five named assistants: clerk, marko, coach, quill and klanker. You open klanker and ask it to refresh the Acme landing page before launch. klanker dispatches a worker and pins a live progress card that updates itself: repo cloned, hero copy applied, Lighthouse 99 mobile, PR 41 open. It then stops and asks approval to push to acme-site main, which deploys on merge. You tap Approve, the card resolves, and one rich reply lands: a status table, a config diff, an expandable deploy log. You send slash-usage and klanker reports its own model: a Claude plan login of its own, with no API key fallback set. A notification from marko drops in — the launch email is queued — you hop over, say go, marko locks the 9am send, and you return to the chat list with updated previews. The loop restarts."
 >
   <div class="phone-screen sl-stage">
     <div class="phone-status" aria-hidden="true">
@@ -230,7 +230,7 @@ const { class: className = '' } = Astro.props;
               </table>
               <p>One config change shipped with it:</p>
               <pre><span class="k">- hero: "Meet your agents"</span>
-<span class="s">+ hero: "Your subscription is a team now."</span></pre>
+<span class="s">+ hero: "Each in its own box."</span></pre>
               <div class="quote">
                 <b>Full deploy log</b> — 178 lines · rollout 3m 41s end to end…
                 <span class="expander">▼ expand</span>
@@ -238,7 +238,7 @@ const { class: className = '' } = Astro.props;
               <span class="meta">16:04</span>
             </div>
 
-            <!-- subscription-honest: /usage -->
+            <!-- bring-your-own-models: /usage -->
             <div class="msg out tail sl-m3">
               <p>/usage</p>
               <span class="meta">16:05 <span class="sl-swap sl-tick2"><span class="ticks vA">✓</span><span class="ticks vB">✓✓</span></span></span>
@@ -246,11 +246,11 @@ const { class: className = '' } = Astro.props;
 
             <div class="msg in tail sl-quota" style="max-width:92%">
               <span class="name">klanker</span>
-              <p class="card-title">📊 Plan quota</p>
+              <p class="card-title">🔌 My model</p>
               <div class="rows">
-                <span class="row"><span class="st ok">✓</span><span>5h window: <b>41% used</b>, resets 6:12pm</span></span>
-                <span class="row"><span class="st ok">✓</span><span>Week: on track — heaviest day Tuesday</span></span>
-                <span class="row"><span class="st ok">✓</span><span>API spend: <b>$0</b> — same bill as yesterday</span></span>
+                <span class="row"><span class="st ok">✓</span><span>Model: <b>Claude</b>, my own plan login</span></span>
+                <span class="row"><span class="st ok">✓</span><span>Shared with other agents: <b>no</b></span></span>
+                <span class="row"><span class="st ok">✓</span><span>API key fallback: <b>none set</b></span></span>
               </div>
               <span class="meta">16:05</span>
             </div>
@@ -274,7 +274,7 @@ const { class: className = '' } = Astro.props;
           <span class="tg-pill">Today</span>
           <div class="msg in tail" style="max-width:92%">
             <span class="name">marko</span>
-            <p>Landing page is live — nice work next door. Launch email is queued for <b>9:00 tomorrow</b>, subject: "Your subscription is a team now." Say go and it's locked.</p>
+            <p>Landing page is live — nice work next door. Launch email is queued for <b>9:00 tomorrow</b>, subject: "Each in its own box." Say go and it's locked.</p>
             <span class="meta">16:04</span>
           </div>
           <div class="msg out tail sl-go">

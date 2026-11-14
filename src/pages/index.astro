@@ -1,17 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import StorylineHero from '../components/StorylineHero.astro';
-import FleetList from '../components/FleetList.astro';
-import MarkoChat from '../components/MarkoChat.astro';
-import ProgressCard from '../components/ProgressCard.astro';
-import ApprovalCard from '../components/ApprovalCard.astro';
+import ArchDiagram from '../components/ArchDiagram.astro';
 import RichReply from '../components/RichReply.astro';
-import QuotaCard from '../components/QuotaCard.astro';
+import BoxesTerm from '../components/BoxesTerm.astro';
+import VaultTerm from '../components/VaultTerm.astro';
+import PlansCard from '../components/PlansCard.astro';
 import RichShowcase from '../components/RichShowcase.astro';
-import LeashSequence from '../components/LeashSequence.astro';
-
-const repo = 'https://github.com/switchroom/switchroom';
-const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
+import SlackShot from '../components/SlackShot.astro';
+import DesktopShot from '../components/DesktopShot.astro';
+import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
 ---
 
 <Base>
@@ -22,11 +20,11 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
         Switchroom
       </a>
       <nav class="nav-links" aria-label="Site">
+        <a class="anchor" href="#adds">What it adds</a>
         <a class="anchor" href="#how">How it works</a>
-        <a class="anchor" href="#pillars">Why</a>
-        <a class="anchor" href="#leash">On a leash</a>
-        <a class="anchor" href="#install">Install</a>
-        <a class="nav-cta" href={repo}><span aria-hidden="true">★</span> GitHub</a>
+        <a class="anchor" href="#chat">Chat</a>
+        <a class="anchor" href="#start">Early access</a>
+        <a class="nav-cta" href={REPO}><span aria-hidden="true">★</span> GitHub</a>
       </nav>
     </div>
   </header>
@@ -36,24 +34,61 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
     <section class="hero">
       <div class="container hero-inner">
         <div>
-          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open source · MIT · runs on your box</p>
-          <h1 class="hero-title display">A switchboard for your <span class="brass">Pro or Max</span>.</h1>
-          <p class="hero-kicker">A team of always-on assistants you text. <span class="leash">On a leash.</span></p>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> <span>An opinionated <a href={HERMES}>Hermes Agent</a> distribution · open source · early access</span></p>
+          <h1 class="hero-title display">Hermes, run as a team. <span class="brass nowrap-block">Each agent in its own box.</span></h1>
+          <p class="hero-kicker">The Hermes you already like, set up properly for a team of specialists you text. <span class="leash">On a leash.</span></p>
           <p class="lede hero-sub">
-            Switchroom turns the Claude subscription you already pay for into a team of
-            always-on assistants you text on Telegram. Each one has a name, remembers you,
-            and does the actual work. They stop and ask before anything with consequences,
-            and only your tap says go.
+            Switchroom takes <a href={HERMES}>Hermes Agent</a> by Nous Research and adds
+            the opinions it doesn't ship with: one container per agent, secrets from a
+            vault, digest-pinned images, and Telegram, Slack and Hermes Desktop held to
+            the same bar. Same Hermes skills, memory and tools. No way for one agent to
+            reach into another.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary" href={repo}>Install from GitHub</a>
-            <a class="btn btn-secondary" href={docs}>Read the docs</a>
+            <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
+            <a class="btn btn-secondary" href="#how">How it works</a>
           </div>
-          <p class="hero-note">Unmodified <code>claude</code> CLI · your existing OAuth · no API keys, no second bill</p>
+          <p class="hero-note">Bring your own plans and keys · Claude, Codex, Grok, OpenRouter, local models</p>
         </div>
         <div class="hero-stage">
           <StorylineHero />
-          <p class="hero-demo-cap">One take · five agents · one tap — a real ship day, on loop.</p>
+          <p class="hero-demo-cap">One take · five agents · one tap, on loop.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ What Switchroom adds to Hermes ============ -->
+    <section class="section alt" id="adds">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Hermes, plus opinions</p>
+          <h2 class="section-title">Hermes is the agent. Switchroom is how you run a team of them.</h2>
+          <p class="lede">
+            Every agent is a full Hermes Agent gateway, built on an exact, digest-pinned
+            Hermes Agent image, with its skills, memory, tools and model providers
+            intact. Switchroom is the packaging and the rules around it.
+          </p>
+        </div>
+        <div class="adds">
+          <div class="adds-col">
+            <p class="adds-k">Hermes Agent gives you</p>
+            <ul>
+              <li>An agent that learns skills and remembers you across sessions</li>
+              <li>Telegram, Slack, Desktop and a dozen more chat surfaces</li>
+              <li>Any model provider: Claude, Codex, Grok, OpenRouter, local</li>
+              <li>Tools, cron, MCP, delegation and profiles</li>
+            </ul>
+          </div>
+          <div class="adds-col brass">
+            <p class="adds-k">Switchroom adds</p>
+            <ul>
+              <li><b>One agent, one container, one gateway.</b> Own volume, network and workspace. No Docker socket, no host network, no privileged mode.</li>
+              <li><b>No shared credentials.</b> Each agent gets its own vault token and logins, injected at runtime. 1Password Connect by default.</li>
+              <li><b>Digest or it didn't happen.</b> A provenance-checked child of an exact Hermes image, with gh, Claude Code, Codex, Grok and OpenCode baked in.</li>
+              <li><b>Plugins off until you say so.</b> Linear, browser handoff, local Kokoro voice and Claude ACP, each disabled by default.</li>
+              <li><b>You stay in the overlay.</b> Identity, compose and secret bindings live in your private repo, never in the image.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -63,52 +98,41 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
       <div class="container">
         <div class="section-head">
           <p class="kicker">How it works</p>
-          <h2 class="section-title">Name them. Text them. They work — on your subscription, on a leash.</h2>
+          <h2 class="section-title">One image. One container per agent. Nothing shared.</h2>
+          <p class="lede">
+            Hermes Agent is one process. That's the wrong blast radius for a team. So
+            Switchroom gives every specialist its own box, and keeps everything that
+            identifies you out of the image.
+          </p>
         </div>
-        <div class="beats">
+        <ArchDiagram />
+        <p class="arch-cap">Left: what you pull. Middle: what runs, one box per agent. Right: what stays yours.</p>
+        <div class="beats beats-text">
           <div class="beat reveal">
             <span class="beat-num">01</span>
-            <div>
-              <h3>Name your specialists</h3>
-              <p>
-                One bot per job — a chief of staff, a marketer, a health coach, a writing
-                partner. Each has its own name, memory, tools, and credentials. Adding one
-                is ten lines of YAML.
-              </p>
-            </div>
-            <figure class="shot">
-              <FleetList />
-              <figcaption>Your fleet is just chats in Telegram.</figcaption>
-            </figure>
+            <h3>Name your specialists</h3>
+            <p>
+              One agent per job: a chief of staff, a marketer, a coach, an ops engineer.
+              Each is a compose service with its own volume, network and workspace. Adding
+              one is adding a service.
+            </p>
           </div>
           <div class="beat reveal">
             <span class="beat-num">02</span>
-            <div>
-              <h3>Text them on Telegram</h3>
-              <p>
-                Like you'd text a good assistant. They know your context, so you rarely
-                re-explain. Not coding bots — whatever job you give them.
-              </p>
-            </div>
-            <figure class="shot">
-              <MarkoChat />
-              <figcaption>A specialist that remembers your voice.</figcaption>
-            </figure>
+            <h3>Keep you in the overlay</h3>
+            <p>
+              Your private overlay repo holds the config, the compose file and the secret
+              bindings. The public image holds none of it, and you pin it by digest, not
+              by a tag that moves under you.
+            </p>
           </div>
           <div class="beat reveal">
             <span class="beat-num">03</span>
-            <div>
-              <h3>They work — on a leash</h3>
-              <p>
-                Each runs the unmodified <code>claude</code> CLI on your own Pro or Max
-                login. You watch progress in plain words, and anything with consequences
-                waits for your tap.
-              </p>
-            </div>
-            <figure class="shot">
-              <ProgressCard />
-              <figcaption>Live status, pinned to the chat.</figcaption>
-            </figure>
+            <h3>Text them anywhere</h3>
+            <p>
+              Telegram, Slack and Hermes Desktop, held to the same bar. The bar: a restart
+              shouldn't drop who they are, what tools they have, or where you left off.
+            </p>
           </div>
         </div>
       </div>
@@ -126,126 +150,116 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
             <span class="tag">standing-team</span>
             <h3>A real team, not a chatbot</h3>
             <p>
-              One specialist per job, each with its own name, memory, and tools. It feels
-              like a colleague who knows your context, not a chat window that forgets you
-              every session.
+              Named specialists, each with its own memory and tools. Not one generalist
+              wearing hats. You text the same colleague back, and it remembers what you
+              were doing.
             </p>
             <div class="proof"><RichReply /></div>
           </article>
           <article class="pillar reveal">
-            <span class="tag">always-available</span>
-            <h3>There when you reach for them</h3>
+            <span class="tag">own-box</span>
+            <h3>Each in its own box</h3>
             <p>
-              Each specialist is a long-running service. It survives reboots, network
-              drops, your laptop closing — and runs its scheduled work whether or not
-              you're watching. Available and punctual, not autonomous.
+              One agent, one container, one gateway. No Docker socket, no host network, no
+              privileged mode. One agent can't see another's files, network or vault, and
+              upgrading one leaves the others alone.
             </p>
-            <div class="proof"><ProgressCard /></div>
+            <div class="proof"><BoxesTerm /></div>
           </article>
           <article class="pillar reveal">
-            <span class="tag">hold-the-leash</span>
-            <h3>You hold the leash</h3>
+            <span class="tag">no-shared-secrets</span>
+            <h3>Secrets from a vault, never from git</h3>
             <p>
-              Your assistants don't roam. They act only on what you ask or the schedules
-              you set, then stop at anything with consequences and ask first. Only your
-              authenticated tap grants it — no agent can self-elevate or route around you.
+              Every agent gets its own vault token and its own logins. Two agents never
+              share one. We ship with 1Password Connect because it's what we run; the
+              pattern is the point, not the vendor.
             </p>
-            <div class="proof"><ApprovalCard /></div>
+            <div class="proof"><VaultTerm /></div>
           </article>
           <article class="pillar reveal">
-            <span class="tag">subscription-honest</span>
-            <h3>The rest of your Claude subscription</h3>
+            <span class="tag">bring-your-own-models</span>
+            <h3>Bring your own plans and keys</h3>
             <p>
-              It runs on the Pro or Max plan you already pay for, the same login as the
-              desktop. No API meter, no second invoice. One bill — the one you already pay.
+              Claude, Codex, Grok, OpenRouter, or a model on your own GPU, chosen per
+              agent. A Claude plan login stays a plan login, with no fallback to an API
+              key. Every other plan is held to the same rule.
             </p>
-            <div class="proof"><QuotaCard /></div>
+            <div class="proof"><PlansCard /></div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ Telegram done properly ============ -->
-    <section class="section" id="telegram">
-      <div class="container">
-        <div class="install-grid">
-          <div>
-            <p class="kicker">Telegram, done properly</p>
-            <h2 class="section-title">Replies that read like they were made for the app</h2>
-            <p class="lede" style="margin-top:14px">
-              Answers render as native Telegram rich messages: real tables, syntax-lit code
-              blocks, expandable quotes for the long tail, live-updating progress cards
-              pinned to the chat. Short answers stay plain prose. Structure shows up only
-              when it earns its place on your screen.
-            </p>
-            <p class="lede" style="margin-top:14px">
-              Seventeen Telegram tools under the hood — reply, stream, react, edit, pin,
-              checklists, attachments, approval cards — so the chat feels like a person who
-              knows the platform, not a bot dumping monospace.
-            </p>
-          </div>
-          <figure class="shot reveal">
-            <RichShowcase />
-            <figcaption>One reply: table, code, expandable quote — all native.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ On a leash ============ -->
-    <section class="section alt" id="leash">
+    <!-- ============ Chat surfaces ============ -->
+    <section class="section" id="chat">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">On a leash</p>
-          <h2 class="section-title">Most agent tools act first. Switchroom asks first.</h2>
+          <p class="kicker">Wherever you already chat</p>
+          <h2 class="section-title">Telegram, Slack, Hermes&nbsp;Desktop. Same agent, same bar.</h2>
           <p class="lede">
-            Give an assistant broad standing access and one day it helpfully does something
-            irreversible. Switchroom is built the other way: every credential, tool, and
-            consequential action is a deliberate grant you approve. The control isn't a
-            setting — it's the design.
+            Replies render natively on each surface: real tables, code blocks, threads.
+            Short answers stay short. Pick the app you're already in, and your agent
+            meets you there with the same memory and the same tools.
           </p>
         </div>
-        <LeashSequence />
+        <div class="surfaces">
+          <figure class="shot reveal">
+            <RichShowcase />
+            <figcaption>Telegram: table, code and expandable quote, all native.</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <SlackShot />
+            <figcaption>Slack: your agents as apps in the channels you already use.</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <DesktopShot />
+            <figcaption>Hermes Desktop: a full session view, connected to your box.</figcaption>
+          </figure>
+        </div>
+        <p class="surfaces-note">Illustrative mockups with made-up data.</p>
       </div>
     </section>
 
-    <!-- ============ Install ============ -->
-    <section class="section" id="install">
+    <!-- ============ Early access ============ -->
+    <section class="section alt" id="start">
       <div class="container">
         <div class="install-grid">
           <div class="install-copy">
-            <p class="kicker">Install</p>
-            <h2 class="section-title">Five minutes to your first specialist</h2>
+            <p class="kicker">Early access</p>
+            <h2 class="section-title">Bring a Linux box and an opinion</h2>
             <p style="margin-top:14px">
-              One box you own — a cheap VPS or the Linux machine under your desk. One
-              script installs the dependencies, one wizard sets up Telegram, the vault,
-              and your first agent. OAuth with the same flow as the desktop app, and
-              you never touch the server again.
+              Honest version: this isn't a five-minute install yet. Today Switchroom is a
+              working pattern you run from your own private overlay repo. A guided
+              quickstart is the next milestone.
             </p>
-            <h3>Already in Claude Code?</h3>
-            <p>Shortest path — from inside any session:</p>
-            <div class="mini">/plugin marketplace add switchroom/switchroom<br />/plugin install switchroom@switchroom<br />/switchroom:setup</div>
+            <h3>What you need</h3>
+            <ul class="needs">
+              <li>A Linux box with Docker: a cheap VPS or the machine under your desk</li>
+              <li>A private git repo for your overlay</li>
+              <li>A vault (1Password Connect is the default we ship)</li>
+              <li>A bot token per agent for each chat app you use</li>
+              <li>The model plans or keys you want each agent on</li>
+            </ul>
             <div class="install-ctas">
-              <a class="btn btn-primary" href={repo}>Install from GitHub</a>
-              <a class="btn btn-secondary" href={docs}>Read the docs</a>
+              <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
+              <a class="btn btn-secondary" href={DOCS}>Read the docs</a>
             </div>
           </div>
           <div class="term reveal">
             <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>you@your-box</span></div>
-            <pre><code><span class="c"># fresh Linux box, one script</span>
-<span class="p">$</span> curl -fsSL https://github.com/switchroom/switchroom\
-    /raw/main/scripts/install-deps.sh | sudo bash
+            <pre><code><span class="c"># get the pattern</span>
+<span class="p">$</span> git clone {REPO}
+<span class="p">$</span> cp -r hermes-fleet/examples/overlay-repo \
+    ~/my-switchroom
 
-<span class="c"># Telegram + vault + first agent, interactive</span>
-<span class="p">$</span> switchroom setup
-<span class="p">$</span> switchroom apply
-<span class="p">$</span> docker compose -p switchroom up -d
-
-<span class="c"># OAuth your Pro/Max — same login as the desktop</span>
-<span class="p">$</span> switchroom auth add default --via-claude
-<span class="p">$</span> switchroom auth use default</code></pre>
+<span class="c"># one service per agent;</span>
+<span class="c"># secrets at runtime, never in git</span>
+<span class="p">$</span> cd ~/my-switchroom
+<span class="p">$</span> export HERMES_FLEET_IMAGE='…@sha256:&lt;digest&gt;'
+<span class="p">$</span> docker compose config</code></pre>
           </div>
         </div>
+        <p class="surfaces-note">Start with the <a href={OVERLAY_EXAMPLE}>example overlay</a>. Every profile in it is synthetic.</p>
       </div>
     </section>
   </main>
@@ -259,19 +273,19 @@ const docs = 'https://github.com/switchroom/switchroom/tree/main/docs';
           Switchroom
         </a>
         <nav class="footer-links" aria-label="Footer">
-          <a href={repo}>GitHub</a>
-          <a href={docs}>Docs</a>
+          <a href={REPO}>GitHub</a>
+          <a href={DOCS}>Docs</a>
+          <a href={HERMES}>Hermes Agent</a>
           <a href="/privacy/">Privacy Policy</a>
           <a href="/terms/">Terms of Use</a>
-          <a href="https://github.com/switchroom/switchroom/blob/main/LICENSE">MIT License</a>
-          <a href="https://github.com/switchroom/switchroom/blob/main/CHANGELOG.md">Changelog</a>
+          <a href={LICENSE}>MIT License</a>
         </nav>
       </div>
       <p class="footnote">
-        Switchroom runs the unmodified <code>claude</code> CLI on the Claude Pro or Max
-        plan you already pay for — the same OAuth login as the desktop app. No API meter,
-        no second invoice. Self-hosted on your own machine, on your terms. Open source.
-        Always on. On a leash.
+        Switchroom is an opinionated distribution of Hermes Agent by Nous Research: one
+        container per agent, secrets from a vault, the model plans you choose. Not
+        affiliated with Nous Research. Self-hosted on your own machine. Open source.
+        Early access. On a leash. Chat mockups on this page are illustrative.
       </p>
     </div>
   </footer>

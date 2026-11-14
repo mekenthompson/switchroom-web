@@ -1257,3 +1257,179 @@ figure.shot { margin: 0; }
     }
   }
 }
+
+/* ==========================================================================
+   Hermes relaunch: architecture diagram, surfaces, Slack + Desktop mockups
+   ========================================================================== */
+
+.arch {
+  display: grid;
+  gap: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-1);
+  margin-bottom: 48px;
+}
+@media (min-width: 960px) {
+  .arch { grid-template-columns: 1fr 1.6fr 1fr; align-items: center; padding: 28px; gap: 24px; }
+}
+.arch-chain { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+.arch-arrow { text-align: center; color: var(--accent); font-size: 20px; transform: rotate(90deg); }
+.arch-node {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg-raised);
+}
+.arch-node b { font-size: 1rem; color: var(--text-strong); }
+.arch-node span:not(.arch-k) { font-size: 13px; color: var(--text-muted); }
+.arch-node.brass { border-color: var(--accent); }
+.arch-node.cord { border-color: var(--cord-soft); }
+.arch-k {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.arch-boxes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.arch-box {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px;
+  min-width: 0;
+}
+.arch-box-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.arch-box-head .tg-ava { width: 28px; height: 28px; font-size: 13px; flex: none; }
+.arch-box-head b { display: block; color: var(--text-strong); font-size: 14.5px; }
+.arch-box-head small { display: block; color: var(--text-muted); font-size: 12px; }
+.arch-box ul { list-style: none; margin: 0; padding: 0; font-family: var(--ff-mono); font-size: 11.5px; color: var(--text-muted); line-height: 1.8; }
+.arch-box li::before { content: "▸ "; color: var(--accent); }
+.arch-side { display: flex; flex-direction: column; gap: 10px; }
+
+.beats-text .beat h3 { margin-top: 0; }
+
+.surfaces { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 960px) { .surfaces { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; } }
+.surfaces-note { margin: 22px 0 0; font-size: 13px; color: var(--text-muted); }
+.surfaces-note a { color: var(--link); }
+
+.needs { margin: 0 0 8px; padding-left: 1.2rem; color: var(--text-muted); }
+.needs li + li { margin-top: 6px; }
+.hero-kicker a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+
+/* --- Slack mockup (dark theme, synthetic) --- */
+.sk {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #2c2d30;
+  background: #1a1d21;
+  color: #d1d2d3;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  box-shadow: var(--shadow-2);
+  min-height: 360px;
+}
+.sk-side { background: #19171d; padding: 12px 8px; display: flex; flex-direction: column; gap: 2px; border-right: 1px solid #2c2d30; }
+.sk-ws { color: #fff; font-size: 14px; padding: 0 6px 10px; }
+.sk-sec { font-size: 11px; color: #9a9b9e; padding: 10px 6px 2px; }
+.sk-ch { padding: 3px 6px; border-radius: 6px; color: #b9babd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sk-ch.on { background: #1164a3; color: #fff; }
+.sk-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #2bac76; margin-right: 6px; }
+.sk-main { display: flex; flex-direction: column; min-width: 0; }
+.sk-head { padding: 11px 14px; border-bottom: 1px solid #2c2d30; color: #fff; font-weight: 700; }
+.sk-msg { display: flex; gap: 10px; padding: 12px 14px 4px; }
+.sk-ava { width: 30px; height: 30px; border-radius: 6px; flex: none; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; }
+.sk-ava.you { background: #6b4fbb; }
+.sk-msg p { margin: 0 0 4px; line-height: 1.45; }
+.sk-msg ul { margin: 2px 0 6px; padding-left: 1.1rem; }
+.sk-msg li { line-height: 1.5; }
+.sk-msg b { color: #fff; }
+.sk-who { color: #fff; font-weight: 700; }
+.sk-who span { color: #9a9b9e; font-weight: 400; font-size: 11.5px; margin-left: 4px; }
+.sk-who em { font-style: normal; font-size: 9.5px; background: #3a3b3e; color: #c9cacc; border-radius: 3px; padding: 1px 4px; margin-left: 4px; vertical-align: 1px; }
+.sk-thread { color: #1d9bd1; font-size: 12px; font-weight: 600; }
+
+/* --- Hermes Desktop mockup (synthetic) --- */
+.dk {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #2a2f37;
+  background: #111418;
+  color: #d9dde3;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  box-shadow: var(--shadow-2);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+.dk-bar { display: flex; align-items: center; gap: 7px; padding: 10px 12px; background: #181c22; border-bottom: 1px solid #2a2f37; }
+.dk-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a4049; }
+.dk-bar i:first-child { background: var(--cord); }
+.dk-bar i:nth-child(2) { background: var(--brass); }
+.dk-bar i:nth-child(3) { background: var(--teal); }
+.dk-bar span { margin-left: 8px; font-size: 12px; color: #9aa3ad; }
+.dk-body { display: grid; grid-template-columns: 112px minmax(0, 1fr); flex: 1; }
+.dk-side { border-right: 1px solid #2a2f37; padding: 12px 8px; display: flex; flex-direction: column; gap: 3px; }
+.dk-k { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #8a929c; padding: 0 6px 6px; }
+.dk-s { padding: 5px 6px; border-radius: 6px; color: #b6bdc6; font-size: 12px; line-height: 1.3; }
+.dk-s.on { background: #222831; color: #fff; }
+.dk-main { padding: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.dk-msg p { margin: 0 0 6px; line-height: 1.45; }
+.dk-msg.you { align-self: flex-end; background: #2a3442; border-radius: 10px; padding: 8px 11px; max-width: 85%; }
+.dk-msg.you p { margin: 0; }
+.dk-who { color: var(--brass); font-weight: 700; font-size: 12px; }
+.dk-msg b { color: #fff; }
+.dk-msg pre {
+  margin: 4px 0 8px;
+  background: #0b0d10;
+  border: 1px solid #2a2f37;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.dk-msg pre .k { color: #e8837f; }
+.dk-msg pre .s { color: #8fd18a; }
+.dk-input { margin-top: auto; border: 1px solid #2a2f37; border-radius: 8px; padding: 9px 11px; color: #6f7883; }
+
+/* relaunch polish */
+.hero-title .nowrap-block { display: block; }
+.arch { margin-bottom: 12px; }
+@media (min-width: 960px) { .arch { align-items: stretch; } .arch-chain, .arch-side { justify-content: center; } }
+.arch-cap { margin: 0 0 48px; font-size: 13px; color: var(--text-muted); }
+.pillar .proof { margin-top: auto; padding-top: 10px; }
+.surfaces { align-items: stretch; }
+.surfaces .shot { display: flex; flex-direction: column; }
+.surfaces .shot > :first-child { flex: 1; }
+.sk-ch { min-width: 0; }
+@media (max-width: 480px) { .term pre { font-size: 11.5px; padding: 14px 14px 18px; } }
+
+/* what switchroom adds */
+.eyebrow a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.hero-sub a { color: var(--text-strong); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.adds { display: grid; gap: 20px; }
+@media (min-width: 960px) { .adds { grid-template-columns: 0.8fr 1.2fr; gap: 28px; } }
+.adds-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-1);
+}
+.adds-col.brass { border-color: var(--accent); }
+.adds-k { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+.adds-col ul { margin: 0; padding-left: 1.1rem; color: var(--text-muted); }
+.adds-col li + li { margin-top: 10px; }
+.adds-col b { color: var(--text-strong); }
+.hero-title, .hero-title .nowrap-block, .section-title { text-wrap: balance; }
+.hero-sub { text-wrap: pretty; }

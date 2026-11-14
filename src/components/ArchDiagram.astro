@@ -1,0 +1,64 @@
+---
+// How it works: the image chain, one container per agent, overlay + vault.
+// Synthetic agent names only. Claims trace to the hermes-fleet README.
+const agents = [
+  { name: 'clerk', job: 'chief of staff', ava: 'a1' },
+  { name: 'marko', job: 'marketing', ava: 'a2' },
+  { name: 'coach', job: 'health', ava: 'a3' },
+  { name: 'klanker', job: 'ops + code', ava: 'a4' },
+];
+---
+
+<div
+  class="arch"
+  role="img"
+  aria-label="Architecture. The Hermes Agent image from Nous Research is the parent of the digest-pinned Switchroom image. Each agent, clerk, marko, coach and klanker, runs from that image in its own container with its own volume, workspace, network and vault token. Optional sidecars such as the browser broker, Camofox and Kokoro voice ship as separate images. Your private overlay repo holds config, compose and secret bindings, and injects each agent's secrets from your vault, 1Password Connect by default."
+>
+  <div class="arch-chain" aria-hidden="true">
+    <div class="arch-node">
+      <span class="arch-k">upstream</span>
+      <b>Hermes Agent</b>
+      <span>by Nous Research</span>
+    </div>
+    <span class="arch-arrow">→</span>
+    <div class="arch-node brass">
+      <span class="arch-k">image</span>
+      <b>Switchroom</b>
+      <span>pinned by <code>sha256</code></span>
+    </div>
+  </div>
+
+  <div class="arch-boxes" aria-hidden="true">
+    {agents.map((a) => (
+      <div class="arch-box">
+        <div class="arch-box-head">
+          <span class={`tg-ava ${a.ava}`}>{a.name[0]}</span>
+          <span><b>{a.name}</b><small>{a.job}</small></span>
+        </div>
+        <ul>
+          <li>own volume + workspace</li>
+          <li>own network</li>
+          <li>own vault token</li>
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="arch-side" aria-hidden="true">
+    <div class="arch-node">
+      <span class="arch-k">your private repo</span>
+      <b>Overlay</b>
+      <span>config · compose · secret bindings</span>
+    </div>
+    <div class="arch-node cord">
+      <span class="arch-k">your vault</span>
+      <b>Secrets</b>
+      <span>1Password Connect by default</span>
+    </div>
+    <div class="arch-node">
+      <span class="arch-k">optional</span>
+      <b>Sidecars</b>
+      <span>browser broker · Camofox · Kokoro voice</span>
+    </div>
+  </div>
+</div>

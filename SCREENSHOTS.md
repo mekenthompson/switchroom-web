@@ -1,5 +1,11 @@
 # Real-screenshot manifest
 
+> **Status (2026-11, Hermes relaunch):** the Home page now uses shots 08 and
+> 13–18 (`RichShowcase`, `PlansCard`, `SlackShot`, `DesktopShot`,
+> `ArchDiagram`, `BoxesTerm`, `VaultTerm`) plus the animated hero. Slack and
+> Desktop are staged mockups with synthetic data. Shots 05, 07 and 09–11
+> describe the retired approval/quota pitch and are kept only for the gallery.
+
 > **Status (2026-07):** all 12 shots below now render from the upgraded HTML/CSS
 > mockups using the operator-approved staged scripts (fictional content, real
 > agent names). `/shots` (`src/pages/shots.astro`, noindex) is the capture

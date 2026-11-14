@@ -1,0 +1,23 @@
+---
+// "Secrets from a vault" proof: a synthetic overlay compose excerpt.
+---
+
+<div
+  class="term"
+  role="img"
+  aria-label="Synthetic excerpt of an overlay compose file. The marko and coach services each receive their own vault connection token from the environment. No secret values appear in the file."
+>
+  <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>overlay/compose.yaml</span></div>
+  <pre aria-hidden="true"><code>services:
+  marko:
+    image: switchroom@sha256:4f1c…
+    environment:
+      OP_CONNECT_TOKEN: $&#123;MARKO_OP&#125;
+  coach:
+    image: switchroom@sha256:4f1c…
+    environment:
+      OP_CONNECT_TOKEN: $&#123;COACH_OP&#125;
+
+<span class="c"># two agents, two tokens.</span>
+<span class="c"># zero secrets in git.</span></code></pre>
+</div>
