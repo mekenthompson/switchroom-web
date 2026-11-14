@@ -1,0 +1,30 @@
+---
+// Staged Hermes Desktop mockup. Synthetic agents, sessions and data only.
+---
+
+<div
+  class="dk"
+  role="img"
+  aria-label="Illustrative Hermes Desktop mockup connected to the klanker agent. The sidebar lists sessions. In the open session you ask why the Acme build is red; klanker answers that one test fails on a date format, shows a two-line fix, and says the pull request is open with the build green."
+>
+  <div class="dk-bar" aria-hidden="true"><i></i><i></i><i></i><span>Hermes · klanker</span></div>
+  <div class="dk-body" aria-hidden="true">
+    <div class="dk-side">
+      <span class="dk-k">Sessions</span>
+      <span class="dk-s on">Acme build is red</span>
+      <span class="dk-s">Landing page refresh</span>
+      <span class="dk-s">Weekly backup check</span>
+    </div>
+    <div class="dk-main">
+      <div class="dk-msg you"><p>why is the acme build red?</p></div>
+      <div class="dk-msg">
+        <p class="dk-who">klanker</p>
+        <p>One test fails on a date format. The fixture assumes UTC. Fix:</p>
+        <pre><span class="k">- tz: local</span>
+<span class="s">+ tz: UTC</span></pre>
+        <p>PR <b>#42</b> is open, build green.</p>
+      </div>
+      <div class="dk-input">Message klanker…</div>
+    </div>
+  </div>
+</div>
