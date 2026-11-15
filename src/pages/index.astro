@@ -6,7 +6,7 @@ import LinearIssue from '../components/LinearIssue.astro';
 import BoxesTerm from '../components/BoxesTerm.astro';
 import VaultTerm from '../components/VaultTerm.astro';
 import PlansCard from '../components/PlansCard.astro';
-import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
+import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES, tree, blob } from '../site';
 ---
 
 <Base>
@@ -19,7 +19,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
       <nav class="nav-links" aria-label="Site">
         <a class="anchor" href="#proofs">Proofs</a>
         <a class="anchor" href="#how">How it works</a>
-        <a class="anchor" href="#next">Shipping next</a>
+        <a class="anchor" href="#next">Status</a>
         <a class="anchor" href="#start">Early access</a>
         <a class="nav-cta" href={REPO}><span aria-hidden="true">★</span> GitHub</a>
       </nav>
@@ -84,7 +84,13 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
                 without both of them running it. You keep the assignee, the board and the
                 comment thread you already read as a dev or a PM.
               </p>
-              <p class="proof-fine">The Linear plugin is included and stays off until your overlay turns it on.</p>
+              <p class="proof-fine">
+                The Linear plugin is included and off in the bare image. The starter overlay
+                switches it on once the agent's Linear app credentials are present.
+                Chat-started work needs only that app; assigning from Linear also needs a
+                webhook receiver that isn't published yet.
+                <a href={blob('docs/linear-setup.md')}>Linear setup guide</a>
+              </p>
             </div>
             <figure class="proof-shot">
               <LinearIssue />
@@ -99,7 +105,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
               <p>
                 One container, gateway, volume and network per agent. No Docker socket, no
                 host network, no privileged mode. Each agent gets its own vault credentials
-                at runtime, and 1Password Connect is the default we ship.
+                at runtime, with 1Password Connect as the planned default.
               </p>
               <p>
                 Agents are isolated by default: one can't see another's files, network or
@@ -126,7 +132,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
                 The fine print: DirectSDK is Nous Research's plugin, included unmodified and
                 labelled experimental by its author. Connectors are qualified for reads only
                 so far, and every connector call uses extra inference from the same plan.
-                All of it is included and off until you enable it. Switchroom isn't made,
+                All of it is off in the bare image; the starter overlay switches it on when
+                the agent's own Claude login is present. Switchroom isn't made,
                 endorsed or approved by Anthropic.
               </p>
             </div>
@@ -196,44 +203,54 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
             <span class="beat-num">03</span>
             <h3>Turn on what each agent needs</h3>
             <p>
-              Linear, Claude ACP, browser handoff and Kokoro voice are included and
-              disabled until the overlay enables them per agent. Enabling one without its
-              policy fails closed.
+              Linear, Claude ACP, browser handoff and Kokoro voice are included and off in
+              the bare image. The starter overlay switches its defaults on per agent when
+              their credentials are present, and leaves each one off when they aren't.
+              Enabling a plugin without its policy fails closed.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ Included vs shipping next ============ -->
+    <!-- ============ Published / being proven / shipping next ============ -->
     <section class="section alt" id="next">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Today and next</p>
+          <p class="kicker">Status</p>
           <h2 class="section-title">What's in the box, and what isn't yet</h2>
           <p class="lede">
             Built, published and deployed are different claims. So are included and
-            switched on. Here's the honest split.
+            switched on. Here's the honest split, with every published item linked to
+            its source.
           </p>
         </div>
-        <div class="adds">
+        <div class="adds status-grid">
           <div class="adds-col">
-            <p class="adds-k">Included today, off until you turn it on</p>
+            <p class="adds-k">Published</p>
             <ul>
-              <li><b>Linear plugin.</b> Issues, delegates, checkpoints and takeovers.</li>
-              <li><b>Claude ACP and Claude account connectors.</b> Plan login and claude.ai connectors as tools, reads qualified.</li>
-              <li><b>Claude Subscription DirectSDK.</b> Nous Research's plugin, experimental.</li>
-              <li><b>Browser handoff.</b> An isolated browser the agent can hand to you for a login.</li>
-              <li><b>Kokoro voice.</b> Local text to speech through a sidecar.</li>
+              <li><b><a href={tree('plugins')}>Plugins</a>, off in the bare image.</b> Linear, Claude ACP and account connectors, Claude Subscription DirectSDK (Nous Research's, experimental), browser handoff, Kokoro voice and Perplexity search.</li>
+              <li><b><a href={OVERLAY_EXAMPLE}>Starter overlay</a>.</b> Shared defaults and one file per agent, in a private repo you own.</li>
+              <li><b><a href={blob('scripts/render-overlay-config.py')}>Config renderer</a> and <a href={blob('scripts/switchroom-doctor.py')}>setup check</a>.</b> Renders each agent's config and says which defaults are on, and why any are off.</li>
+              <li><b><a href={blob('docs/rollout.md')}>Rollout runner</a>.</b> Digest-pinned images, one agent at a time, controller last, automatic rollback.</li>
+              <li><b><a href={tree('skills')}>Shared skill pack</a>.</b> Review and merge, Linear work tracking, persistent tools, coding CLIs. You mount it by hand for now.</li>
+              <li><b><a href={blob('docs/linear-setup.md')}>Linear setup guide</a>.</b> Chat-started work needs only an OAuth app per agent.</li>
+            </ul>
+          </div>
+          <div class="adds-col">
+            <p class="adds-k">Being proven</p>
+            <ul>
+              <li><b>Nine starter defaults.</b> The overlay configures them when their credentials are present: working doctrine with smart approvals, one gateway per agent, DirectSDK as the main model with no API-key fallback, Claude ACP with connectors, model roles, Linear, Kokoro voice and transcription, Honcho memory, and Perplexity search.</li>
+              <li><b>Not yet proven on a real boot.</b> Each one stays <code>planned</code> in the <a href={blob('contracts/plugins.json')}>contract</a> until a real container start proves it.</li>
+              <li><b>The rollout runner.</b> Tested against a fake Docker only, so treat its first real run as a trial.</li>
             </ul>
           </div>
           <div class="adds-col brass next-col">
             <p class="adds-k"><span class="next-badge">Shipping next</span> Not published yet</p>
             <ul>
-              <li><b>A starter overlay that switches everything on.</b> Opt out, not opt in.</li>
-              <li><b>Honcho memory and local voice, wired in.</b> No assembly required.</li>
-              <li><b>The config renderer.</b> Shared defaults, roles and per-agent overrides, rendered for you.</li>
-              <li><b>The rollout runner.</b> Image updates across agents, with auto-rollback.</li>
+              <li><b>The remaining defaults.</b> Vault secrets, coding CLIs, quota, session reset, security guidance, disk cleanup, and the skill pack mounted for you.</li>
+              <li><b>A sidecar compose.</b> Kokoro, Honcho and 1Password Connect running next to your agents.</li>
+              <li><b>The Linear webhook receiver.</b> So you can assign or @mention an agent from Linear.</li>
               <li><b>Backups and monitors.</b> So leaving it running is the boring part.</li>
             </ul>
             <p class="next-note">None of this is available today. The repo will say so first when it is.</p>
@@ -258,7 +275,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
             <ul class="needs">
               <li>A Linux box with Docker: a cheap VPS or the machine under your desk</li>
               <li>A private git repo for your overlay</li>
-              <li>A vault (1Password Connect is the default we ship)</li>
+              <li>A vault (1Password Connect is the planned default)</li>
               <li>The model plans or keys you want each agent on</li>
               <li>A Linear workspace, if you want agents on your issues</li>
               <li>A bot token per agent for each chat app you use</li>
