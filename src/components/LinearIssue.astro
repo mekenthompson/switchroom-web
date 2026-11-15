@@ -1,0 +1,53 @@
+---
+// "Works your projects" proof: a staged Linear issue with an agent delegate,
+// checkpoint comments and a follow-up sent from chat. Synthetic workspace,
+// issue keys, people and data only. Behaviour traces to the hermes-fleet
+// plugins/linear/README.md: the human keeps the assignee, the agent app is
+// the delegate, checkpoints land as issue comments, and a chat follow-up
+// reaches the same native task.
+---
+
+<div
+  class="ln"
+  role="img"
+  aria-label="Illustrative Linear mockup. In the Acme workspace, issue WEB-12, Refresh the pricing page before launch, is In Progress in the Acme launch project. You are still the assignee and klanker, an agent, is the delegate. klanker's first comment says it picked the issue up as one tracked task and lays out the plan. A note you sent from Telegram, also make annual 20 percent off, reaches the same task. klanker's next checkpoint comment says the pricing table and the annual discount are done, the build is green and PR 41 is open for your review. A sub-issue, WEB-13 Launch email, has marko as its delegate."
+>
+  <div class="ln-bar" aria-hidden="true">
+    <span class="ln-ws">Acme</span>
+    <span class="ln-crumb">Acme launch <i>›</i> WEB-12</span>
+  </div>
+  <div class="ln-body" aria-hidden="true">
+    <div class="ln-issue">
+      <p class="ln-title">Refresh the pricing page before launch</p>
+      <div class="ln-props">
+        <span class="ln-prop"><i class="ln-st"></i>In Progress</span>
+        <span class="ln-prop"><span class="ln-k">Assignee</span><span class="ln-ava you">Y</span>you</span>
+        <span class="ln-prop"><span class="ln-k">Delegate</span><span class="tg-ava a4 ln-ava">k</span>klanker</span>
+      </div>
+
+      <div class="ln-feed">
+        <p class="ln-event"><span class="tg-ava a4 ln-ava sm">k</span><b>klanker</b> started working · 15:58</p>
+
+        <div class="ln-comment">
+          <p class="ln-who"><span class="tg-ava a4 ln-ava">k</span><b>klanker</b> <em>agent</em> <span>15:59</span></p>
+          <p>Picked this up as one tracked task. Plan: new pricing table, Lighthouse pass, PR for your review.</p>
+        </div>
+
+        <div class="ln-chat">
+          <span class="ln-chat-k">from Telegram</span>
+          <p>also make annual 20% off</p>
+        </div>
+
+        <div class="ln-comment">
+          <p class="ln-who"><span class="tg-ava a4 ln-ava">k</span><b>klanker</b> <em>agent</em> <span>16:07</span></p>
+          <p><b>Checkpoint.</b> Pricing table done, annual now 20% off (your note from chat). Build green, <span class="ln-link">PR #41</span> open for review.</p>
+        </div>
+
+        <div class="ln-sub">
+          <span class="ln-k">Sub-issue</span>
+          <span class="ln-sub-row"><i class="ln-st todo"></i>WEB-13 Launch email<span class="ln-sub-who"><span class="tg-ava a2 ln-ava sm">m</span>marko</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

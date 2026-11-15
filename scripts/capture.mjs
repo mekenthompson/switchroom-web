@@ -49,6 +49,7 @@ const shots = [
   ['#shot-16 .arch', 'shot-16-architecture.png'],
   ['#shot-17 .term', 'shot-17-own-box.png'],
   ['#shot-18 .term', 'shot-18-vault.png'],
+  ['#shot-19 .ln', 'shot-19-linear-issue.png'],
 ];
 
 const browser = await chromium.launch();
