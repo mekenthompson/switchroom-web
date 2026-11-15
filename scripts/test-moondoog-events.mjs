@@ -1,21 +1,27 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const read = (relativePath) => readFile(path.join(root, relativePath), 'utf8');
+const exists = (relativePath) => access(path.join(root, relativePath)).then(() => true, () => false);
 
-const page = await read('public/moondoog-events/index.html');
+const target = 'https://moondoog.kenthompson.com.au/';
 const nginx = await read('nginx.conf');
 const homepage = await read('src/pages/index.astro');
 
-assert.match(page, /View events/);
-assert.match(page, /Replay/);
-assert.match(page, /Mute/);
-assert.match(page, /dQw4w9WgXcQ/);
-assert.match(page, /playsinline=1/);
+// The page moved off the product domain (HF-711); only permanent redirects remain.
+assert.equal(await exists('public/moondoog-events'), false, 'page files must be removed');
+
+const block = (pattern) => {
+  const match = nginx.match(new RegExp(pattern + '\\s*\\{([^}]*)\\}'));
+  assert.ok(match, `missing nginx block: ${pattern}`);
+  return match[1].trim();
+};
+assert.equal(block('location = /moondoog-events'), `return 301 ${target};`);
+assert.equal(block('location \\^~ /moondoog-events/'), `return 301 ${target};`);
+assert.doesNotMatch(nginx, /try_files \/moondoog-events/);
 assert.doesNotMatch(nginx, /location \/artifact\//);
-assert.match(nginx, /location = \/moondoog-events \{/);
 assert.doesNotMatch(homepage, /moondoog-events/);
 
-console.log('Moondoog events route checks passed.');
+console.log('Moondoog events redirect checks passed.');
