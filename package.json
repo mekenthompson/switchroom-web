@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node scripts/test-legal-pages.mjs && node scripts/test-moondoog-events.mjs",
+    "test": "node scripts/test-legal-pages.mjs && node scripts/test-moondoog-events.mjs && node scripts/test-plans-copy.mjs",
     "lint:gradients": "node scripts/lint-gradients.mjs",
     "lint": "npm run lint:gradients",
     "prebuild": "npm run lint:gradients"
