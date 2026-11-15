@@ -33,18 +33,19 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES, tree, blob } from '../sit
         <div>
           <p class="eyebrow"><span class="dot" aria-hidden="true"></span> <span>An opinionated <a href={HERMES}>Hermes Agent</a> distribution&nbsp;· <span class="eyebrow-tail">open source · early access</span></span></p>
           <h1 class="hero-title display">Hermes agents that work your projects, <span class="brass nowrap-block">not just your chats.</span></h1>
-          <p class="hero-kicker">One box per agent. Linear holds the thread. Tuned for the Claude plan you already pay for.</p>
+          <p class="hero-kicker">One box per agent. Linear holds the thread. Runs on the Claude, ChatGPT or SuperGrok plan you already pay for, and lets you switch models as the lead changes.</p>
           <p class="lede hero-sub">
             Switchroom packages <a href={HERMES}>Hermes Agent</a> by Nous Research for a
             team of specialists. Each one can pick up issues and report back where you
-            already track the work, and none of them can reach into the others. Same
-            Hermes skills, memory and tools underneath.
+            already track the work, and none of them can reach into the others. The labs'
+            own agents tie you to one lab; Switchroom lets you route each job to whichever
+            model is best at it this week.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
             <a class="btn btn-secondary" href="#proofs">See the proofs</a>
           </div>
-          <p class="hero-note">Claude-first, not Claude-only · Codex, Grok, OpenRouter and local models too</p>
+          <p class="hero-note">Claude leads today, not forever · ChatGPT, SuperGrok, OpenRouter and local models too</p>
         </div>
         <div class="hero-stage">
           <StorylineHero />
@@ -120,21 +121,30 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES, tree, blob } from '../sit
 
           <article class="proof-row reveal">
             <div class="proof-copy">
-              <span class="tag">03 · claude-first</span>
-              <h3>Tuned for your Claude plan</h3>
+              <span class="tag">03 · your plans</span>
+              <h3>Runs on your plans</h3>
               <p>
-                Claude-first, not Claude-only. Claude Subscription DirectSDK drives the
-                official Claude Code CLI on the agent's own login, with no API-key fallback.
-                Claude ACP brings your claude.ai connectors to the agent as tools. Codex,
-                Grok, OpenRouter and local models work too, picked per agent.
+                Connect Claude, ChatGPT or SuperGrok, pick which one leads, and route chat,
+                coding and quick jobs to any plan you've connected. Swap the lead in one
+                line when a different lab pulls ahead.
+              </p>
+              <p>
+                <b>Claude means your subscription quota, not API billing.</b> Switchroom
+                drives Claude through your Claude plan's own login, with no API key and no
+                pay-per-token fallback. The same rule applies to every plan: a plan without
+                a real login stays off, and nothing bills a plan you didn't connect.
               </p>
               <p class="proof-fine">
-                The fine print: DirectSDK is Nous Research's plugin, included unmodified and
-                labelled experimental by its author. Connectors are qualified for reads only
-                so far, and every connector call uses extra inference from the same plan.
-                All of it is off in the bare image; the starter overlay switches it on when
-                the agent's own Claude login is present. Switchroom isn't made,
-                endorsed or approved by Anthropic.
+                The fine print: Claude runs through Claude Subscription DirectSDK (Nous
+                Research's plugin, included unmodified and labelled experimental by its
+                author) and Claude ACP, which also brings your claude.ai connectors as tools.
+                Connectors are qualified for reads only so far, and every connector call uses
+                extra inference from the same plan. ChatGPT and SuperGrok use Hermes' own
+                <code>openai-codex</code> and <code>xai-oauth</code> logins. All of it is off
+                in the bare image; the starter overlay switches a plan on only when that
+                agent's own login is present, and model roles stay <code>planned</code> until
+                a real boot proves them. Switchroom isn't made, endorsed or approved by
+                Anthropic, OpenAI or xAI.
               </p>
             </div>
             <figure class="proof-shot proof-narrow">
@@ -240,7 +250,7 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES, tree, blob } from '../sit
           <div class="adds-col">
             <p class="adds-k">Being proven</p>
             <ul>
-              <li><b>Nine starter defaults.</b> The overlay configures them when their credentials are present: working doctrine with smart approvals, one gateway per agent, DirectSDK as the main model with no API-key fallback, Claude ACP with connectors, model roles, Linear, Kokoro voice and transcription, Honcho memory, and Perplexity search.</li>
+              <li><b>Nine starter defaults.</b> The overlay configures them when their credentials are present: working doctrine with smart approvals, one gateway per agent, DirectSDK as the main model with no API-key fallback, Claude ACP with connectors, model roles across your Claude, ChatGPT and SuperGrok plans, Linear, Kokoro voice and transcription, Honcho memory, and Perplexity search.</li>
               <li><b>Not yet proven on a real boot.</b> Each one stays <code>planned</code> in the <a href={blob('contracts/plugins.json')}>contract</a> until a real container start proves it.</li>
               <li><b>The rollout runner.</b> Tested against a fake Docker only, so treat its first real run as a trial.</li>
             </ul>
