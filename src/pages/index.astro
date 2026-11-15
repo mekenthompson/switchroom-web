@@ -2,13 +2,10 @@
 import Base from '../layouts/Base.astro';
 import StorylineHero from '../components/StorylineHero.astro';
 import ArchDiagram from '../components/ArchDiagram.astro';
-import RichReply from '../components/RichReply.astro';
+import LinearIssue from '../components/LinearIssue.astro';
 import BoxesTerm from '../components/BoxesTerm.astro';
 import VaultTerm from '../components/VaultTerm.astro';
 import PlansCard from '../components/PlansCard.astro';
-import RichShowcase from '../components/RichShowcase.astro';
-import SlackShot from '../components/SlackShot.astro';
-import DesktopShot from '../components/DesktopShot.astro';
 import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
 ---
 
@@ -20,9 +17,9 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
         Switchroom
       </a>
       <nav class="nav-links" aria-label="Site">
-        <a class="anchor" href="#adds">What it adds</a>
+        <a class="anchor" href="#proofs">Proofs</a>
         <a class="anchor" href="#how">How it works</a>
-        <a class="anchor" href="#chat">Chat</a>
+        <a class="anchor" href="#next">Shipping next</a>
         <a class="anchor" href="#start">Early access</a>
         <a class="nav-cta" href={REPO}><span aria-hidden="true">★</span> GitHub</a>
       </nav>
@@ -35,60 +32,128 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
       <div class="container hero-inner">
         <div>
           <p class="eyebrow"><span class="dot" aria-hidden="true"></span> <span>An opinionated <a href={HERMES}>Hermes Agent</a> distribution · open source · early access</span></p>
-          <h1 class="hero-title display">Hermes, run as a team. <span class="brass nowrap-block">Each agent in its own box.</span></h1>
-          <p class="hero-kicker">The Hermes you already like, set up properly for a team of specialists you text. <span class="leash">On a leash.</span></p>
+          <h1 class="hero-title display">Hermes agents that work your projects, <span class="brass nowrap-block">not just your chats.</span></h1>
+          <p class="hero-kicker">One box per agent. Linear holds the thread. Tuned for the Claude plan you already pay for.</p>
           <p class="lede hero-sub">
-            Switchroom takes <a href={HERMES}>Hermes Agent</a> by Nous Research and adds
-            the opinions it doesn't ship with: one container per agent, secrets from a
-            vault, digest-pinned images, and Telegram, Slack and Hermes Desktop held to
-            the same bar. Same Hermes skills, memory and tools. No way for one agent to
-            reach into another.
+            Switchroom packages <a href={HERMES}>Hermes Agent</a> by Nous Research for a
+            team of specialists. Each one can pick up issues and report back where you
+            already track the work, and none of them can reach into the others. Same
+            Hermes skills, memory and tools underneath.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
-            <a class="btn btn-secondary" href="#how">How it works</a>
+            <a class="btn btn-secondary" href="#proofs">See the proofs</a>
           </div>
-          <p class="hero-note">Bring your own plans and keys · Claude, Codex, Grok, OpenRouter, local models</p>
+          <p class="hero-note">Claude-first, not Claude-only · Codex, Grok, OpenRouter and local models too</p>
         </div>
         <div class="hero-stage">
           <StorylineHero />
-          <p class="hero-demo-cap">One take · five agents · one tap, on loop.</p>
+          <p class="hero-demo-cap">
+            Chat is standard Hermes: Telegram on the run, Slack or Hermes Desktop at your
+            desk, and Linear keeps you from losing the thread as you jump between issues,
+            projects and agents.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ============ What Switchroom adds to Hermes ============ -->
-    <section class="section alt" id="adds">
+    <!-- ============ Four proofs ============ -->
+    <section class="section alt" id="proofs">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Hermes, plus opinions</p>
-          <h2 class="section-title">Hermes is the agent. Switchroom is how you run a team of them.</h2>
+          <p class="kicker">Four proofs</p>
+          <h2 class="section-title">Less chatbot, more colleague with a ticket.</h2>
           <p class="lede">
-            Every agent is a full Hermes Agent gateway, built on an exact, digest-pinned
-            Hermes Agent image, with its skills, memory, tools and model providers
-            intact. Switchroom is the packaging and the rules around it.
+            Each claim below traces to the <a href={REPO}>public repo</a>. Mockups are
+            illustrative, with made-up workspaces, people and data.
           </p>
         </div>
-        <div class="adds">
-          <div class="adds-col">
-            <p class="adds-k">Hermes Agent gives you</p>
-            <ul>
-              <li>An agent that learns skills and remembers you across sessions</li>
-              <li>Telegram, Slack, Desktop and a dozen more chat surfaces</li>
-              <li>Any model provider: Claude, Codex, Grok, OpenRouter, local</li>
-              <li>Tools, cron, MCP, delegation and profiles</li>
-            </ul>
-          </div>
-          <div class="adds-col brass">
-            <p class="adds-k">Switchroom adds</p>
-            <ul>
-              <li><b>One agent, one container, one gateway.</b> Own volume, network and workspace. No Docker socket, no host network, no privileged mode.</li>
-              <li><b>No shared credentials.</b> Each agent gets its own vault token and logins, injected at runtime. 1Password Connect by default.</li>
-              <li><b>Digest or it didn't happen.</b> A provenance-checked child of an exact Hermes image, with gh, Claude Code, Codex, Grok and OpenCode baked in.</li>
-              <li><b>Plugins off until you say so.</b> Linear, browser handoff, local Kokoro voice and Claude ACP, each disabled by default.</li>
-              <li><b>You stay in the overlay.</b> Identity, compose and secret bindings live in your private repo, never in the image.</li>
-            </ul>
-          </div>
+
+        <div class="proofs">
+          <article class="proof-row proof-wide reveal">
+            <div class="proof-copy">
+              <span class="tag">01 · linear</span>
+              <h3>Works your projects</h3>
+              <p>
+                Hand an issue to an agent in Linear and it gets an owning agent and a
+                durable task. Checkpoints land as ordinary issue comments. A follow-up
+                from any chat reaches that same task, not a fresh one.
+              </p>
+              <p>
+                Several agents can work one project, and one can take over another's issue
+                without both of them running it. You keep the assignee, the board and the
+                comment thread you already read as a dev or a PM.
+              </p>
+              <p class="proof-fine">The Linear plugin is included and stays off until your overlay turns it on.</p>
+            </div>
+            <figure class="proof-shot">
+              <LinearIssue />
+              <figcaption>Illustrative: you stay the assignee, the agent is the delegate.</figcaption>
+            </figure>
+          </article>
+
+          <article class="proof-row reveal">
+            <div class="proof-copy">
+              <span class="tag">02 · own-box</span>
+              <h3>Safe to leave running</h3>
+              <p>
+                One container, gateway, volume and network per agent. No Docker socket, no
+                host network, no privileged mode. Each agent gets its own vault credentials
+                at runtime, and 1Password Connect is the default we ship.
+              </p>
+              <p>
+                Agents are isolated by default: one can't see another's files, network or
+                vault. Agent-to-agent messaging is an opt-in you wire up, and a peer's text
+                arrives as untrusted input, never as permission.
+              </p>
+            </div>
+            <figure class="proof-shot">
+              <BoxesTerm />
+            </figure>
+          </article>
+
+          <article class="proof-row reveal">
+            <div class="proof-copy">
+              <span class="tag">03 · claude-first</span>
+              <h3>Tuned for your Claude plan</h3>
+              <p>
+                Claude-first, not Claude-only. Claude Subscription DirectSDK drives the
+                official Claude Code CLI on the agent's own login, with no API-key fallback.
+                Claude ACP brings your claude.ai connectors to the agent as tools. Codex,
+                Grok, OpenRouter and local models work too, picked per agent.
+              </p>
+              <p class="proof-fine">
+                The fine print: DirectSDK is Nous Research's plugin, included unmodified and
+                labelled experimental by its author. Connectors are qualified for reads only
+                so far, and every connector call uses extra inference from the same plan.
+                All of it is included and off until you enable it. Switchroom isn't made,
+                endorsed or approved by Anthropic.
+              </p>
+            </div>
+            <figure class="proof-shot proof-narrow">
+              <PlansCard />
+            </figure>
+          </article>
+
+          <article class="proof-row reveal">
+            <div class="proof-copy">
+              <span class="tag">04 · digest-pinned</span>
+              <h3>Runs like infrastructure</h3>
+              <p>
+                The image is a provenance-checked child of an exact Hermes Agent image, and
+                you run it by <code>sha256</code> digest, not a tag that moves under you.
+                Identity, compose and secret bindings stay in your private overlay repo,
+                never in the image.
+              </p>
+              <p>
+                Plugins are mounted per agent, not baked in. Leave one unmounted and it's
+                simply absent, with no baked copy to fall back to.
+              </p>
+            </div>
+            <figure class="proof-shot">
+              <VaultTerm />
+            </figure>
+          </article>
         </div>
       </div>
     </section>
@@ -129,100 +194,56 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
           </div>
           <div class="beat reveal">
             <span class="beat-num">03</span>
-            <h3>Text them anywhere</h3>
+            <h3>Turn on what each agent needs</h3>
             <p>
-              Telegram, Slack and Hermes Desktop, held to the same bar. The bar: a restart
-              shouldn't drop who they are, what tools they have, or where you left off.
+              Linear, Claude ACP, browser handoff and Kokoro voice are included and
+              disabled until the overlay enables them per agent. Enabling one without its
+              policy fails closed.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ Pillars ============ -->
-    <section class="section alt" id="pillars">
+    <!-- ============ Included vs shipping next ============ -->
+    <section class="section alt" id="next">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Why Switchroom</p>
-          <h2 class="section-title">Four things it does properly</h2>
-        </div>
-        <div class="pillars">
-          <article class="pillar reveal">
-            <span class="tag">standing-team</span>
-            <h3>A real team, not a chatbot</h3>
-            <p>
-              Named specialists, each with its own memory and tools. Not one generalist
-              wearing hats. You text the same colleague back, and it remembers what you
-              were doing.
-            </p>
-            <div class="proof"><RichReply /></div>
-          </article>
-          <article class="pillar reveal">
-            <span class="tag">own-box</span>
-            <h3>Each in its own box</h3>
-            <p>
-              One agent, one container, one gateway. No Docker socket, no host network, no
-              privileged mode. One agent can't see another's files, network or vault, and
-              upgrading one leaves the others alone.
-            </p>
-            <div class="proof"><BoxesTerm /></div>
-          </article>
-          <article class="pillar reveal">
-            <span class="tag">no-shared-secrets</span>
-            <h3>Secrets from a vault, never from git</h3>
-            <p>
-              Every agent gets its own vault token and its own logins. Two agents never
-              share one. We ship with 1Password Connect because it's what we run; the
-              pattern is the point, not the vendor.
-            </p>
-            <div class="proof"><VaultTerm /></div>
-          </article>
-          <article class="pillar reveal">
-            <span class="tag">bring-your-own-models</span>
-            <h3>Bring your own plans and keys</h3>
-            <p>
-              Claude, Codex, Grok, OpenRouter, or a model on your own GPU, chosen per
-              agent. A Claude plan login stays a plan login, with no fallback to an API
-              key. Every other plan is held to the same rule.
-            </p>
-            <div class="proof"><PlansCard /></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Chat surfaces ============ -->
-    <section class="section" id="chat">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">Wherever you already chat</p>
-          <h2 class="section-title">Telegram, Slack, Hermes&nbsp;Desktop. Same agent, same bar.</h2>
+          <p class="kicker">Today and next</p>
+          <h2 class="section-title">What's in the box, and what isn't yet</h2>
           <p class="lede">
-            Replies render natively on each surface: real tables, code blocks, threads.
-            Short answers stay short. Pick the app you're already in, and your agent
-            meets you there with the same memory and the same tools.
+            Built, published and deployed are different claims. So are included and
+            switched on. Here's the honest split.
           </p>
         </div>
-        <div class="surfaces">
-          <figure class="shot reveal">
-            <RichShowcase />
-            <figcaption>Telegram: table, code and expandable quote, all native.</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <SlackShot />
-            <figcaption>Slack: your agents as apps in the channels you already use.</figcaption>
-          </figure>
-          <figure class="shot reveal">
-            <DesktopShot />
-            <figcaption>Hermes Desktop: a full session view, connected to your box.</figcaption>
-          </figure>
+        <div class="adds">
+          <div class="adds-col">
+            <p class="adds-k">Included today, off until you turn it on</p>
+            <ul>
+              <li><b>Linear plugin.</b> Issues, delegates, checkpoints and takeovers.</li>
+              <li><b>Claude ACP and Claude account connectors.</b> Plan login and claude.ai connectors as tools, reads qualified.</li>
+              <li><b>Claude Subscription DirectSDK.</b> Nous Research's plugin, experimental.</li>
+              <li><b>Browser handoff.</b> An isolated browser the agent can hand to you for a login.</li>
+              <li><b>Kokoro voice.</b> Local text to speech through a sidecar.</li>
+            </ul>
+          </div>
+          <div class="adds-col brass next-col">
+            <p class="adds-k"><span class="next-badge">Shipping next</span> Not published yet</p>
+            <ul>
+              <li><b>A starter overlay that switches everything on.</b> Opt out, not opt in.</li>
+              <li><b>Honcho memory and local voice, wired in.</b> No assembly required.</li>
+              <li><b>The config renderer.</b> Shared defaults, roles and per-agent overrides, rendered for you.</li>
+              <li><b>The rollout runner.</b> Image updates across agents, with auto-rollback.</li>
+              <li><b>Backups and monitors.</b> So leaving it running is the boring part.</li>
+            </ul>
+            <p class="next-note">None of this is available today. The repo will say so first when it is.</p>
+          </div>
         </div>
-        <p class="surfaces-note">Illustrative mockups with made-up data.</p>
       </div>
     </section>
 
     <!-- ============ Early access ============ -->
-    <section class="section alt" id="start">
+    <section class="section" id="start">
       <div class="container">
         <div class="install-grid">
           <div class="install-copy">
@@ -238,8 +259,9 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
               <li>A Linux box with Docker: a cheap VPS or the machine under your desk</li>
               <li>A private git repo for your overlay</li>
               <li>A vault (1Password Connect is the default we ship)</li>
-              <li>A bot token per agent for each chat app you use</li>
               <li>The model plans or keys you want each agent on</li>
+              <li>A Linear workspace, if you want agents on your issues</li>
+              <li>A bot token per agent for each chat app you use</li>
             </ul>
             <div class="install-ctas">
               <a class="btn btn-primary" href={REPO}><span aria-hidden="true">★</span> Star on GitHub</a>
@@ -249,7 +271,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
           <div class="term reveal">
             <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>you@your-box</span></div>
             <pre><code><span class="c"># get the pattern</span>
-<span class="p">$</span> git clone {REPO}
+<span class="p">$</span> git clone \
+    {REPO}
 <span class="p">$</span> cp -r hermes-fleet/examples/overlay-repo \
     ~/my-switchroom
 
@@ -284,9 +307,10 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES } from '../site';
       </div>
       <p class="footnote">
         Switchroom is an opinionated distribution of Hermes Agent by Nous Research: one
-        container per agent, secrets from a vault, the model plans you choose. Not
-        affiliated with Nous Research. Self-hosted on your own machine. Open source.
-        Early access. On a leash. Chat mockups on this page are illustrative.
+        container per agent, secrets from a vault, Linear for the thread, the model plans
+        you choose. Not affiliated with Nous Research or Anthropic. Self-hosted on your own
+        machine. Open source. Early access. Chat and Linear mockups on this page are
+        illustrative.
       </p>
     </div>
   </footer>

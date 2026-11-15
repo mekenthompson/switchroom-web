@@ -44,7 +44,7 @@ const { class: className = '' } = Astro.props;
 <div
   class={`phone tg sl-phone ${className}`.trim()}
   role="img"
-  aria-label="Animated Telegram demo of one Switchroom ship day. A chat list shows five named assistants: clerk, marko, coach, quill and klanker. You open klanker and ask it to refresh the Acme landing page before launch. klanker dispatches a worker and pins a live progress card that updates itself: repo cloned, hero copy applied, Lighthouse 99 mobile, PR 41 open. It then stops and asks approval to push to acme-site main, which deploys on merge. You tap Approve, the card resolves, and one rich reply lands: a status table, a config diff, an expandable deploy log. You send slash-usage and klanker reports its own model: a Claude plan login of its own, with no API key fallback set. A notification from marko drops in — the launch email is queued — you hop over, say go, marko locks the 9am send, and you return to the chat list with updated previews. The loop restarts."
+  aria-label="Animated Telegram demo of one Switchroom ship day. A chat list shows five named assistants: clerk, marko, coach, quill and klanker. You open klanker and ask it to refresh the Acme landing page before launch. klanker dispatches a worker and pins a live progress card that updates itself: repo cloned, hero copy applied, Lighthouse 99 mobile, PR 41 open. It then stops and asks approval to push to acme-site main, which deploys on merge. You tap Approve, the card resolves, and one rich reply lands: a status table, a config diff, an expandable deploy log. You send slash-usage and klanker reports its own model: a Claude plan login of its own, with no API key fallback set. A notification from marko drops in: the launch email is queued. You hop over, say go, marko locks the 9am send, and you return to the chat list with updated previews. The loop restarts."
 >
   <div class="phone-screen sl-stage">
     <div class="phone-status" aria-hidden="true">
@@ -69,7 +69,7 @@ const { class: className = '' } = Astro.props;
             <span class="tg-ava a1">c</span>
             <div class="cbody">
               <div class="l1"><b>clerk</b><time>14:20</time></div>
-              <div class="l2"><span>Booked. Thu 2:30 with Dr Chen — invite sent.</span></div>
+              <div class="l2"><span>Booked. Thu 2:30 with Dr Chen, invite sent.</span></div>
             </div>
           </div>
           <div class="chat">
@@ -80,8 +80,8 @@ const { class: className = '' } = Astro.props;
               </div>
               <div class="l2">
                 <span class="sl-swap sl-prev">
-                  <span class="vA">Three hooks drafted — the second one's the keeper</span>
-                  <span class="vB">Locked. ✅ 9:00 send, list of 1,240 — I'll…</span>
+                  <span class="vA">Three hooks drafted. The second one's the keeper</span>
+                  <span class="vB">Locked. ✅ 9:00 send, list of 1,240. I'll…</span>
                 </span>
               </div>
             </div>
@@ -90,14 +90,14 @@ const { class: className = '' } = Astro.props;
             <span class="tg-ava a3">co</span>
             <div class="cbody">
               <div class="l1"><b>coach</b><time>7:02</time></div>
-              <div class="l2"><span>Morning. Sleep score 84 — good night for intervals</span></div>
+              <div class="l2"><span>Morning. Sleep score 84, good night for intervals</span></div>
             </div>
           </div>
           <div class="chat">
             <span class="tg-ava a5">q</span>
             <div class="cbody">
               <div class="l1"><b>quill</b><time>Yesterday</time></div>
-              <div class="l2"><span class="muted-check">✓✓</span><span>Second draft attached — tightened the opening</span></div>
+              <div class="l2"><span class="muted-check">✓✓</span><span>Second draft attached, tightened the opening</span></div>
             </div>
           </div>
           <div class="chat sl-row-k">
@@ -109,8 +109,8 @@ const { class: className = '' } = Astro.props;
               </div>
               <div class="l2">
                 <span class="sl-swap sl-prev">
-                  <span class="vA">Fleet healthy. All 5 agents up, backups clean.</span>
-                  <span class="vB">✅ Acme landing page shipped — Lighthouse 99</span>
+                  <span class="vA">All 5 agents healthy, nothing waiting on you.</span>
+                  <span class="vB">✅ Acme landing page shipped, Lighthouse 99</span>
                 </span>
                 <span class="badge sl-badge">1</span>
               </div>
@@ -139,7 +139,7 @@ const { class: className = '' } = Astro.props;
               <span class="pin-label">📌 Pinned message</span>
               <span class="sl-swap sl-pinprev">
                 <span class="pin-preview vA">⚙️ worker · refresh the Acme landing page</span>
-                <span class="pin-preview vB">✅ worker · Acme landing page — shipped</span>
+                <span class="pin-preview vB">✅ worker · Acme landing page · shipped</span>
               </span>
             </span>
             <span class="pin-x">✕</span>
@@ -150,13 +150,13 @@ const { class: className = '' } = Astro.props;
             <span class="tg-pill">Today</span>
 
             <div class="msg out tail sl-m1">
-              <p>klanker, refresh the Acme landing page before tomorrow's launch — new hero copy is in marko's doc</p>
+              <p>klanker, refresh the Acme landing page before tomorrow's launch. New hero copy is in marko's doc</p>
               <span class="meta">15:58 <span class="sl-swap sl-tick1"><span class="ticks vA">✓</span><span class="ticks vB">✓✓</span></span></span>
             </div>
 
             <div class="msg in tail sl-m2">
               <span class="name">klanker</span>
-              <p>On it. Dispatching <b>@worker</b> on a branch — I'll pin progress here so you can watch.</p>
+              <p>On it. Dispatching <b>@worker</b> on a branch. I'll pin progress here so you can watch.</p>
               <span class="meta">15:58</span>
             </div>
 
@@ -205,7 +205,7 @@ const { class: className = '' } = Astro.props;
                   <p class="card-title vA">🔐 Approval needed</p>
                   <p class="card-title vB">✅ Approved · by you, 16:04</p>
                 </span>
-                <p>Push 1 commit to <code>acme-site:main</code> — deploys on merge.</p>
+                <p>Push 1 commit to <code>acme-site:main</code>. Deploys on merge.</p>
                 <p><b>Scope:</b> this push only · expires in 1h</p>
                 <span class="meta">16:03</span>
               </div>
@@ -230,9 +230,9 @@ const { class: className = '' } = Astro.props;
               </table>
               <p>One config change shipped with it:</p>
               <pre><span class="k">- hero: "Meet your agents"</span>
-<span class="s">+ hero: "Each in its own box."</span></pre>
+<span class="s">+ hero: "Work your projects."</span></pre>
               <div class="quote">
-                <b>Full deploy log</b> — 178 lines · rollout 3m 41s end to end…
+                <b>Full deploy log</b> · 178 lines · rollout 3m 41s end to end…
                 <span class="expander">▼ expand</span>
               </div>
               <span class="meta">16:04</span>
@@ -274,7 +274,7 @@ const { class: className = '' } = Astro.props;
           <span class="tg-pill">Today</span>
           <div class="msg in tail" style="max-width:92%">
             <span class="name">marko</span>
-            <p>Landing page is live — nice work next door. Launch email is queued for <b>9:00 tomorrow</b>, subject: "Each in its own box." Say go and it's locked.</p>
+            <p>Landing page is live, nice work next door. Launch email is queued for <b>9:00 tomorrow</b>, subject: "Not just your chats." Say go and it's locked.</p>
             <span class="meta">16:04</span>
           </div>
           <div class="msg out tail sl-go">
@@ -283,7 +283,7 @@ const { class: className = '' } = Astro.props;
           </div>
           <div class="msg in tail sl-lock">
             <span class="name">marko</span>
-            <p>Locked. ✅ 9:00 send, list of 1,240 — I'll report open rates by lunch.</p>
+            <p>Locked. ✅ 9:00 send, list of 1,240. I'll report open rates by lunch.</p>
             <span class="meta">16:05</span>
           </div>
         </div>
@@ -293,7 +293,7 @@ const { class: className = '' } = Astro.props;
       <div class="sl-banner">
         <span class="sl-ripple sl-rip-ban"></span>
         <span class="tg-ava a2">m</span>
-        <span class="sl-ban-txt"><b>marko</b><span>Page is live — launch email queued for 9:00. Say go.</span></span>
+        <span class="sl-ban-txt"><b>marko</b><span>Page is live. Launch email queued for 9:00. Say go.</span></span>
       </div>
     </div>
   </div>
