@@ -1533,5 +1533,18 @@ figure.shot { margin: 0; }
 }
 .next-note { margin: 16px 0 0; font-size: 13px; color: var(--text-muted); }
 @media (min-width: 960px) { #next .adds { grid-template-columns: 1fr 1fr; } }
+/* status: three equal-height groups */
+.status-grid { align-items: stretch; }
+.status-grid .adds-col { display: flex; flex-direction: column; min-width: 0; }
+.status-grid .adds-col ul { flex: 1 1 auto; }
+.status-grid a { color: var(--link); text-underline-offset: 3px; }
+.status-grid b a { color: inherit; text-decoration-color: var(--accent); }
+.status-grid code { font-family: var(--ff-mono); font-size: 0.9em; color: var(--text-strong); }
+@media (min-width: 960px) { #next .status-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+.proof-fine a { color: var(--link); white-space: nowrap; }
+/* Claude proof: centre the mockup in its column */
+@media (min-width: 960px) { .proof-shot.proof-narrow { justify-self: center; } }
+/* hero buttons stack full-width on phones */
+@media (max-width: 560px) { .hero-ctas .btn { flex: 1 1 100%; } }
 .hero-demo-cap { text-wrap: pretty; max-width: 400px; font-family: var(--ff-sans); font-size: 13px; letter-spacing: 0; line-height: 1.5; }
 @media (max-width: 400px) { .term pre { font-size: 11px; padding: 14px 10px 18px 12px; } }
