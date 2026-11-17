@@ -1,6 +1,6 @@
 # switchroom-web
 
-Landing page for Switchroom: *a team of AI agents you text, each in its own box.* Switchroom is an opinionated distribution of [Hermes Agent](https://github.com/NousResearch/hermes-agent); source lives in [`hermes-fleet`](https://github.com/mekenthompson/hermes-fleet) until it moves to the `switchroom` org.
+Landing page for Switchroom: *a team of AI agents you text, each in its own box.* Switchroom is an opinionated distribution of [Hermes Agent](https://github.com/NousResearch/hermes-agent); source lives in [`switchroom/switchroom`](https://github.com/switchroom/switchroom).
 
 ## Stack
 
@@ -22,6 +22,6 @@ Static files behind nginx. Deployed via Coolify → Cloudflare Tunnel → Pixsou
 
 ## Copy
 
-Product claims come from the Switchroom source README and `reference/` docs (currently `mekenthompson/hermes-fleet`). Don't invent product claims here: if the source repo doesn't ship it, it doesn't go on the page. Chat mockups use synthetic data only; never paste real chats, household names or chat IDs.
+Product claims come from the Switchroom source README and `reference/` docs (`switchroom/switchroom`). Don't invent product claims here: if the source repo doesn't ship it, it doesn't go on the page. Chat mockups use synthetic data only; never paste real chats, household names or chat IDs.
 
-Outbound product links live in `src/site.ts`. Flip `REPO` there in the same window as the repo move.
+Outbound product links live in `src/site.ts`; `REPO` is the single place to change them.
