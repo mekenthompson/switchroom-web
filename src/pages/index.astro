@@ -306,7 +306,8 @@ import { REPO, DOCS, OVERLAY_EXAMPLE, LICENSE, HERMES, tree, blob } from '../sit
 <span class="c"># one service per agent;</span>
 <span class="c"># secrets at runtime, never in git</span>
 <span class="p">$</span> cd ~/my-switchroom
-<span class="p">$</span> export HERMES_FLEET_IMAGE='…@sha256:&lt;digest&gt;'
+<span class="p">$</span> IMG=ghcr.io/switchroom/switchroom
+<span class="p">$</span> export HERMES_FLEET_IMAGE="$IMG@sha256:&lt;digest&gt;"
 <span class="p">$</span> docker compose config</code></pre>
           </div>
         </div>

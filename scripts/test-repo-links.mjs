@@ -38,4 +38,9 @@ if (!home.includes('cp -r switchroom/examples/overlay-repo')) {
 }
 if (home.includes('cp -r hermes-fleet/')) fail('install snippet still uses the hermes-fleet clone directory');
 
+// HF-741: image examples name the published image, ghcr.io/switchroom/switchroom.
+if (!home.includes('IMG=ghcr.io/switchroom/switchroom')) fail('install snippet must name ghcr.io/switchroom/switchroom');
+const vault = readFileSync('src/components/VaultTerm.astro', 'utf8');
+if (/image: (?!ghcr\.io\/switchroom\/switchroom@)/.test(vault)) fail('VaultTerm compose images must be ghcr.io/switchroom/switchroom');
+
 console.log(`test-repo-links: ok (${files.length} files scanned)`);
