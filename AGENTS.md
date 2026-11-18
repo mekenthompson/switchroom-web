@@ -23,6 +23,6 @@ There is no hosted CI here, so `npm test` plus `npm run build` on the exact head
 
 ## Pull requests
 
-- Small, one topic. Branch from current `main`.
+- Small, one topic. Branch from current `master`.
 - Independent cold review by a fresh session that did not write the change, then merge the exact reviewed head.
 - After a visible change merges and deploys, check https://switchroom.ai.
