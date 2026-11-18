@@ -7,7 +7,7 @@ This is a **public** repo. No secrets, household names, emails, chat IDs or prof
 ## What the site points at
 
 - Product source: `switchroom/switchroom`, the public Switchroom distro of [Hermes Agent](https://github.com/NousResearch/hermes-agent). Runtime fork: `switchroom/hermes-agent`.
-- `mekenthompson/hermes-fleet` and `mekenthompson/hermes-agent` moved to the `switchroom` org on 2026-11-18. GitHub redirects them, but link the new names. `switchroom/switchroom-classic` is the archived Claude Code harness; do not link it as the product.
+- `mekenthompson/hermes-fleet` and `mekenthompson/hermes-agent` moved to the `switchroom` org on 2026-11-18. GitHub redirects them, but link the new names. Never create a repository at either old name, because that breaks the redirect. `switchroom/switchroom-classic` is the archived Claude Code harness; do not link it as the product.
 - Outbound product links live in `src/site.ts` (`REPO`). `scripts/test-repo-links.mjs` fails on old repo or image names in `src/`, `public/` and `README.md`.
 - Product claims come from the `switchroom/switchroom` README and `reference/` docs. If the source repo does not ship it, it does not go on the page. Hermes is the runtime and Switchroom is the opinionated layer on top.
 
